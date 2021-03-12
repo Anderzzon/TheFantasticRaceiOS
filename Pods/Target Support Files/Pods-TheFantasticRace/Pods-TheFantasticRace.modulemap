@@ -1,0 +1,6 @@
+framework module Pods_TheFantasticRace {
+  umbrella header "Pods-TheFantasticRace-umbrella.h"
+
+  export *
+  module * { export * }
+}

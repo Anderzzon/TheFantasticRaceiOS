@@ -3,23 +3,66 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
+		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
+		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
+		0352011025CEC40800965F06 /* SignInWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010D25CEC40800965F06 /* SignInWithEmailView.swift */; };
+		0352011325CEC6E700965F06 /* SignInWithAppleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352011225CEC6E700965F06 /* SignInWithAppleView.swift */; };
+		0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33925CECF320061C42E /* FBFireStoreError.swift */; };
+		0373B33E25CECF350061C42E /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33A25CECF330061C42E /* FBKeys.swift */; };
+		0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33B25CECF340061C42E /* FBFireStore.swift */; };
+		0373B34025CECF350061C42E /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33C25CECF350061C42E /* FBUser.swift */; };
+		0373B34425CECF450061C42E /* FBAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34225CECF430061C42E /* FBAuthError.swift */; };
+		0373B34525CECF450061C42E /* FBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34325CECF450061C42E /* FBAuth.swift */; };
+		0373B34D25CEE0E90061C42E /* View.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34C25CEE0E90061C42E /* View.extensions.swift */; };
+		0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B36525CFEA240061C42E /* FBDataModel.swift */; };
+		0373B36A25CFEC8F0061C42E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B36925CFEC8F0061C42E /* GameModel.swift */; };
+		0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B37025D035EB0061C42E /* NavigationRow.swift */; };
 		037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */; };
 		037B0A5225CE9EBF003CB5D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A5125CE9EBF003CB5D2 /* ContentView.swift */; };
 		037B0A5425CE9EC1003CB5D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */; };
 		037B0A5725CE9EC1003CB5D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 037B0A5625CE9EC1003CB5D2 /* Preview Assets.xcassets */; };
+		037B0A6025CEA5F0003CB5D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 037B0A5F25CEA5EF003CB5D2 /* GoogleService-Info.plist */; };
+		037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A6F25CEBAD5003CB5D2 /* UserInfo.swift */; };
+		037B0A7725CEBDB4003CB5D2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A7625CEBDB4003CB5D2 /* LoginView.swift */; };
+		037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A7925CEBE23003CB5D2 /* HomeView.swift */; };
+		3C8096D8A43917F5FB4FE9F1 /* Pods_TheFantasticRace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A1D7B1CE6BB0290946AF68E /* Pods_TheFantasticRace.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		0352010D25CEC40800965F06 /* SignInWithEmailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithEmailView.swift; sourceTree = "<group>"; };
+		0352011225CEC6E700965F06 /* SignInWithAppleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInWithAppleView.swift; sourceTree = "<group>"; };
+		0352011525CEC83F00965F06 /* TheFantasticRace.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheFantasticRace.entitlements; sourceTree = "<group>"; };
+		0373B33925CECF320061C42E /* FBFireStoreError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBFireStoreError.swift; sourceTree = "<group>"; };
+		0373B33A25CECF330061C42E /* FBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
+		0373B33B25CECF340061C42E /* FBFireStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBFireStore.swift; sourceTree = "<group>"; };
+		0373B33C25CECF350061C42E /* FBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
+		0373B34225CECF430061C42E /* FBAuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuthError.swift; sourceTree = "<group>"; };
+		0373B34325CECF450061C42E /* FBAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuth.swift; sourceTree = "<group>"; };
+		0373B34C25CEE0E90061C42E /* View.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.extensions.swift; sourceTree = "<group>"; };
+		0373B36525CFEA240061C42E /* FBDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataModel.swift; sourceTree = "<group>"; };
+		0373B36925CFEC8F0061C42E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		0373B37025D035EB0061C42E /* NavigationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRow.swift; sourceTree = "<group>"; };
 		037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheFantasticRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheFantasticRaceApp.swift; sourceTree = "<group>"; };
 		037B0A5125CE9EBF003CB5D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		037B0A5625CE9EC1003CB5D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		037B0A5825CE9EC1003CB5D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		037B0A5F25CEA5EF003CB5D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		037B0A6F25CEBAD5003CB5D2 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		037B0A7625CEBDB4003CB5D2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		037B0A7925CEBE23003CB5D2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3CE9E663E585D0860BC256C0 /* Pods-TheFantasticRace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFantasticRace.debug.xcconfig"; path = "Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace.debug.xcconfig"; sourceTree = "<group>"; };
+		4A1D7B1CE6BB0290946AF68E /* Pods_TheFantasticRace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheFantasticRace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		911B3655D469D99BCF2819A6 /* Pods-TheFantasticRace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFantasticRace.release.xcconfig"; path = "Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +70,73 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C8096D8A43917F5FB4FE9F1 /* Pods_TheFantasticRace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0373B34725CED63F0061C42E /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				0373B34825CED6490061C42E /* Views */,
+				0373B34925CED6530061C42E /* FireStore */,
+				0373B34A25CED65B0061C42E /* Auth */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		0373B34825CED6490061C42E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				037B0A7625CEBDB4003CB5D2 /* LoginView.swift */,
+				0352011225CEC6E700965F06 /* SignInWithAppleView.swift */,
+				0352010B25CEC40800965F06 /* ForgotPasswordView.swift */,
+				0352010D25CEC40800965F06 /* SignInWithEmailView.swift */,
+				0352010C25CEC40800965F06 /* SignUpView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0373B34925CED6530061C42E /* FireStore */ = {
+			isa = PBXGroup;
+			children = (
+				0373B33B25CECF340061C42E /* FBFireStore.swift */,
+				0373B33925CECF320061C42E /* FBFireStoreError.swift */,
+				0373B33A25CECF330061C42E /* FBKeys.swift */,
+				0373B33C25CECF350061C42E /* FBUser.swift */,
+			);
+			path = FireStore;
+			sourceTree = "<group>";
+		};
+		0373B34A25CED65B0061C42E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0373B34325CECF450061C42E /* FBAuth.swift */,
+				0373B34225CECF430061C42E /* FBAuthError.swift */,
+				037B0A6F25CEBAD5003CB5D2 /* UserInfo.swift */,
+				0352010825CEC36D00965F06 /* UserViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		0373B36425CFE9FD0061C42E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0373B36525CFEA240061C42E /* FBDataModel.swift */,
+				0373B36925CFEC8F0061C42E /* GameModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		037B0A4325CE9EBF003CB5D2 = {
 			isa = PBXGroup;
 			children = (
 				037B0A4E25CE9EBF003CB5D2 /* TheFantasticRace */,
 				037B0A4D25CE9EBF003CB5D2 /* Products */,
+				3C017E5AEF454E8F82C2B9D5 /* Pods */,
+				1A2D10FB2BBA87F350094E56 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,10 +151,17 @@
 		037B0A4E25CE9EBF003CB5D2 /* TheFantasticRace */ = {
 			isa = PBXGroup;
 			children = (
+				0373B36425CFE9FD0061C42E /* Models */,
+				0373B34725CED63F0061C42E /* Firebase */,
+				0352011525CEC83F00965F06 /* TheFantasticRace.entitlements */,
 				037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
+				0373B37025D035EB0061C42E /* NavigationRow.swift */,
+				0373B34C25CEE0E90061C42E /* View.extensions.swift */,
+				037B0A7925CEBE23003CB5D2 /* HomeView.swift */,
 				037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */,
 				037B0A5825CE9EC1003CB5D2 /* Info.plist */,
+				037B0A5F25CEA5EF003CB5D2 /* GoogleService-Info.plist */,
 				037B0A5525CE9EC1003CB5D2 /* Preview Content */,
 			);
 			path = TheFantasticRace;
@@ -69,6 +175,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1A2D10FB2BBA87F350094E56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4A1D7B1CE6BB0290946AF68E /* Pods_TheFantasticRace.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C017E5AEF454E8F82C2B9D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3CE9E663E585D0860BC256C0 /* Pods-TheFantasticRace.debug.xcconfig */,
+				911B3655D469D99BCF2819A6 /* Pods-TheFantasticRace.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */;
 			buildPhases = (
+				2FC2D0A873AD421C7070D169 /* [CP] Check Pods Manifest.lock */,
 				037B0A4825CE9EBF003CB5D2 /* Sources */,
 				037B0A4925CE9EBF003CB5D2 /* Frameworks */,
 				037B0A4A25CE9EBF003CB5D2 /* Resources */,
+				733B7A38DF13D3B1BCF7387D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -128,18 +253,79 @@
 			files = (
 				037B0A5725CE9EC1003CB5D2 /* Preview Assets.xcassets in Resources */,
 				037B0A5425CE9EC1003CB5D2 /* Assets.xcassets in Resources */,
+				037B0A6025CEA5F0003CB5D2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FC2D0A873AD421C7070D169 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TheFantasticRace-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		733B7A38DF13D3B1BCF7387D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		037B0A4825CE9EBF003CB5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0373B34D25CEE0E90061C42E /* View.extensions.swift in Sources */,
+				0352011025CEC40800965F06 /* SignInWithEmailView.swift in Sources */,
+				0373B34525CECF450061C42E /* FBAuth.swift in Sources */,
+				0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */,
+				0352011325CEC6E700965F06 /* SignInWithAppleView.swift in Sources */,
+				0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */,
+				0373B33E25CECF350061C42E /* FBKeys.swift in Sources */,
 				037B0A5225CE9EBF003CB5D2 /* ContentView.swift in Sources */,
+				0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */,
+				0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */,
+				0373B36A25CFEC8F0061C42E /* GameModel.swift in Sources */,
+				037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */,
+				0352010F25CEC40800965F06 /* SignUpView.swift in Sources */,
+				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
+				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,
+				037B0A7725CEBDB4003CB5D2 /* LoginView.swift in Sources */,
+				037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */,
 				037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */,
+				0373B34025CECF350061C42E /* FBUser.swift in Sources */,
+				0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,9 +450,11 @@
 		};
 		037B0A5C25CE9EC1003CB5D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CE9E663E585D0860BC256C0 /* Pods-TheFantasticRace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TheFantasticRace/TheFantasticRace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TheFantasticRace/Preview Content\"";
 				DEVELOPMENT_TEAM = 2T4JVD9P46;
@@ -286,9 +474,11 @@
 		};
 		037B0A5D25CE9EC1003CB5D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 911B3655D469D99BCF2819A6 /* Pods-TheFantasticRace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = TheFantasticRace/TheFantasticRace.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TheFantasticRace/Preview Content\"";
 				DEVELOPMENT_TEAM = 2T4JVD9P46;
