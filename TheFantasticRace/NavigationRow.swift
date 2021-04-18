@@ -59,8 +59,8 @@ struct NavigationRow: View {
     }
 }
 
-struct NavigationRow_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationRow(game: Game()).previewLayout(.fixed(width: 310, height: 150))
-    }
-}
+//struct NavigationRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationRow(game: Game()).previewLayout(.fixed(width: 310, height: 150))
+//    }
+//}

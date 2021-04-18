@@ -14,11 +14,13 @@ struct HomeView: View {
     @State private var errorString = ""
     @StateObject var games = FBDataModel()
     
+    @State private var createGameIsPresented = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVStack {
-                    ForEach(games.games, id: \.name) { game in
+                    ForEach(games.fetchedGames, id: \.name) { game in
                         //Text(game.name!)
                         NavigationRow(game: game)
                         Print(game)
@@ -26,7 +28,9 @@ struct HomeView: View {
                 }
             }
             .navigationBarTitle("All games")
-            .navigationBarItems(trailing: Button(action: {print("add game")}, label: {
+            .navigationBarItems(trailing: Button(action: {
+                                                    createGameIsPresented = true
+                                                    print("add game")}, label: {
                 Image(systemName: "plus").padding()
             }))
             .onAppear {
@@ -41,6 +45,9 @@ struct HomeView: View {
                         self.userInfo.user = user
                     }
                 }
+            }
+            .fullScreenCover(isPresented: $createGameIsPresented) {
+                CreateGame(viewModel: CreateGameViewModel())
             }
         }
         .alert(isPresented: $showError) {

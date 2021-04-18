@@ -10,7 +10,7 @@ import Firebase
 
 class FBDataModel: ObservableObject {
     @Published var noPosts = false
-    @Published var games: [Game] = []
+    @Published var fetchedGames: [Game] = []
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
     
@@ -20,22 +20,22 @@ class FBDataModel: ObservableObject {
     
     func getAllGames() {
         
-        ref.collection("users").document(user).collection("races_invited").addSnapshotListener { (querySnapshot, error) in
+        ref.collection("races").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 self.noPosts = true
                 print("No documents")
                 return
             }
-            self.games = documents.map { (querySnapshot) -> Game in
+            self.fetchedGames = documents.map { (querySnapshot) -> Game in
                 let data = querySnapshot.data()
                 
-                let name = data["name"] as? String
+                let name = data["name"] as! String
                 let description = data["description"] as? String
                 let finishedStops = data["finishedStops"] as? Int
                 let gameFinished = data["gameFinished"] as? Bool
                 let listOfPlayers = data["listOfPlayers"] as? [String]
                 let parent_race = data["parent_race"] as? String
-                let radius = data["radius"] as? Int
+                let radius = data["radius"] as? Double
                 let show_next_stop = data["show_next_stop"] as? Int
                 let show_players_map = data["show_players_map"] as? Bool
                 let start_time = data["start_time"] as? Date
