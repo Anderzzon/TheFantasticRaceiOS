@@ -14,6 +14,7 @@ enum ActiveSheet {
 struct BasicGameSettings: View {
     @State var showSheet = false
     @State private var activeSheet: ActiveSheet = .title
+    @State private var showNextStop: Bool = true
     
     @ObservedObject var viewModel: CreateGameViewModel
     var body: some View {
@@ -36,16 +37,34 @@ struct BasicGameSettings: View {
                             showSheet = true
                         }
                     }
-                    Section(header: Text("Radius")) {
+                    Section(header: Text("Geofence radius")) {
                         VStack {
                             Slider(value: $viewModel.game.radius ?? 20, in: 20...100, step: 1)
-                            Text("Radius for stops is set to \(Int(viewModel.game.radius ?? 20)) meters")
+                            Text("Radius for stops is set to \(Int(viewModel.game.radius ?? 20)) meters").font(.footnote)
                         }
                     }
                     Section(header: Text("Show particiments on the map")) {
-//                        Toggle(isOn: $viewModel.game.show_players_map){
-//                            Text("Show players on map")
-//                        }
+                        Toggle(isOn: $viewModel.game.show_players_map ?? true){
+                            //Text("Show players on map")
+                            Text(viewModel.game.show_players_map ?? true ? "Players will see each other on map" : "Players won't see each other").font(.footnote)
+                        }
+                    }
+                    Section(header: Text("Unlock the next stop with a question")) {
+                        Toggle(isOn: $viewModel.game.unlock_with_question ?? true){
+                            Text(viewModel.game.unlock_with_question ?? true ? "The next stop will be unlocked by answering a question" : "Next stop will automatically be unlocked").font(.footnote)
+                        }
+                    }
+                    Section(header: Text("Show the next stop on the map")) {
+                        Toggle(isOn: $viewModel.showNextStop){
+                            Text(viewModel.showNextStop ? "The next stop will be shown on the map" : "The stops will not be shown on the map").font(.footnote)
+                        }
+                        if viewModel.showNextStop {
+                            VStack {
+                                Slider(value: $viewModel.game.show_next_stop_delay ?? 5, in: 0...60, step: 5)
+                                Text("Next stop will be shown on map with a delay of \(Int(viewModel.game.show_next_stop_delay ?? 5)) min").font(.footnote)
+                            }
+                        }
+
                     }
                 }.listStyle(GroupedListStyle())
             }

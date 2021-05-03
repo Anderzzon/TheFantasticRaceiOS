@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		034CBC80263D84D000101D38 /* StopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC7F263D84D000101D38 /* StopListView.swift */; };
+		034CBC8426402F7500101D38 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8326402F7400101D38 /* FabView.swift */; };
+		034CBC872640339900101D38 /* AddNewStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC862640339900101D38 /* AddNewStopView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -21,6 +24,10 @@
 		03536C79262C8E7300D63020 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C72262C8E7300D63020 /* Map.swift */; };
 		03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C73262C8E7300D63020 /* BasicGameSettings.swift */; };
 		03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */; };
+		03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C82262C93EC00D63020 /* FirebaseAnalytics */; };
+		03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */; };
+		03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* FirebaseAuth */; };
+		03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* FirebaseFirestore */; };
 		0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33925CECF320061C42E /* FBFireStoreError.swift */; };
 		0373B33E25CECF350061C42E /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33A25CECF330061C42E /* FBKeys.swift */; };
 		0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33B25CECF340061C42E /* FBFireStore.swift */; };
@@ -38,10 +45,12 @@
 		037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A6F25CEBAD5003CB5D2 /* UserInfo.swift */; };
 		037B0A7725CEBDB4003CB5D2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A7625CEBDB4003CB5D2 /* LoginView.swift */; };
 		037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A7925CEBE23003CB5D2 /* HomeView.swift */; };
-		725E7CBF601349422FBC49C3 /* Pods_TheFantasticRace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53EF98AF70BC2D9148E07BE8 /* Pods_TheFantasticRace.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		034CBC7F263D84D000101D38 /* StopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopListView.swift; sourceTree = "<group>"; };
+		034CBC8326402F7400101D38 /* FabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
+		034CBC862640339900101D38 /* AddNewStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewStopView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -76,9 +85,6 @@
 		037B0A6F25CEBAD5003CB5D2 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		037B0A7625CEBDB4003CB5D2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		037B0A7925CEBE23003CB5D2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		0865DD9025430F8E7CDCFAA6 /* Pods-TheFantasticRace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFantasticRace.release.xcconfig"; path = "Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace.release.xcconfig"; sourceTree = "<group>"; };
-		119463BBD7303EAACB1C2475 /* Pods-TheFantasticRace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFantasticRace.debug.xcconfig"; path = "Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace.debug.xcconfig"; sourceTree = "<group>"; };
-		53EF98AF70BC2D9148E07BE8 /* Pods_TheFantasticRace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheFantasticRace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,22 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				725E7CBF601349422FBC49C3 /* Pods_TheFantasticRace.framework in Frameworks */,
+				03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */,
+				03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */,
+				03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */,
+				03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		034CBC7B263D816C00101D38 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		03536C6B262C8E7300D63020 /* Create Game */ = {
 			isa = PBXGroup;
 			children = (
+				034CBC7B263D816C00101D38 /* ViewModels */,
 				03536C6E262C8E7300D63020 /* Details */,
 				03536C6C262C8E7300D63020 /* CreateGame.swift */,
+				03536C73262C8E7300D63020 /* BasicGameSettings.swift */,
+				034CBC862640339900101D38 /* AddNewStopView.swift */,
 				03536C6D262C8E7300D63020 /* Stops.swift */,
+				034CBC7F263D84D000101D38 /* StopListView.swift */,
 				03536C71262C8E7300D63020 /* SelectPeople.swift */,
 				03536C72262C8E7300D63020 /* Map.swift */,
-				03536C73262C8E7300D63020 /* BasicGameSettings.swift */,
 			);
 			path = "Create Game";
 			sourceTree = "<group>";
@@ -164,7 +184,6 @@
 			children = (
 				0373B36525CFEA240061C42E /* FBDataModel.swift */,
 				0373B36925CFEC8F0061C42E /* GameModel.swift */,
-				03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -175,7 +194,6 @@
 				037B0A4E25CE9EBF003CB5D2 /* TheFantasticRace */,
 				037B0A4D25CE9EBF003CB5D2 /* Products */,
 				3C017E5AEF454E8F82C2B9D5 /* Pods */,
-				57B83EB32C17772B8E22E368 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +214,7 @@
 				03536C6B262C8E7300D63020 /* Create Game */,
 				037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
+				034CBC8326402F7400101D38 /* FabView.swift */,
 				0373B37025D035EB0061C42E /* NavigationRow.swift */,
 				0373B34C25CEE0E90061C42E /* View.extensions.swift */,
 				037B0A7925CEBE23003CB5D2 /* HomeView.swift */,
@@ -218,18 +237,8 @@
 		3C017E5AEF454E8F82C2B9D5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				119463BBD7303EAACB1C2475 /* Pods-TheFantasticRace.debug.xcconfig */,
-				0865DD9025430F8E7CDCFAA6 /* Pods-TheFantasticRace.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		57B83EB32C17772B8E22E368 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				53EF98AF70BC2D9148E07BE8 /* Pods_TheFantasticRace.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,17 +248,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */;
 			buildPhases = (
-				E96603F66BA70982239ED396 /* [CP] Check Pods Manifest.lock */,
 				037B0A4825CE9EBF003CB5D2 /* Sources */,
 				037B0A4925CE9EBF003CB5D2 /* Frameworks */,
 				037B0A4A25CE9EBF003CB5D2 /* Resources */,
-				8EC37266E57EA96F745E6642 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TheFantasticRace;
+			packageProductDependencies = (
+				03536C82262C93EC00D63020 /* FirebaseAnalytics */,
+				03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */,
+				03536C86262C93EC00D63020 /* FirebaseAuth */,
+				03536C88262C93EC00D63020 /* FirebaseFirestore */,
+			);
 			productName = TheFantasticRace;
 			productReference = 037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */;
 			productType = "com.apple.product-type.application";
@@ -277,6 +290,9 @@
 				Base,
 			);
 			mainGroup = 037B0A4325CE9EBF003CB5D2;
+			packageReferences = (
+				03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 037B0A4D25CE9EBF003CB5D2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -299,48 +315,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		8EC37266E57EA96F745E6642 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TheFantasticRace/Pods-TheFantasticRace-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E96603F66BA70982239ED396 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TheFantasticRace-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		037B0A4825CE9EBF003CB5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -362,12 +336,15 @@
 				03536C76262C8E7300D63020 /* DetailSettingsTitleView.swift in Sources */,
 				03536C74262C8E7300D63020 /* CreateGame.swift in Sources */,
 				0373B36A25CFEC8F0061C42E /* GameModel.swift in Sources */,
+				034CBC872640339900101D38 /* AddNewStopView.swift in Sources */,
 				037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */,
 				0352010F25CEC40800965F06 /* SignUpView.swift in Sources */,
 				03536C78262C8E7300D63020 /* SelectPeople.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
+				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,
 				03536C77262C8E7300D63020 /* DetailSettingsDescriptionView.swift in Sources */,
+				034CBC80263D84D000101D38 /* StopListView.swift in Sources */,
 				037B0A7725CEBDB4003CB5D2 /* LoginView.swift in Sources */,
 				037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */,
 				037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */,
@@ -498,11 +475,11 @@
 		};
 		037B0A5C25CE9EC1003CB5D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 119463BBD7303EAACB1C2475 /* Pods-TheFantasticRace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TheFantasticRace/TheFantasticRace.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TheFantasticRace/Preview Content\"";
 				DEVELOPMENT_TEAM = 2T4JVD9P46;
@@ -515,6 +492,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.erik.TheFantasticRace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -522,11 +500,11 @@
 		};
 		037B0A5D25CE9EC1003CB5D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0865DD9025430F8E7CDCFAA6 /* Pods-TheFantasticRace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TheFantasticRace/TheFantasticRace.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"TheFantasticRace/Preview Content\"";
 				DEVELOPMENT_TEAM = 2T4JVD9P46;
@@ -539,6 +517,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.erik.TheFantasticRace;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -566,6 +545,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		03536C82262C93EC00D63020 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		03536C86262C93EC00D63020 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		03536C88262C93EC00D63020 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 037B0A4425CE9EBF003CB5D2 /* Project object */;
 }

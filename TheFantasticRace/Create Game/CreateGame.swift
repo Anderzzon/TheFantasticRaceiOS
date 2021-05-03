@@ -48,8 +48,8 @@ struct CreateGame: View {
             leading:
                 Button(action: {
                     print("Saving")
-                    presentationMode.wrappedValue.dismiss()
                     viewModel.createGame(game: viewModel.game)
+                    presentationMode.wrappedValue.dismiss()
                 }, label: {
             Text("Save").padding()
         }),
@@ -69,7 +69,7 @@ struct ChosenSettingsView: View {
     var body: some View {
         switch selectedView {
             case .basic: BasicGameSettings(viewModel: viewModel)
-            case .stops: Stops()
+            case .stops: Stops(viewModel: viewModel)
             case .map: Map()
             case .people: SelectPeople()
             }

@@ -10,6 +10,7 @@ import FirebaseAuth
 
 struct HomeView: View {
     @EnvironmentObject var userInfo: UserInfo
+    
     @State private var showError = false
     @State private var errorString = ""
     @StateObject var games = FBDataModel()
@@ -19,11 +20,16 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack {
-                    ForEach(games.fetchedGames, id: \.name) { game in
+                VStack {
+                    Print("VStack Load")
+                    ForEach(games.fetchedGames.sorted()) { game in
                         //Text(game.name!)
-                        NavigationRow(game: game)
+                        
                         Print(game)
+                        NavigationRow(game: game).onTapGesture {
+                            print(game.name, "tapped")
+                        }
+                        
                     }
                 }
             }
