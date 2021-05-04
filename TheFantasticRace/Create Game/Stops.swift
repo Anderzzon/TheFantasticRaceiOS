@@ -16,7 +16,12 @@ struct Stops: View {
     @State var showNewStopSheet = false
     @State var newStop = GameStop(id: UUID().uuidString,
                            title: "New Stop",
-                           order: 0)
+                           order: 0,
+                           lat: nil,
+                           lng: nil,
+                           question: nil,
+                           answer: nil,
+                           hint: nil)
     
 //    init(viewModel: CreateGameViewModel) {
 //        UITableView.appearance().tableFooterView = UIView()
@@ -28,6 +33,7 @@ struct Stops: View {
         ZStack(alignment: .bottomTrailing) {
             List {
                 ForEach(viewModel.game.stops ?? []) { stop in
+                    Print("Stop", stop)
                     StopListView(stop: stop, order: index+1)
                 }
                 .onMove(perform: move)
@@ -55,16 +61,15 @@ struct Stops: View {
     }
     
     func onDelete(offsets: IndexSet) {
-        viewModel.testStops.remove(atOffsets: offsets)
+        viewModel.game.stops!.remove(atOffsets: offsets)
         withAnimation {
             isMovingItems = .inactive
         }
     }
     
     func move(fromOffsets source: IndexSet, toOffset destination: Int) {
-        viewModel.testStops.move(fromOffsets: source, toOffset: destination)
+        viewModel.game.stops!.move(fromOffsets: source, toOffset: destination)
         withAnimation {
-            print(viewModel.testStops[0].title)
             isMovingItems = .inactive
             DispatchQueue.main.async {
                 viewModel.reorderStop()
@@ -75,7 +80,7 @@ struct Stops: View {
 
 struct Stops_Previews: PreviewProvider {
     static var previews: some View {
-        Stops(viewModel: CreateGameViewModel())
+        Stops(viewModel: CreateGameViewModel(selectedGame: Game(name: "New game")))
     }
 }
  

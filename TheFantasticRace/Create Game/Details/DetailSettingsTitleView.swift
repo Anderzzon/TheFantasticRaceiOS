@@ -17,7 +17,7 @@ struct DetailSettingsTitleView: View {
         NavigationView {
             VStack {
                 Form {
-                TextEditor(text: $viewModel.game.name ?? "")
+                TextEditor(text: $viewModel.game.name)
                     .frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                     .navigationBarTitle(Text("Name of Race"), displayMode: .inline)
                     .navigationBarItems(
@@ -49,6 +49,6 @@ struct DetailSettingsTitleView: View {
 
 struct DetailSettingsTextView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailSettingsTitleView(viewModel: CreateGameViewModel(), showSheet: .constant(true))
+        DetailSettingsTitleView(viewModel: CreateGameViewModel(selectedGame: Game(name: "New game")), showSheet: .constant(true))
     }
 }

@@ -7,17 +7,18 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 struct Game: Codable, Identifiable, Comparable {
     static func < (lhs: Game, rhs: Game) -> Bool {
-        lhs.name! < rhs.name!
+        lhs.name < rhs.name
     }
     
     static func == (lhs: Game, rhs: Game) -> Bool {
-        lhs.name! < rhs.name!
+        lhs.name < rhs.name
     }
     
-    var name: String?
+    var name: String
     var description: String?
     var finishedStops: Int?
     var gameFinished: Bool?
@@ -39,9 +40,9 @@ struct Game: Codable, Identifiable, Comparable {
     
 }
 
-struct GameStop: Codable, Identifiable {
+class GameStop: NSObject, Codable, Identifiable {
     var id: String
-    var title: String
+    var name: String
     var lat: Double?
     var lng: Double?
     var order: Int
@@ -49,4 +50,45 @@ struct GameStop: Codable, Identifiable {
     var answer: String?
     var hint: String?
     
+    init(id: String, title: String, order: Int, lat: Double?, lng: Double?, question: String?, answer: String?, hint: String?) {
+        self.id = id
+        self.name = title
+        self.order = order
+        self.lat = lat
+        self.lng = lng
+        self.question = question
+        self.answer = answer
+        self.hint = hint
+    }
+//    required init(from decoder: Decoder) throws {
+//        enum CodingKeys: CodingKey {
+//            case id
+//            case name
+//            case lat
+//            case lng
+//            case order
+//            case question
+//            case answer
+//            case hint
+//        }
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        id = try values.decode(String.self, forKey: .id)
+//        name = try values.decode(String.self, forKey: .name)
+//        lat = try values.decode(Double.self, forKey: .lat)
+//        lng = try values.decode(Double.self, forKey: .lng)
+//        order = try values.decode(Int.self, forKey: .order)
+//        question = try values.decode(String.self, forKey: .question)
+//        answer = try values.decode(String.self, forKey: .answer)
+//        hint = try values.decode(String.self, forKey: .hint)
+//
+//    }
+    
+}
+
+extension GameStop: MKAnnotation {
+    var coordinate: CLLocationCoordinate2D {
+        CLLocation(latitude: lat!, longitude: lng!).coordinate
+    }
+    var title: String? { name }
+    var subtitle: String? { hint }
 }

@@ -16,6 +16,7 @@ enum SelectedTab: String, CaseIterable {
 
 struct CreateGame: View {
     
+    @EnvironmentObject var userInfo: UserInfo
     @State private var selectedTab: SelectedTab = .basic
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: CreateGameViewModel
@@ -43,11 +44,13 @@ struct CreateGame: View {
                 .padding(.top, -10)
             Spacer()
         }
-        .navigationBarTitle(Text("Create new Game"), displayMode: .inline)
+        .navigationBarTitle(Text(viewModel.game.name ?? "Create new Game"), displayMode: .inline)
         .navigationBarItems(
             leading:
                 Button(action: {
                     print("Saving")
+                    viewModel.game.owner = userInfo.user.uid
+                    print("Owner", viewModel.game.owner)
                     viewModel.createGame(game: viewModel.game)
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -60,7 +63,9 @@ struct CreateGame: View {
                 }, label: {
             Text("Cancel").padding()
         }))
-    }
+        }.onAppear {
+            print(userInfo.user.uid)
+        }
 }
 
 struct ChosenSettingsView: View {
@@ -70,7 +75,7 @@ struct ChosenSettingsView: View {
         switch selectedView {
             case .basic: BasicGameSettings(viewModel: viewModel)
             case .stops: Stops(viewModel: viewModel)
-            case .map: Map()
+            case .map: Map(viewModel: viewModel)
             case .people: SelectPeople()
             }
         }
@@ -79,6 +84,6 @@ struct ChosenSettingsView: View {
 
 struct CreateGame_Previews: PreviewProvider {
     static var previews: some View {
-        CreateGame(viewModel: CreateGameViewModel())
+        CreateGame(viewModel: CreateGameViewModel(selectedGame: Game(name: "New game")))
     }
 }

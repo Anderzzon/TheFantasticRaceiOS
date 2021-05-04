@@ -14,6 +14,9 @@ struct HomeView: View {
     @State private var showError = false
     @State private var errorString = ""
     @StateObject var games = FBDataModel()
+    var game = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: UUID().uuidString, owner: nil, stops: nil)
+    
+    @ObservedObject var viewModel = CreateGameViewModel(selectedGame: Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: UUID().uuidString, owner: nil, stops: nil))
     
     @State private var createGameIsPresented = false
     
@@ -25,9 +28,13 @@ struct HomeView: View {
                     ForEach(games.fetchedGames.sorted()) { game in
                         //Text(game.name!)
                         
-                        Print(game)
+                        //Print(game)
                         NavigationRow(game: game).onTapGesture {
-                            print(game.name, "tapped")
+                            self.viewModel.game = game
+                            if viewModel.game.owner == userInfo.user.uid {
+                                createGameIsPresented = true
+                            }
+                            print(viewModel.game, "tapped")
                         }
                         
                     }
@@ -35,6 +42,7 @@ struct HomeView: View {
             }
             .navigationBarTitle("All games")
             .navigationBarItems(trailing: Button(action: {
+                                                    viewModel.game = game
                                                     createGameIsPresented = true
                                                     print("add game")}, label: {
                 Image(systemName: "plus").padding()
@@ -53,7 +61,7 @@ struct HomeView: View {
                 }
             }
             .fullScreenCover(isPresented: $createGameIsPresented) {
-                CreateGame(viewModel: CreateGameViewModel())
+                CreateGame(viewModel: viewModel).environmentObject(userInfo)
             }
         }
         .alert(isPresented: $showError) {

@@ -10,6 +10,7 @@
 		034CBC80263D84D000101D38 /* StopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC7F263D84D000101D38 /* StopListView.swift */; };
 		034CBC8426402F7500101D38 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8326402F7400101D38 /* FabView.swift */; };
 		034CBC872640339900101D38 /* AddNewStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC862640339900101D38 /* AddNewStopView.swift */; };
+		034CBC8A26405F8700101D38 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8926405F8700101D38 /* MapView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -51,6 +52,7 @@
 		034CBC7F263D84D000101D38 /* StopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopListView.swift; sourceTree = "<group>"; };
 		034CBC8326402F7400101D38 /* FabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
 		034CBC862640339900101D38 /* AddNewStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewStopView.swift; sourceTree = "<group>"; };
+		034CBC8926405F8700101D38 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				03536C73262C8E7300D63020 /* BasicGameSettings.swift */,
 				034CBC862640339900101D38 /* AddNewStopView.swift */,
 				03536C6D262C8E7300D63020 /* Stops.swift */,
+				034CBC8926405F8700101D38 /* MapView.swift */,
 				034CBC7F263D84D000101D38 /* StopListView.swift */,
 				03536C71262C8E7300D63020 /* SelectPeople.swift */,
 				03536C72262C8E7300D63020 /* Map.swift */,
@@ -321,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0373B34D25CEE0E90061C42E /* View.extensions.swift in Sources */,
+				034CBC8A26405F8700101D38 /* MapView.swift in Sources */,
 				0352011025CEC40800965F06 /* SignInWithEmailView.swift in Sources */,
 				03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */,
 				03536C79262C8E7300D63020 /* Map.swift in Sources */,

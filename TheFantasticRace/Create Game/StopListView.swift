@@ -25,7 +25,7 @@ struct StopListView: View {
             }.frame(width: 30)
             .padding(.trailing, 20)
             VStack(alignment: .leading) {
-                Text(stop.title)
+                Text(stop.name)
                     .font(.headline)
                 Text(stop.hint ?? "")
                     .font(.subheadline)
@@ -47,8 +47,8 @@ struct StopListView: View {
 }
 
 struct StopListView_Previews: PreviewProvider {
-    let const = GameStop(id: UUID().uuidString, title: "Title of Stop", order: 1)
+    let const = GameStop(id: UUID().uuidString, title: "Title of Stop", order: 1, lat: nil, lng: nil, question: nil, answer: nil, hint: nil)
     static var previews: some View {
-        StopListView(stop: GameStop(id: UUID().uuidString, title: "Title of Stop", order: 1), order: 1).previewLayout(.fixed(width: 310, height: 150))
+        StopListView(stop: GameStop(id: UUID().uuidString, title: "Title of Stop", order: 1, lat: nil, lng: nil, question: nil, answer: nil, hint: nil), order: 1).previewLayout(.fixed(width: 310, height: 150))
     }
 }

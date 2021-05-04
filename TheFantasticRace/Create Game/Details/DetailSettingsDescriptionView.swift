@@ -49,6 +49,6 @@ struct DetailSettingsDescriptionView: View {
 
 struct DetailSettingsDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailSettingsTitleView(viewModel: CreateGameViewModel(), showSheet: .constant(true))
+        DetailSettingsTitleView(viewModel: CreateGameViewModel(selectedGame: Game(name: "New game")), showSheet: .constant(true))
     }
 }

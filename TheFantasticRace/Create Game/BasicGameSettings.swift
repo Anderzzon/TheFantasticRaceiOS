@@ -23,7 +23,7 @@ struct BasicGameSettings: View {
                 Form {
                     Section(header: Text("Name of race")) {
                         List {
-                            Text(viewModel.game.name ?? "")
+                            Text(viewModel.game.name ?? "New Game")
                         }.onTapGesture {
                             activeSheet = .title
                             showSheet = true
@@ -31,7 +31,7 @@ struct BasicGameSettings: View {
                     }
                     Section(header: Text("Description")) {
                         List {
-                            Text(viewModel.game.description ?? "")
+                            Text(viewModel.game.description ?? "Description")
                         }.onTapGesture {
                             activeSheet = .description
                             showSheet = true
@@ -82,7 +82,7 @@ struct BasicGameSettings: View {
 
 struct BasicGameSettings_Previews: PreviewProvider {
     static var previews: some View {
-        BasicGameSettings(viewModel: CreateGameViewModel())
+        BasicGameSettings(viewModel: CreateGameViewModel(selectedGame: Game(name: "New game")))
     }
 }
 
