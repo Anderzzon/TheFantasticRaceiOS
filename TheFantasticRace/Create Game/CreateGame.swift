@@ -9,8 +9,8 @@ import SwiftUI
 
 enum SelectedTab: String, CaseIterable {
     case basic = "Standard"
-    case stops = "Stops"
     case map = "Map"
+    case stops = "Stops"
     case people = "People"
 }
 
@@ -44,14 +44,19 @@ struct CreateGame: View {
                 .padding(.top, -10)
             Spacer()
         }
-        .navigationBarTitle(Text(viewModel.game.name ?? "Create new Game"), displayMode: .inline)
+        .navigationBarTitle(Text(viewModel.game.name), displayMode: .inline)
         .navigationBarItems(
             leading:
                 Button(action: {
                     print("Saving")
                     viewModel.game.owner = userInfo.user.uid
                     print("Owner", viewModel.game.owner)
-                    viewModel.createGame(game: viewModel.game)
+                    if viewModel.game.id == nil {
+                        viewModel.createGame(game: viewModel.game)
+                    } else {
+                        viewModel.updateGame(game: viewModel.game)
+                    }
+                    
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
             Text("Save").padding()
@@ -64,6 +69,7 @@ struct CreateGame: View {
             Text("Cancel").padding()
         }))
         }.onAppear {
+            print("ID", viewModel.game.id)
             print(userInfo.user.uid)
         }
 }
@@ -74,9 +80,9 @@ struct ChosenSettingsView: View {
     var body: some View {
         switch selectedView {
             case .basic: BasicGameSettings(viewModel: viewModel)
-            case .stops: Stops(viewModel: viewModel)
             case .map: Map(viewModel: viewModel)
-            case .people: SelectPeople()
+            case .stops: Stops(viewModel: viewModel)
+            case .people: SelectPeople(viewModel: viewModel)
             }
         }
     }

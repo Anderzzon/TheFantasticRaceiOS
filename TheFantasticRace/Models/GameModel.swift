@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import MapKit
+import FirebaseFirestoreSwift
 
 struct Game: Codable, Identifiable, Comparable {
     static func < (lhs: Game, rhs: Game) -> Bool {
@@ -32,7 +33,7 @@ struct Game: Codable, Identifiable, Comparable {
     var finished_time: Date?
     var unlock_with_question: Bool?
     
-    var id: String? //Parent race only
+    @DocumentID var id: String? = UUID().uuidString //Parent race only
     //var accepted: [String]? //Parent race only
     //var invites: [String]? //Parent race only
     var owner: String? //Parent race only

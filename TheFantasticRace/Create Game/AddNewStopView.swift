@@ -31,36 +31,40 @@ struct AddNewStopView: View {
                             TextEditor(text: $stop.hint ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                         }
                     }
-                    Section(header: Text("Question")) {
-                        List {
-                            TextEditor(text: $stop.question ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                    if viewModel.game.unlock_with_question! {
+                        Section(header: Text("Question")) {
+                            List {
+                                TextEditor(text: $stop.question ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                            }
+                        }
+                        Section(header: Text("Answer")) {
+                            List {
+                                TextEditor(text: $stop.answer ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                            }
                         }
                     }
-                    Section(header: Text("Answer")) {
-                        List {
-                            TextEditor(text: $stop.answer ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                        }
-                    }
-                    .navigationBarTitle(Text("Add new stop"), displayMode: .inline)
-                    .navigationBarItems(
-                        leading:
-                            Button(action: {
-                                print("Saving")
-                                stop.lat = centerCoordinate.latitude
-                                stop.lng = centerCoordinate.longitude
-                                viewModel.newStop(stop: stop)
-                                showNewStopSheet = false
-                            }, label: {
-                        Text("Save").padding()
-                    }),
-                        trailing:
-                            Button(action: {
-                                print("Cancel")
-                                showNewStopSheet = false
-                            }, label: {
-                        Text("Cancel").padding()
-                    }))
                 }.listStyle(GroupedListStyle())
+                
+                .navigationBarTitle(Text("Add new stop"), displayMode: .inline)
+                .navigationBarItems(
+                    leading:
+                        Button(action: {
+                            print("Saving")
+                            stop.lat = centerCoordinate.latitude
+                            stop.lng = centerCoordinate.longitude
+                            stop.order = viewModel.game.stops?.count ?? 0 //Adds stop last in array
+                            viewModel.newStop(stop: stop)
+                            showNewStopSheet = false
+                        }, label: {
+                    Text("Save").padding()
+                }),
+                    trailing:
+                        Button(action: {
+                            print("Cancel")
+                            showNewStopSheet = false
+                        }, label: {
+                    Text("Cancel").padding()
+                }))
             }
 
         }

@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct SelectPeople: View {
+    @ObservedObject var viewModel: CreateGameViewModel
     var body: some View {
-        Text("Select People")
+        List {
+            ForEach(viewModel.game.stops ?? []) { stop in
+                Print("Stop", stop)
+                Text("Player")
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .listRowInsets(EdgeInsets())
+                            .background(Color.white)
+        }
     }
 }
 
 struct SelectPeople_Previews: PreviewProvider {
     static var previews: some View {
-        SelectPeople()
+        SelectPeople(viewModel: CreateGameViewModel(selectedGame: Game(name: "New Game")))
     }
 }

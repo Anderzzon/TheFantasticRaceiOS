@@ -60,6 +60,19 @@ class CreateGameViewModel: ObservableObject {
         }
     }
     
+    func updateGame(game: Game) {
+        self.game = game
+        if let id = game.id {
+            let docRef = ref.collection("races").document(id)
+            do {
+                try docRef.setData(from: self.game)
+            }
+            catch {
+                print(error)
+            }
+        }
+    }
+    
     func reorderStop() {
         for(index, item) in self.game.stops!.enumerated() {
             self.game.stops![index].order = index
