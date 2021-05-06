@@ -11,6 +11,9 @@
 		034CBC8426402F7500101D38 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8326402F7400101D38 /* FabView.swift */; };
 		034CBC872640339900101D38 /* AddNewStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC862640339900101D38 /* AddNewStopView.swift */; };
 		034CBC8A26405F8700101D38 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8926405F8700101D38 /* MapView.swift */; };
+		034CBD2A2642C99200101D38 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD292642C99100101D38 /* SearchBar.swift */; };
+		034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD332642DEEC00101D38 /* PlayerSearchRowView.swift */; };
+		034CBD382642EA7800101D38 /* PlayerInvitedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD372642EA7800101D38 /* PlayerInvitedRowView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -21,7 +24,7 @@
 		03536C75262C8E7300D63020 /* Stops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C6D262C8E7300D63020 /* Stops.swift */; };
 		03536C76262C8E7300D63020 /* DetailSettingsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C6F262C8E7300D63020 /* DetailSettingsTitleView.swift */; };
 		03536C77262C8E7300D63020 /* DetailSettingsDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C70262C8E7300D63020 /* DetailSettingsDescriptionView.swift */; };
-		03536C78262C8E7300D63020 /* SelectPeople.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C71262C8E7300D63020 /* SelectPeople.swift */; };
+		03536C78262C8E7300D63020 /* SelectPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C71262C8E7300D63020 /* SelectPlayers.swift */; };
 		03536C79262C8E7300D63020 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C72262C8E7300D63020 /* Map.swift */; };
 		03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C73262C8E7300D63020 /* BasicGameSettings.swift */; };
 		03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */; };
@@ -53,6 +56,9 @@
 		034CBC8326402F7400101D38 /* FabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
 		034CBC862640339900101D38 /* AddNewStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewStopView.swift; sourceTree = "<group>"; };
 		034CBC8926405F8700101D38 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		034CBD292642C99100101D38 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		034CBD332642DEEC00101D38 /* PlayerSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchRowView.swift; sourceTree = "<group>"; };
+		034CBD372642EA7800101D38 /* PlayerInvitedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInvitedRowView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -64,7 +70,7 @@
 		03536C6D262C8E7300D63020 /* Stops.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stops.swift; sourceTree = "<group>"; };
 		03536C6F262C8E7300D63020 /* DetailSettingsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingsTitleView.swift; sourceTree = "<group>"; };
 		03536C70262C8E7300D63020 /* DetailSettingsDescriptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingsDescriptionView.swift; sourceTree = "<group>"; };
-		03536C71262C8E7300D63020 /* SelectPeople.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPeople.swift; sourceTree = "<group>"; };
+		03536C71262C8E7300D63020 /* SelectPlayers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPlayers.swift; sourceTree = "<group>"; };
 		03536C72262C8E7300D63020 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		03536C73262C8E7300D63020 /* BasicGameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicGameSettings.swift; sourceTree = "<group>"; };
 		03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameViewModel.swift; sourceTree = "<group>"; };
@@ -112,19 +118,46 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		03536C6B262C8E7300D63020 /* Create Game */ = {
+		034CBD2F2642DCF800101D38 /* Basic Settings */ = {
 			isa = PBXGroup;
 			children = (
-				034CBC7B263D816C00101D38 /* ViewModels */,
-				03536C6E262C8E7300D63020 /* Details */,
-				03536C6C262C8E7300D63020 /* CreateGame.swift */,
 				03536C73262C8E7300D63020 /* BasicGameSettings.swift */,
+				03536C6E262C8E7300D63020 /* Details */,
+			);
+			path = "Basic Settings";
+			sourceTree = "<group>";
+		};
+		034CBD302642DD0F00101D38 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				03536C71262C8E7300D63020 /* SelectPlayers.swift */,
+				034CBD292642C99100101D38 /* SearchBar.swift */,
+				034CBD372642EA7800101D38 /* PlayerInvitedRowView.swift */,
+				034CBD332642DEEC00101D38 /* PlayerSearchRowView.swift */,
+			);
+			path = Players;
+			sourceTree = "<group>";
+		};
+		034CBD312642DD8200101D38 /* Stops and Map */ = {
+			isa = PBXGroup;
+			children = (
 				034CBC862640339900101D38 /* AddNewStopView.swift */,
 				03536C6D262C8E7300D63020 /* Stops.swift */,
 				034CBC8926405F8700101D38 /* MapView.swift */,
 				034CBC7F263D84D000101D38 /* StopListView.swift */,
-				03536C71262C8E7300D63020 /* SelectPeople.swift */,
 				03536C72262C8E7300D63020 /* Map.swift */,
+			);
+			path = "Stops and Map";
+			sourceTree = "<group>";
+		};
+		03536C6B262C8E7300D63020 /* Create Game */ = {
+			isa = PBXGroup;
+			children = (
+				03536C6C262C8E7300D63020 /* CreateGame.swift */,
+				034CBC7B263D816C00101D38 /* ViewModels */,
+				034CBD2F2642DCF800101D38 /* Basic Settings */,
+				034CBD312642DD8200101D38 /* Stops and Map */,
+				034CBD302642DD0F00101D38 /* Players */,
 			);
 			path = "Create Game";
 			sourceTree = "<group>";
@@ -331,6 +364,7 @@
 				0373B34525CECF450061C42E /* FBAuth.swift in Sources */,
 				0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */,
 				0352011325CEC6E700965F06 /* SignInWithAppleView.swift in Sources */,
+				034CBD382642EA7800101D38 /* PlayerInvitedRowView.swift in Sources */,
 				0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */,
 				03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */,
 				0373B33E25CECF350061C42E /* FBKeys.swift in Sources */,
@@ -343,7 +377,9 @@
 				034CBC872640339900101D38 /* AddNewStopView.swift in Sources */,
 				037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */,
 				0352010F25CEC40800965F06 /* SignUpView.swift in Sources */,
-				03536C78262C8E7300D63020 /* SelectPeople.swift in Sources */,
+				034CBD2A2642C99200101D38 /* SearchBar.swift in Sources */,
+				03536C78262C8E7300D63020 /* SelectPlayers.swift in Sources */,
+				034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,

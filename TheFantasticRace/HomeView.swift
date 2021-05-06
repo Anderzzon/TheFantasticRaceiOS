@@ -23,20 +23,24 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
-                    Print("VStack Load")
-                    ForEach(games.fetchedGames.sorted()) { game in
-                        //Text(game.name!)
-                        
-                        //Print(game)
-                        NavigationRow(game: game).onTapGesture {
-                            self.viewModel.game = game
-                            if viewModel.game.owner == userInfo.user.uid {
-                                createGameIsPresented = true
+                if games.fetchedGames.count == 0 {
+                    Text("No games here 😢! Create your first or ask a friend for an invitation").padding()
+                } else {
+                    VStack {
+                        Print("VStack Load")
+                        ForEach(games.fetchedGames.sorted()) { game in
+                            //Text(game.name!)
+                            
+                            //Print(game)
+                            NavigationRow(game: game).onTapGesture {
+                                self.viewModel.game = game
+                                if viewModel.game.owner == userInfo.user.uid {
+                                    createGameIsPresented = true
+                                }
+                                print(viewModel.game, "tapped")
                             }
-                            print(viewModel.game, "tapped")
+                            
                         }
-                        
                     }
                 }
             }

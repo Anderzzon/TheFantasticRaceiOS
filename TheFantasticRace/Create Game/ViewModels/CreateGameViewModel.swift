@@ -16,6 +16,9 @@ class CreateGameViewModel: ObservableObject {
     @Published var description = ""
     @Published var radius: Double = 20
     @Published var showNextStop: Bool = true
+    @Published var players: [Player] = []
+    @Published var query = ""
+    @Published var validStops = true
 //    @Published var testStops = [
 //        GameStop(id: UUID().uuidString, title: "One stop", order: 0),
 //        GameStop(id: UUID().uuidString, title: "Two stop", order: 1),
@@ -25,6 +28,7 @@ class CreateGameViewModel: ObservableObject {
 //    ]
     
     @Published var game: Game
+    let ref = Firestore.firestore()
 //    @Published var game = Game(name: "New game",
 //                               description: "Your new game",
 //                               finishedStops: nil,
@@ -47,8 +51,6 @@ class CreateGameViewModel: ObservableObject {
     init(selectedGame: Game) {
         self.game = selectedGame
     }
-    
-    let ref = Firestore.firestore()
     
     func createGame(game: Game) {
         self.game = game
@@ -141,5 +143,69 @@ class CreateGameViewModel: ObservableObject {
             game.stops!.append(newStop)
         }
         
+    }
+    
+    func searchUser(searchQuery: String) {
+
+        let usersRef = ref.collection("users")
+        let query = usersRef.whereField("name", isGreaterThanOrEqualTo: searchQuery)
+        query.getDocuments { (query, error) in
+            if let error = error {
+                print("Error fetching users", error)
+            }
+            guard let documents = query?.documents else {
+                print("No users")
+                return
+            }
+            self.players = documents.compactMap { document -> Player? in
+                print("Players:", self.players)
+                do {
+                    if searchQuery == "" {
+                        self.players = []
+                        return nil
+                    }
+                    return try document.data(as: Player.self)
+                } catch {
+                    print("Error")
+                    print(error)
+                }
+               
+                return nil
+            }
+        }
+    }
+    
+    func inviteUserToGame(player: Player) {
+        let invitedPlayer = Player(name: player.name, email: player.email, accepted: false, id: player.id)
+        if (self.game.listOfPlayers?.first(where: { $0.id == player.id })) != nil {
+            print("User allready added")
+        } else {
+            if self.game.listOfPlayers == nil {
+                self.game.listOfPlayers = []
+            }
+            print("Inviting user")
+            self.game.listOfPlayers?.append(invitedPlayer)
+            print("Invited players:", self.game.listOfPlayers)
+        }
+    }
+    
+    func checkStopValidation() {
+        //TODO: Make test
+        if let stops = game.stops {
+            if self.game.unlock_with_question == true {
+                for stop in stops {
+                    if stop.order != stops.count-1 {
+                        if stop.question == nil || stop.question!.count < 1 || stop.answer == nil || stop.answer!.count < 1 {
+                            validStops = false
+                            print("Some question is not valid")
+                            return
+                        } else {
+                            validStops = true
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

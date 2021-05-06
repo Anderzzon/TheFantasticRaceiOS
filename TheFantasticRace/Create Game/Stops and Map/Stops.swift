@@ -31,10 +31,16 @@ struct Stops: View {
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
+            if viewModel.game.stops == nil || viewModel.game.stops?.count == 0 {
+                Text("You haven't created your first stop yet. Go to the Map tab and choose the placement on the map").padding()
+            } else {
             List {
+                if !viewModel.validStops {
+                    Text("Warning! Missing information in question")
+                }
                 ForEach(viewModel.game.stops ?? []) { stop in
                     Print("Stop", stop)
-                    StopListView(stop: stop, order: index+1)
+                    StopListView(game: viewModel.game, stop: stop, order: index+1)
                 }
                 .onMove(perform: move)
                 .onDelete(perform: onDelete)
@@ -47,12 +53,17 @@ struct Stops: View {
                                 .listRowInsets(EdgeInsets())
                                 .background(Color.white)
             }
-            FabView().onTapGesture {
-                showNewStopSheet = true
-                print("Add new stop")
-            }.padding()
+                //Will add stops from the list for now due to best way of choosing stop is currently from the map
+//            FabView().onTapGesture {
+//                showNewStopSheet = true
+//                print("Add new stop")
+//            }.padding()
+            }
             
             //.environment(\.editMode, isMovingItems ? .constant(.active) : .constant(.inactive)) // Determine if isMovingItems is true or false
+        }
+        .onAppear {
+            viewModel.checkStopValidation()
         }
         .sheet(isPresented: $showNewStopSheet) {
             AddNewStopView(viewModel: viewModel, stop: $newStop, showNewStopSheet: $showNewStopSheet)

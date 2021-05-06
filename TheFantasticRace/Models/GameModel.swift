@@ -23,7 +23,7 @@ struct Game: Codable, Identifiable, Comparable {
     var description: String?
     var finishedStops: Int?
     var gameFinished: Bool?
-    var listOfPlayers: [String]?
+    var listOfPlayers: [Player]?
     var parent_race: String?
     var radius: Double?
     var show_next_stop: Bool?
@@ -39,6 +39,19 @@ struct Game: Codable, Identifiable, Comparable {
     var owner: String? //Parent race only
     var stops: [GameStop]?
     
+}
+
+struct Player: Codable, Identifiable {
+    
+    var name: String
+    var email: String
+    var accepted: Bool?
+    var id: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case name, email, accepted
+        case id = "uid"
+    }
 }
 
 class GameStop: NSObject, Codable, Identifiable {

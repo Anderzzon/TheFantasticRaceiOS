@@ -37,7 +37,7 @@ struct Map: View {
                 }.padding()
             }
             .sheet(isPresented: $showNewStopSheet) {
-                let newStop = GameStop(id: UUID().uuidString, title: "New Stop", order: 0, lat: centerCoordinate.latitude, lng: centerCoordinate.longitude, question: nil, answer: nil, hint: nil)
+                let newStop = GameStop(id: UUID().uuidString, title: "New Stop", order: viewModel.game.stops?.count ?? 0, lat: centerCoordinate.latitude, lng: centerCoordinate.longitude, question: nil, answer: nil, hint: nil)
                 AddNewStopView(viewModel: viewModel, stop: $editingItem ?? newStop, showNewStopSheet: $showNewStopSheet)
             }
         }.onAppear {

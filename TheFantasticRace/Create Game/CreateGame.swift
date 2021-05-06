@@ -82,7 +82,7 @@ struct ChosenSettingsView: View {
             case .basic: BasicGameSettings(viewModel: viewModel)
             case .map: Map(viewModel: viewModel)
             case .stops: Stops(viewModel: viewModel)
-            case .people: SelectPeople(viewModel: viewModel)
+            case .people: SelectPlayers(viewModel: viewModel)
             }
         }
     }

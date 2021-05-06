@@ -40,8 +40,13 @@ struct AddNewStopView: View {
                         Section(header: Text("Answer")) {
                             List {
                                 TextEditor(text: $stop.answer ?? "").frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                                if stop.order > 0 && viewModel.game.stops!.count == stop.order {
+                                    Text("Note: Question and answers will not be used for the last stop.").font(.footnote)
+                                }
                             }
+
                         }
+
                     }
                 }.listStyle(GroupedListStyle())
                 
@@ -52,7 +57,7 @@ struct AddNewStopView: View {
                             print("Saving")
                             stop.lat = centerCoordinate.latitude
                             stop.lng = centerCoordinate.longitude
-                            stop.order = viewModel.game.stops?.count ?? 0 //Adds stop last in array
+                            //stop.order = viewModel.game.stops?.count ?? 0 //Adds stop last in array
                             viewModel.newStop(stop: stop)
                             showNewStopSheet = false
                         }, label: {

@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 class FBDataModel: ObservableObject {
     @Published var noPosts = false
     @Published var fetchedGames: [Game] = []
+    @Published var players: [Player] = []
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
     
@@ -59,6 +60,23 @@ class FBDataModel: ObservableObject {
             //                print("Game", name)
             //                return Game(name: name, description: description, finishedStops: finishedStops, gameFinished: gameFinished, listOfPlayers: listOfPlayers, parent_race: parent_race, radius: radius, show_next_stop_delay: show_next_stop_delay, show_players_map: show_players_map, start_time: start_time, finished_time: finished_time, unlock_with_question: unlock_with_question, id: id, owner: owner, stops: stops)
             //            }
+        }
+    }
+    
+    func searchUser(user: String) {
+        let usersRef = ref.collection("users")
+        let query = usersRef.whereField("name", isLessThanOrEqualTo: user)
+        query.getDocuments { (query, error) in
+            if let error = error {
+                print("Error fetching users", error)
+            }
+            guard let documents = query?.documents else {
+                print("No users")
+                return
+            }
+            self.players = documents.compactMap { document -> Player? in
+                return try? document.data(as: Player.self)
+            }
         }
     }
 }
