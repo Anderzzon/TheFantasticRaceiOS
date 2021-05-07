@@ -54,6 +54,22 @@ struct Player: Codable, Identifiable {
     }
 }
 
+class PlayingPlayer: NSObject, Codable {
+    var name: String
+    var lat: Double?
+    var lng: Double?
+    var finishedStops: Int
+    var updatedTime: Date?
+    
+    init(name: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?) {
+        self.name = name
+        self.lat = lat
+        self.lng = lng
+        self.finishedStops = finishedStops
+        self.updatedTime = updatedTime
+    }
+}
+
 class GameStop: NSObject, Codable, Identifiable {
     var id: String
     var name: String
@@ -105,4 +121,12 @@ extension GameStop: MKAnnotation {
     }
     var title: String? { name }
     var subtitle: String? { hint }
+}
+
+extension PlayingPlayer: MKAnnotation {
+    var coordinate: CLLocationCoordinate2D {
+        CLLocation(latitude: lat!, longitude: lng!).coordinate
+    }
+    var title: String? { name }
+    var subtitle: String? { String(finishedStops) }
 }
