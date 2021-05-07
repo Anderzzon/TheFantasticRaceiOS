@@ -28,10 +28,10 @@
 		03536C79262C8E7300D63020 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C72262C8E7300D63020 /* Map.swift */; };
 		03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C73262C8E7300D63020 /* BasicGameSettings.swift */; };
 		03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */; };
-		03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C82262C93EC00D63020 /* FirebaseAnalytics */; };
-		03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */; };
-		03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* FirebaseAuth */; };
-		03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* FirebaseFirestore */; };
+		03536C83262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C82262C93EC00D63020 /* SwiftPackageProductDependency */; };
+		03536C85262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* SwiftPackageProductDependency */; };
+		03536C87262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* SwiftPackageProductDependency */; };
+		03536C89262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* SwiftPackageProductDependency */; };
 		0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33925CECF320061C42E /* FBFireStoreError.swift */; };
 		0373B33E25CECF350061C42E /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33A25CECF330061C42E /* FBKeys.swift */; };
 		0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33B25CECF340061C42E /* FBFireStore.swift */; };
@@ -100,10 +100,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */,
-				03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */,
-				03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */,
-				03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				03536C83262C93EC00D63020 /* BuildFile in Frameworks */,
+				03536C89262C93EC00D63020 /* BuildFile in Frameworks */,
+				03536C87262C93EC00D63020 /* BuildFile in Frameworks */,
+				03536C85262C93EC00D63020 /* BuildFile in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,10 +294,10 @@
 			);
 			name = TheFantasticRace;
 			packageProductDependencies = (
-				03536C82262C93EC00D63020 /* FirebaseAnalytics */,
-				03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */,
-				03536C86262C93EC00D63020 /* FirebaseAuth */,
-				03536C88262C93EC00D63020 /* FirebaseFirestore */,
+				03536C82262C93EC00D63020 /* SwiftPackageProductDependency */,
+				03536C84262C93EC00D63020 /* SwiftPackageProductDependency */,
+				03536C86262C93EC00D63020 /* SwiftPackageProductDependency */,
+				03536C88262C93EC00D63020 /* SwiftPackageProductDependency */,
 			);
 			productName = TheFantasticRace;
 			productReference = 037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */;
@@ -327,7 +327,7 @@
 			);
 			mainGroup = 037B0A4325CE9EBF003CB5D2;
 			packageReferences = (
-				03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 037B0A4D25CE9EBF003CB5D2 /* Products */;
 			projectDirPath = "";
@@ -587,7 +587,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -598,24 +598,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		03536C82262C93EC00D63020 /* FirebaseAnalytics */ = {
+		03536C82262C93EC00D63020 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAnalytics;
 		};
-		03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */ = {
+		03536C84262C93EC00D63020 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		03536C86262C93EC00D63020 /* FirebaseAuth */ = {
+		03536C86262C93EC00D63020 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAuth;
 		};
-		03536C88262C93EC00D63020 /* FirebaseFirestore */ = {
+		03536C88262C93EC00D63020 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
