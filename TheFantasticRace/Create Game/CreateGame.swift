@@ -27,58 +27,59 @@ struct CreateGame: View {
     
     var body: some View {
         NavigationView {
-        VStack {
+            VStack {
                 
-            ZStack(alignment: .top) {
-                Picker("Create new Game", selection: $selectedTab) {
-                    ForEach(SelectedTab.allCases, id: \.self) {
-                        Text($0.rawValue)
-                }
-            }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-                .background(Color(.systemGray6))
-                
-            }
-            ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
-                .padding(.top, -10)
-            Spacer()
-        }
-        .navigationBarTitle(Text(viewModel.game.name), displayMode: .inline)
-        .navigationBarItems(
-            leading:
-                Button(action: {
-                    print("Saving")
-                    viewModel.game.owner = userInfo.user.uid
-                    print("Owner", viewModel.game.owner)
-                    if viewModel.game.id == nil {
-                        viewModel.createGame(game: viewModel.game)
-                    } else {
-                        viewModel.updateGame(game: viewModel.game)
+                ZStack(alignment: .top) {
+                    Picker("Create new Game", selection: $selectedTab) {
+                        ForEach(SelectedTab.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
                     }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding()
+                    .background(Color(.systemGray6))
                     
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-            Text("Save").padding()
-        }),
-            trailing:
-                Button(action: {
-                    print("Cancel")
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-            Text("Cancel").padding()
-        }))
+                }
+                ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
+                    .padding(.top, -10)
+                Spacer()
+            }
+            .navigationBarTitle(Text(viewModel.game.name), displayMode: .inline)
+            .navigationBarItems(
+                leading:
+                    Button(action: {
+                        print("Saving")
+                        viewModel.game.owner = userInfo.user.uid
+                        print("Owner", viewModel.game.owner)
+                        print("ID", viewModel.game.id)
+                        if viewModel.game.id == nil {
+                            viewModel.createGame(game: viewModel.game)
+                        } else {
+                            viewModel.updateGame(game: viewModel.game)
+                        }
+                        
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Save").padding()
+                    }),
+                trailing:
+                    Button(action: {
+                        print("Cancel")
+                        presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Text("Cancel").padding()
+                    }))
         }.onAppear {
             print("ID", viewModel.game.id)
             print(userInfo.user.uid)
         }
-}
-
-struct ChosenSettingsView: View {
-    var selectedView: SelectedTab
-    var viewModel: CreateGameViewModel
-    var body: some View {
-        switch selectedView {
+    }
+    
+    struct ChosenSettingsView: View {
+        var selectedView: SelectedTab
+        var viewModel: CreateGameViewModel
+        var body: some View {
+            switch selectedView {
             case .basic: BasicGameSettings(viewModel: viewModel)
             case .map: Map(viewModel: viewModel)
             case .stops: Stops(viewModel: viewModel)

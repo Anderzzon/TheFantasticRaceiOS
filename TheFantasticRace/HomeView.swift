@@ -8,6 +8,10 @@
 import SwiftUI
 import FirebaseAuth
 
+enum ActiveGameSheet {
+    case newGame, activeGame
+}
+
 struct HomeView: View {
     @EnvironmentObject var userInfo: UserInfo
     
@@ -18,7 +22,10 @@ struct HomeView: View {
     
     @ObservedObject var viewModel = CreateGameViewModel(selectedGame: Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil))
     
-    @State private var createGameIsPresented = false
+    @State private var activeGame: Game?
+    
+    @State private var activeGameSheet: ActiveGameSheet = .activeGame
+    @State private var showGameSheet = false
     
     var body: some View {
         NavigationView {
@@ -35,7 +42,12 @@ struct HomeView: View {
                             NavigationRow(game: game).onTapGesture {
                                 self.viewModel.game = game
                                 if viewModel.game.owner == userInfo.user.uid {
-                                    createGameIsPresented = true
+                                    activeGameSheet = .newGame
+                                    showGameSheet = true
+                                } else {
+                                    activeGame = game
+                                    activeGameSheet = .activeGame
+                                    showGameSheet = true
                                 }
                                 print(viewModel.game, "tapped")
                             }
@@ -47,7 +59,7 @@ struct HomeView: View {
             .navigationBarTitle("All games")
             .navigationBarItems(trailing: Button(action: {
                                                     viewModel.game = game
-                                                    createGameIsPresented = true
+                                                    showGameSheet = true
                                                     print("add game")}, label: {
                                                         Image(systemName: "plus").padding()
                                                     }))
@@ -64,8 +76,14 @@ struct HomeView: View {
                     }
                 }
             }
-            .fullScreenCover(isPresented: $createGameIsPresented) {
-                CreateGame(viewModel: viewModel).environmentObject(userInfo)
+            .fullScreenCover(isPresented: $showGameSheet) {
+                if activeGameSheet == .newGame {
+                    let viewModel = CreateGameViewModel(selectedGame: game)
+                    CreateGame(viewModel: viewModel).environmentObject(userInfo)
+                } else {
+                    let viewModel = ActiveGameViewModel(game: activeGame)
+                    ActiveGameView(viewModel: viewModel)
+                }
             }
         }
         .alert(isPresented: $showError) {

@@ -14,6 +14,12 @@
 		034CBD2A2642C99200101D38 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD292642C99100101D38 /* SearchBar.swift */; };
 		034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD332642DEEC00101D38 /* PlayerSearchRowView.swift */; };
 		034CBD382642EA7800101D38 /* PlayerInvitedRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBD372642EA7800101D38 /* PlayerInvitedRowView.swift */; };
+		034CBDC92646C99300101D38 /* ActiveGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDC82646C99300101D38 /* ActiveGameView.swift */; };
+		034CBDD02646CC4400101D38 /* ActiveGameStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDCF2646CC4400101D38 /* ActiveGameStopsView.swift */; };
+		034CBDD42646CC6100101D38 /* ActiveGameScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDD32646CC6100101D38 /* ActiveGameScoreBoardView.swift */; };
+		034CBDD72646CC8100101D38 /* ActiveGameMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDD62646CC8100101D38 /* ActiveGameMapView.swift */; };
+		034CBDDB2646D08C00101D38 /* ActiveGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDDA2646D08C00101D38 /* ActiveGameViewModel.swift */; };
+		034CBDE12646E2AA00101D38 /* ActiveGameMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -28,10 +34,10 @@
 		03536C79262C8E7300D63020 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C72262C8E7300D63020 /* Map.swift */; };
 		03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C73262C8E7300D63020 /* BasicGameSettings.swift */; };
 		03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */; };
-		03536C83262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C82262C93EC00D63020 /* SwiftPackageProductDependency */; };
-		03536C85262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* SwiftPackageProductDependency */; };
-		03536C87262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* SwiftPackageProductDependency */; };
-		03536C89262C93EC00D63020 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* SwiftPackageProductDependency */; };
+		03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C82262C93EC00D63020 /* FirebaseAnalytics */; };
+		03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */; };
+		03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* FirebaseAuth */; };
+		03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* FirebaseFirestore */; };
 		0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33925CECF320061C42E /* FBFireStoreError.swift */; };
 		0373B33E25CECF350061C42E /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33A25CECF330061C42E /* FBKeys.swift */; };
 		0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33B25CECF340061C42E /* FBFireStore.swift */; };
@@ -59,6 +65,12 @@
 		034CBD292642C99100101D38 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		034CBD332642DEEC00101D38 /* PlayerSearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSearchRowView.swift; sourceTree = "<group>"; };
 		034CBD372642EA7800101D38 /* PlayerInvitedRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInvitedRowView.swift; sourceTree = "<group>"; };
+		034CBDC82646C99300101D38 /* ActiveGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameView.swift; sourceTree = "<group>"; };
+		034CBDCF2646CC4400101D38 /* ActiveGameStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameStopsView.swift; sourceTree = "<group>"; };
+		034CBDD32646CC6100101D38 /* ActiveGameScoreBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameScoreBoardView.swift; sourceTree = "<group>"; };
+		034CBDD62646CC8100101D38 /* ActiveGameMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameMapView.swift; sourceTree = "<group>"; };
+		034CBDDA2646D08C00101D38 /* ActiveGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameViewModel.swift; sourceTree = "<group>"; };
+		034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameMapUIView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -100,10 +112,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03536C83262C93EC00D63020 /* BuildFile in Frameworks */,
-				03536C89262C93EC00D63020 /* BuildFile in Frameworks */,
-				03536C87262C93EC00D63020 /* BuildFile in Frameworks */,
-				03536C85262C93EC00D63020 /* BuildFile in Frameworks */,
+				03536C83262C93EC00D63020 /* FirebaseAnalytics in Frameworks */,
+				03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */,
+				03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */,
+				03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +160,51 @@
 				03536C72262C8E7300D63020 /* Map.swift */,
 			);
 			path = "Stops and Map";
+			sourceTree = "<group>";
+		};
+		034CBDC72646C8D600101D38 /* Active Game */ = {
+			isa = PBXGroup;
+			children = (
+				034CBDC82646C99300101D38 /* ActiveGameView.swift */,
+				034CBDD92646CFDC00101D38 /* ViewModel */,
+				034CBDCE2646CC1200101D38 /* Stops */,
+				034CBDCD2646CC0500101D38 /* ScoreBoard */,
+				034CBDCC2646CBF700101D38 /* Map */,
+			);
+			path = "Active Game";
+			sourceTree = "<group>";
+		};
+		034CBDCC2646CBF700101D38 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				034CBDD62646CC8100101D38 /* ActiveGameMapView.swift */,
+				034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		034CBDCD2646CC0500101D38 /* ScoreBoard */ = {
+			isa = PBXGroup;
+			children = (
+				034CBDD32646CC6100101D38 /* ActiveGameScoreBoardView.swift */,
+			);
+			path = ScoreBoard;
+			sourceTree = "<group>";
+		};
+		034CBDCE2646CC1200101D38 /* Stops */ = {
+			isa = PBXGroup;
+			children = (
+				034CBDCF2646CC4400101D38 /* ActiveGameStopsView.swift */,
+			);
+			path = Stops;
+			sourceTree = "<group>";
+		};
+		034CBDD92646CFDC00101D38 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				034CBDDA2646D08C00101D38 /* ActiveGameViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		03536C6B262C8E7300D63020 /* Create Game */ = {
@@ -247,6 +304,7 @@
 				0373B36425CFE9FD0061C42E /* Models */,
 				0373B34725CED63F0061C42E /* Firebase */,
 				0352011525CEC83F00965F06 /* TheFantasticRace.entitlements */,
+				034CBDC72646C8D600101D38 /* Active Game */,
 				03536C6B262C8E7300D63020 /* Create Game */,
 				037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
@@ -294,10 +352,10 @@
 			);
 			name = TheFantasticRace;
 			packageProductDependencies = (
-				03536C82262C93EC00D63020 /* SwiftPackageProductDependency */,
-				03536C84262C93EC00D63020 /* SwiftPackageProductDependency */,
-				03536C86262C93EC00D63020 /* SwiftPackageProductDependency */,
-				03536C88262C93EC00D63020 /* SwiftPackageProductDependency */,
+				03536C82262C93EC00D63020 /* FirebaseAnalytics */,
+				03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */,
+				03536C86262C93EC00D63020 /* FirebaseAuth */,
+				03536C88262C93EC00D63020 /* FirebaseFirestore */,
 			);
 			productName = TheFantasticRace;
 			productReference = 037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */;
@@ -327,7 +385,7 @@
 			);
 			mainGroup = 037B0A4325CE9EBF003CB5D2;
 			packageReferences = (
-				03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */,
+				03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 037B0A4D25CE9EBF003CB5D2 /* Products */;
 			projectDirPath = "";
@@ -357,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0373B34D25CEE0E90061C42E /* View.extensions.swift in Sources */,
+				034CBDD02646CC4400101D38 /* ActiveGameStopsView.swift in Sources */,
 				034CBC8A26405F8700101D38 /* MapView.swift in Sources */,
 				0352011025CEC40800965F06 /* SignInWithEmailView.swift in Sources */,
 				03536C7D262C8F1500D63020 /* CreateGameViewModel.swift in Sources */,
@@ -369,6 +428,8 @@
 				03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */,
 				0373B33E25CECF350061C42E /* FBKeys.swift in Sources */,
 				037B0A5225CE9EBF003CB5D2 /* ContentView.swift in Sources */,
+				034CBDE12646E2AA00101D38 /* ActiveGameMapUIView.swift in Sources */,
+				034CBDD72646CC8100101D38 /* ActiveGameMapView.swift in Sources */,
 				0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */,
 				0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */,
 				03536C76262C8E7300D63020 /* DetailSettingsTitleView.swift in Sources */,
@@ -380,14 +441,17 @@
 				034CBD2A2642C99200101D38 /* SearchBar.swift in Sources */,
 				03536C78262C8E7300D63020 /* SelectPlayers.swift in Sources */,
 				034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */,
+				034CBDC92646C99300101D38 /* ActiveGameView.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,
+				034CBDDB2646D08C00101D38 /* ActiveGameViewModel.swift in Sources */,
 				03536C77262C8E7300D63020 /* DetailSettingsDescriptionView.swift in Sources */,
 				034CBC80263D84D000101D38 /* StopListView.swift in Sources */,
 				037B0A7725CEBDB4003CB5D2 /* LoginView.swift in Sources */,
 				037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */,
 				037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */,
+				034CBDD42646CC6100101D38 /* ActiveGameScoreBoardView.swift in Sources */,
 				03536C75262C8E7300D63020 /* Stops.swift in Sources */,
 				0373B34025CECF350061C42E /* FBUser.swift in Sources */,
 				0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */,
@@ -587,7 +651,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */ = {
+		03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -598,24 +662,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		03536C82262C93EC00D63020 /* SwiftPackageProductDependency */ = {
+		03536C82262C93EC00D63020 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		03536C84262C93EC00D63020 /* SwiftPackageProductDependency */ = {
+		03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		03536C86262C93EC00D63020 /* SwiftPackageProductDependency */ = {
+		03536C86262C93EC00D63020 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		03536C88262C93EC00D63020 /* SwiftPackageProductDependency */ = {
+		03536C88262C93EC00D63020 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 03536C81262C93EC00D63020 /* RemoteSwiftPackageReference */;
+			package = 03536C81262C93EC00D63020 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
