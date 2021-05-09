@@ -68,6 +68,21 @@ class PlayingPlayer: NSObject, Codable {
         self.finishedStops = finishedStops
         self.updatedTime = updatedTime
     }
+    
+//    convenience init?(document: [String: Any]) {
+//        let name = document["name"] as? String ?? ""
+//        let lat = document["lat"] as? Double
+//        let lng = document["lng"] as? Double
+//        let finishedStops = document["finishedStops"] as? Int ?? 0
+//        let updatedTime = document ["updatedTime"] as? Date
+//        
+//        self.init(name: name,
+//                  lat: lat,
+//                  lng: lng,
+//                  finishedStops: finishedStops,
+//                  updatedTime: updatedTime
+//                  )
+//    }
 }
 
 class GameStop: NSObject, Codable, Identifiable {

@@ -12,8 +12,8 @@ struct ActiveGameMapUIView: UIViewRepresentable {
     @Binding var centerCoordinate: CLLocationCoordinate2D
     @ObservedObject var viewModel: ActiveGameViewModel
     
-    var annotations: [MKPointAnnotation]
-    var players: [PlayingPlayer]
+    //var annotations: [MKPointAnnotation]
+    //var players: [PlayingPlayer]
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -46,7 +46,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
             parent.centerCoordinate = mapView.centerCoordinate
-            print(mapView.centerCoordinate)
+            //print(mapView.centerCoordinate)
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

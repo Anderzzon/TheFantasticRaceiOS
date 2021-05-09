@@ -16,13 +16,15 @@ enum SelectedGameTab: String, CaseIterable {
 struct ActiveGameView: View {
     
     @State private var selectedTab: SelectedGameTab = .map
-    @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var viewModel: ActiveGameViewModel
-    @ObservedObject var locationManager: LocationManager
     
-    init(viewModel: ActiveGameViewModel, locationManager: LocationManager) {
+    @Environment(\.presentationMode) var presentationMode
+    
+    @ObservedObject var viewModel: ActiveGameViewModel
+    //@ObservedObject var locationManager: LocationManager
+    
+    init(viewModel: ActiveGameViewModel) {
         self.viewModel = viewModel
-        self.locationManager = locationManager
+        //self.locationManager = locationManager
     }
     
     var body: some View {
@@ -44,7 +46,7 @@ struct ActiveGameView: View {
                     .padding(.top, -10)
                 Spacer()
             }
-            .navigationBarTitle(Text("viewModel.game.name"), displayMode: .inline)
+            .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
             .navigationBarItems(
                 trailing:
                     Button(action: {
@@ -53,12 +55,15 @@ struct ActiveGameView: View {
                     }, label: {
                         Text("Exit").padding()
                     }))
-        }.onAppear {
-            locationManager.setUpMonitoring(for: viewModel.game.stops!, with: viewModel.game.radius!)
+                    }
+        .sheet(isPresented: $viewModel.locationManager.atStop) {
+            StopDetailView(viewModel: viewModel)
+            Print("Sheet")
         }
-        .alert(isPresented: $locationManager.atStop) {
-            Alert(title: Text("You are now at stop \(locationManager.stopOrder)"))
-        }
+//        .alert(isPresented: $viewModel.locationManager.atStop) {
+//            Alert(title: Text("You are now at stop \(viewModel.locationManager.stopOrder)"))
+//            
+//        }
     }
     
     struct ChosenSettingsView: View {
@@ -76,6 +81,6 @@ struct ActiveGameView: View {
 
 struct ActiveGameView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveGameView(viewModel: ActiveGameViewModel(game: Game(name: "New game")), locationManager: LocationManager())
+        ActiveGameView(viewModel: ActiveGameViewModel())
     }
 }

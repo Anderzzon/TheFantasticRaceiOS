@@ -22,6 +22,7 @@
 		034CBDE12646E2AA00101D38 /* ActiveGameMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */; };
 		034CBDE62647E61A00101D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE52647E61900101D38 /* LocationManager.swift */; };
 		034CBDE92647E8DA00101D38 /* TestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE82647E8DA00101D38 /* TestLocationView.swift */; };
+		034CBDED264858EF00101D38 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDEC264858EF00101D38 /* StopDetailView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -75,6 +76,7 @@
 		034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveGameMapUIView.swift; sourceTree = "<group>"; };
 		034CBDE52647E61900101D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		034CBDE82647E8DA00101D38 /* TestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationView.swift; sourceTree = "<group>"; };
+		034CBDEC264858EF00101D38 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				034CBDCF2646CC4400101D38 /* ActiveGameStopsView.swift */,
+				034CBDEC264858EF00101D38 /* StopDetailView.swift */,
 			);
 			path = Stops;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				0352011325CEC6E700965F06 /* SignInWithAppleView.swift in Sources */,
 				034CBD382642EA7800101D38 /* PlayerInvitedRowView.swift in Sources */,
 				0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */,
+				034CBDED264858EF00101D38 /* StopDetailView.swift in Sources */,
 				034CBDE92647E8DA00101D38 /* TestLocationView.swift in Sources */,
 				03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */,
 				0373B33E25CECF350061C42E /* FBKeys.swift in Sources */,

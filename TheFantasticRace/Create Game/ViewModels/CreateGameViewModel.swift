@@ -11,6 +11,10 @@ import FirebaseFirestoreSwift
 import Combine
 import MapKit
 
+enum Tags: String {
+    case test
+}
+
 class CreateGameViewModel: ObservableObject {
     @Published var name = ""
     @Published var description = ""

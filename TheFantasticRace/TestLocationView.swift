@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestLocationView: View {
-    @StateObject var locationManager = LocationManager()
+    //@StateObject var locationManager = LocationManager()
     
     var body: some View {
         VStack {
@@ -16,7 +16,7 @@ struct TestLocationView: View {
             //Text(locationManager.locationString)
             Spacer()
             Button {
-                locationManager.startLocationServices()
+                //locationManager.startLocationServices()
             } label: {
                 Text("Start updating location")
             }

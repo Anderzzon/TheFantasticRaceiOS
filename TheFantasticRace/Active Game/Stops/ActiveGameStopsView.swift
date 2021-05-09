@@ -16,6 +16,6 @@ struct ActiveGameStopsView: View {
 
 struct ActiveGameStopsView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveGameStopsView(viewModel: ActiveGameViewModel(game: Game(name: "New game")))
+        ActiveGameStopsView(viewModel: ActiveGameViewModel())
     }
 }

@@ -12,12 +12,23 @@ enum ActiveGameSheet {
     case newGame, activeGame
 }
 
+enum Tagss: String {
+    case test
+    
+    var fbString: String? {
+        switch self {
+        case .test:
+            return "test"
+        }
+    }
+}
+
 struct HomeView: View {
     @EnvironmentObject var userInfo: UserInfo
     
     @State private var showError = false
     @State private var errorString = ""
-    @StateObject private var locationManager = LocationManager()
+    //@StateObject private var locationManager = LocationManager()
     @StateObject var games = FBDataModel()
     var game = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
     
@@ -27,6 +38,7 @@ struct HomeView: View {
     
     @State private var activeGameSheet: ActiveGameSheet = .activeGame
     @State private var showGameSheet = false
+    @StateObject var playingGame = ActiveGameViewModel()
     
     var body: some View {
         NavigationView {
@@ -41,8 +53,8 @@ struct HomeView: View {
                             
                             //Print(game)
                             NavigationRow(game: game).onTapGesture {
-                                self.viewModel.game = game
-                                if viewModel.game.owner == userInfo.user.uid {
+                                //self.viewModel.game = game
+                                if game.owner == userInfo.user.uid {
                                     activeGame = nil
                                     activeGame = game
                                     activeGameSheet = .newGame
@@ -50,6 +62,9 @@ struct HomeView: View {
                                 } else {
                                     //locationManager.startLocationServices()
                                     activeGame = game
+                                    playingGame.game = activeGame
+                                    //Print("Game in viewModel:", playingGame.game)
+                                    //activeGame = game
                                     activeGameSheet = .activeGame
                                     showGameSheet = true
                                 }
@@ -86,8 +101,9 @@ struct HomeView: View {
                     let viewModel = CreateGameViewModel(selectedGame: activeGame!)
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
-                    let viewModel = ActiveGameViewModel(game: activeGame!)
-                    ActiveGameView(viewModel: viewModel, locationManager: locationManager)
+                    //Print("Game in viewModel:", playingGame.game)
+                    let viewModel = ActiveGameViewModel()
+                    ActiveGameView(viewModel: playingGame)
                 }
             }
         }

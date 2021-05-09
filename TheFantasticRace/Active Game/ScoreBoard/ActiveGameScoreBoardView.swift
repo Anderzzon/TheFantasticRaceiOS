@@ -17,6 +17,6 @@ struct ActiveGameScoreBoardView: View {
 
 struct ActiveGameScoreBoardView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveGameScoreBoardView(viewModel: ActiveGameViewModel(game: Game(name: "New game")))
+        ActiveGameScoreBoardView(viewModel: ActiveGameViewModel())
     }
 }
