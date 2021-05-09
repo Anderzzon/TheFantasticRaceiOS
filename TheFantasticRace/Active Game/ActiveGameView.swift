@@ -18,9 +18,11 @@ struct ActiveGameView: View {
     @State private var selectedTab: SelectedGameTab = .map
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var viewModel: ActiveGameViewModel
+    @ObservedObject var locationManager: LocationManager
     
-    init(viewModel: ActiveGameViewModel) {
+    init(viewModel: ActiveGameViewModel, locationManager: LocationManager) {
         self.viewModel = viewModel
+        self.locationManager = locationManager
     }
     
     var body: some View {
@@ -51,6 +53,11 @@ struct ActiveGameView: View {
                     }, label: {
                         Text("Exit").padding()
                     }))
+        }.onAppear {
+            locationManager.setUpMonitoring(for: viewModel.game.stops!, with: viewModel.game.radius!)
+        }
+        .alert(isPresented: $locationManager.atStop) {
+            Alert(title: Text("You are now at stop \(locationManager.stopOrder)"))
         }
     }
     
@@ -69,6 +76,6 @@ struct ActiveGameView: View {
 
 struct ActiveGameView_Previews: PreviewProvider {
     static var previews: some View {
-        ActiveGameView(viewModel: ActiveGameViewModel(game: Game(name: "New game")))
+        ActiveGameView(viewModel: ActiveGameViewModel(game: Game(name: "New game")), locationManager: LocationManager())
     }
 }

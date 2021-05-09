@@ -11,18 +11,20 @@ import FirebaseFirestoreSwift
 
 class ActiveGameViewModel: ObservableObject {
     @Published var players: [PlayingPlayer] = []
-    @Published var game: Game?
+    @Published var game: Game
     @Published var currentPlayer: PlayingPlayer?
+    //@Published var locationManager = LocationManager()
     
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
     
-    init(game: Game?) {
+    init(game: Game) {
         self.game = game
+        fetchAllUsers()
     }
     
     func fetchAllUsers() {
-        guard let id = self.game?.id else {
+        guard let id = self.game.id else {
             return
         }
         ref.collection("races").document(id).collection("players").addSnapshotListener { (snapshot, error) in
@@ -36,7 +38,7 @@ class ActiveGameViewModel: ObservableObject {
             }
             
             self.players = documents.compactMap{ document -> PlayingPlayer? in
-                
+                print("Document:", document.data())
                 return try? document.data(as: PlayingPlayer.self)
             }
             
@@ -44,7 +46,7 @@ class ActiveGameViewModel: ObservableObject {
     }
     
     func fetchUser() {
-        guard let id = self.game?.id else {
+        guard let id = self.game.id else {
             return
         }
         
@@ -56,8 +58,6 @@ class ActiveGameViewModel: ObservableObject {
                 print("No documents")
                 return
             }
-            
-            
         }
     }
     

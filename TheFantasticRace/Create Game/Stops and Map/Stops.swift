@@ -39,7 +39,7 @@ struct Stops: View {
                     Text("Warning! Missing information in question")
                 }
                 ForEach(viewModel.game.stops ?? []) { stop in
-                    Print("Stop", stop)
+                    Print("Stop", stop.name)
                     StopListView(game: viewModel.game, stop: stop, order: index+1)
                 }
                 .onMove(perform: move)

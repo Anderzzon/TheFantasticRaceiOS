@@ -15,7 +15,7 @@ struct ActiveGameMapView: View {
     @State private var centerCoordinate = CLLocationCoordinate2D()
     
     var body: some View {
-        ActiveGameMapUIView(centerCoordinate: $centerCoordinate, annotations: locations, players: viewModel.players).edgesIgnoringSafeArea(.all)
+        ActiveGameMapUIView(centerCoordinate: $centerCoordinate, viewModel: viewModel, annotations: locations, players: viewModel.players).edgesIgnoringSafeArea(.all)
     }
 }
 

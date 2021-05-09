@@ -17,6 +17,7 @@ struct HomeView: View {
     
     @State private var showError = false
     @State private var errorString = ""
+    @StateObject private var locationManager = LocationManager()
     @StateObject var games = FBDataModel()
     var game = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
     
@@ -33,7 +34,7 @@ struct HomeView: View {
                 if games.fetchedGames.count == 0 {
                     Text("No games here 😢! Create your first or ask a friend for an invitation").padding()
                 } else {
-                    VStack {
+                    LazyVStack {
                         Print("VStack Load")
                         ForEach(games.fetchedGames.sorted()) { game in
                             //Text(game.name!)
@@ -42,9 +43,12 @@ struct HomeView: View {
                             NavigationRow(game: game).onTapGesture {
                                 self.viewModel.game = game
                                 if viewModel.game.owner == userInfo.user.uid {
+                                    activeGame = nil
+                                    activeGame = game
                                     activeGameSheet = .newGame
                                     showGameSheet = true
                                 } else {
+                                    //locationManager.startLocationServices()
                                     activeGame = game
                                     activeGameSheet = .activeGame
                                     showGameSheet = true
@@ -59,6 +63,7 @@ struct HomeView: View {
             .navigationBarTitle("All games")
             .navigationBarItems(trailing: Button(action: {
                                                     viewModel.game = game
+                                                    activeGame = game
                                                     showGameSheet = true
                                                     print("add game")}, label: {
                                                         Image(systemName: "plus").padding()
@@ -78,11 +83,11 @@ struct HomeView: View {
             }
             .fullScreenCover(isPresented: $showGameSheet) {
                 if activeGameSheet == .newGame {
-                    let viewModel = CreateGameViewModel(selectedGame: game)
+                    let viewModel = CreateGameViewModel(selectedGame: activeGame!)
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
-                    let viewModel = ActiveGameViewModel(game: activeGame)
-                    ActiveGameView(viewModel: viewModel)
+                    let viewModel = ActiveGameViewModel(game: activeGame!)
+                    ActiveGameView(viewModel: viewModel, locationManager: locationManager)
                 }
             }
         }
