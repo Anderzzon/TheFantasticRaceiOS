@@ -54,15 +54,23 @@ struct Player: Codable, Identifiable {
     }
 }
 
-class PlayingPlayer: NSObject, Codable {
+class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
+    static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
+        
+        (lhs.finishedStops, lhs.updatedTime!) > (rhs.finishedStops, rhs.updatedTime!)
+//        lhs.name < rhs.name
+    }
+    
     var name: String
+    var id: String
     var lat: Double?
     var lng: Double?
     var finishedStops: Int
     var updatedTime: Date?
     
-    init(name: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?) {
+    init(name: String, id: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?) {
         self.name = name
+        self.id = id
         self.lat = lat
         self.lng = lng
         self.finishedStops = finishedStops

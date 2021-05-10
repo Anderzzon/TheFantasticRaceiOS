@@ -56,7 +56,7 @@ struct ActiveGameView: View {
                         Text("Exit").padding()
                     }))
                     }
-        .sheet(isPresented: $viewModel.locationManager.atStop) {
+        .sheet(isPresented: $viewModel.locationManager.showSheet) {
             StopDetailView(viewModel: viewModel)
             Print("Sheet")
         }

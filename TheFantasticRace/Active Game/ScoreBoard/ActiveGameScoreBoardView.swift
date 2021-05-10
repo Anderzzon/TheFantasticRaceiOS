@@ -11,7 +11,13 @@ struct ActiveGameScoreBoardView: View {
     @ObservedObject var viewModel: ActiveGameViewModel
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.players.sorted()) { player in
+                    ScoreBoardListViewItem(player: player)
+                }
+            }.padding(.top, 12)
+        }
     }
 }
 

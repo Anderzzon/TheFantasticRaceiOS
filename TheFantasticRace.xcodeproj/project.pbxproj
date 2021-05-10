@@ -23,6 +23,8 @@
 		034CBDE62647E61A00101D38 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE52647E61900101D38 /* LocationManager.swift */; };
 		034CBDE92647E8DA00101D38 /* TestLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDE82647E8DA00101D38 /* TestLocationView.swift */; };
 		034CBDED264858EF00101D38 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDEC264858EF00101D38 /* StopDetailView.swift */; };
+		034CBDF626487FC300101D38 /* ScoreBoardListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDF526487FC300101D38 /* ScoreBoardListViewItem.swift */; };
+		034CBDF92649229600101D38 /* StopInfoBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDF82649229600101D38 /* StopInfoBottomView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -77,6 +79,8 @@
 		034CBDE52647E61900101D38 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		034CBDE82647E8DA00101D38 /* TestLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLocationView.swift; sourceTree = "<group>"; };
 		034CBDEC264858EF00101D38 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
+		034CBDF526487FC300101D38 /* ScoreBoardListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardListViewItem.swift; sourceTree = "<group>"; };
+		034CBDF82649229600101D38 /* StopInfoBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopInfoBottomView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -183,7 +187,9 @@
 		034CBDCC2646CBF700101D38 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				034CBDEC264858EF00101D38 /* StopDetailView.swift */,
 				034CBDD62646CC8100101D38 /* ActiveGameMapView.swift */,
+				034CBDF82649229600101D38 /* StopInfoBottomView.swift */,
 				034CBDE02646E2AA00101D38 /* ActiveGameMapUIView.swift */,
 			);
 			path = Map;
@@ -193,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				034CBDD32646CC6100101D38 /* ActiveGameScoreBoardView.swift */,
+				034CBDF526487FC300101D38 /* ScoreBoardListViewItem.swift */,
 			);
 			path = ScoreBoard;
 			sourceTree = "<group>";
@@ -201,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				034CBDCF2646CC4400101D38 /* ActiveGameStopsView.swift */,
-				034CBDEC264858EF00101D38 /* StopDetailView.swift */,
 			);
 			path = Stops;
 			sourceTree = "<group>";
@@ -448,11 +454,13 @@
 				0373B36A25CFEC8F0061C42E /* GameModel.swift in Sources */,
 				034CBC872640339900101D38 /* AddNewStopView.swift in Sources */,
 				037B0A7025CEBAD5003CB5D2 /* UserInfo.swift in Sources */,
+				034CBDF92649229600101D38 /* StopInfoBottomView.swift in Sources */,
 				0352010F25CEC40800965F06 /* SignUpView.swift in Sources */,
 				034CBD2A2642C99200101D38 /* SearchBar.swift in Sources */,
 				03536C78262C8E7300D63020 /* SelectPlayers.swift in Sources */,
 				034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */,
 				034CBDC92646C99300101D38 /* ActiveGameView.swift in Sources */,
+				034CBDF626487FC300101D38 /* ScoreBoardListViewItem.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,

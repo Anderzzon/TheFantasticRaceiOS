@@ -17,24 +17,36 @@ struct ActiveGameMapUIView: UIViewRepresentable {
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
+        mapView.isRotateEnabled = false
         print("Players:", viewModel.players)
         mapView.delegate = context.coordinator
         mapView.addAnnotations(viewModel.players)
+        mapView.addOverlay(viewModel.stopOverlays)
         return mapView
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-//        if viewModel.players.count != view.annotations.count {
-//            view.removeAnnotations(view.annotations)
-//            view.addAnnotations(viewModel.players)
-//        }
         view.removeAnnotations(view.annotations)
         view.addAnnotations(viewModel.players)
+        view.removeOverlay(viewModel.stopOverlays)
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            view.addOverlay(viewModel.stopOverlays)
+        }
+        
         view.showsUserLocation = true
+        hidePlayersAnnotation(view: view)
     }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
+    }
+    
+    func hidePlayersAnnotation(view: MKMapView) {
+        for annotation in view.annotations {
+            if let title = annotation.title, title == "Erik" {
+                view.removeAnnotation(annotation)
+            }
+        }
     }
     
     class Coordinator: NSObject, MKMapViewDelegate {
@@ -49,12 +61,32 @@ struct ActiveGameMapUIView: UIViewRepresentable {
             //print(mapView.centerCoordinate)
         }
         
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            let renderer = MKCircleRenderer(overlay: overlay)
+            renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
+            renderer.strokeColor = UIColor.blue
+            renderer.lineWidth = 2
+            return renderer
+        }
+        
+        func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+            if let annotationView = views.first {
+                if let annotation = annotationView.annotation {
+                    if annotation is MKUserLocation {
+                        let region = MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+                        mapView.setRegion(region, animated: true)
+                    }
+                }
+            }
+        }
+        
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
             guard let playerAnnotation = annotation as? PlayingPlayer else {
                 print("playerAnnotation guard")
                 return nil
             }
+
 //            guard let stopAnnotation = annotation as? GameStop else {
 //                print("stopAnnotation guard")
 //                return nil
@@ -65,6 +97,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
                 annotationView.canShowCallout = true
                 annotationView.glyphText = "🏃"
                 annotationView.titleVisibility = .visible
+
                 return annotationView
 //            } else {
 //                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Stop") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Stop")

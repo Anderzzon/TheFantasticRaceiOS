@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreLocation
+import Combine
 
 class LocationManager: NSObject, ObservableObject {
     var locationManager = CLLocationManager()
@@ -14,9 +15,24 @@ class LocationManager: NSObject, ObservableObject {
     @Published var atStop = false {
         didSet {
             print("atStop changed")
+            if atStop {
+                showSheet = true
+            }
         }
     }
+    @Published var showSheet = false
+    
     var stopOrder = ""
+    
+    private var isAtStop: AnyPublisher<Bool, Never> {
+        $atStop
+          .debounce(for: 0.8, scheduler: RunLoop.main)
+          .removeDuplicates()
+          .map { input in
+            return input
+          }
+          .eraseToAnyPublisher()
+      }
     
     override init() {
         super.init()
@@ -68,7 +84,7 @@ extension LocationManager: CLLocationManagerDelegate {
         print("Entered geofence", region.identifier)
         atStop = true
         stopOrder = region.identifier
-        locationManager.stopMonitoring(for: region)
+        //locationManager.stopMonitoring(for: region)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

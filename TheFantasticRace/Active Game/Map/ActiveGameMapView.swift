@@ -13,18 +13,16 @@ struct ActiveGameMapView: View {
     //@State private var locations = [MKPointAnnotation]()
     
     @State private var centerCoordinate = CLLocationCoordinate2D()
+    @State private var showSheet = false
     
     var body: some View {
         VStack {
             ActiveGameMapUIView(centerCoordinate: $centerCoordinate, viewModel: viewModel).edgesIgnoringSafeArea(.all)
-            HStack {
-                Text(viewModel.game!.stops?[viewModel.currentPlayer?.finishedStops ?? 0].hint ?? "")
-                    //Text("Hint text")
-                    //.foregroundColor(Color.white)
-                    .font(.body)
-                    .lineLimit(2)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-            }.padding()
+            StopInfoBottomView(viewModel: viewModel).onTapGesture {
+                showSheet = true
+            }
+        }.sheet(isPresented: $showSheet) {
+            StopDetailView(viewModel: viewModel)
         }
     }
 }

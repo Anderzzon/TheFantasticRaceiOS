@@ -16,15 +16,15 @@ struct StopDetailView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].hint!)
+                    Text("Hint: \(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].hint!)")
                         //Text("Hint text")
                         .foregroundColor(Color.white)
                         .font(.title2)
                         .fontWeight(.bold)
-                        .frame(minWidth: 0, maxWidth: 500, minHeight: 0, maxHeight: 50)
+                        .frame(minWidth: 0, maxWidth: 500, minHeight: 0, maxHeight: 100)
                 }.padding()
                 .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
-                
+
                 if viewModel.locationManager.atStop {
                 Group {
                     Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
@@ -43,8 +43,9 @@ struct StopDetailView: View {
                         .padding()
                     
                     Button(action: {
-                        let result = viewModel.tryAnswerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
+                        let result = viewModel.answerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
                         if result {
+                            viewModel.locationManager.atStop = false
                             presentationMode.wrappedValue.dismiss()
                         }
                     }) {
