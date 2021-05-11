@@ -47,7 +47,7 @@ struct HomeView: View {
                     Text("No games here 😢! Create your first or ask a friend for an invitation").padding()
                 } else {
                     LazyVStack {
-                        Print("VStack Load")
+                        //Print("VStack Load")
                         ForEach(games.fetchedGames.sorted()) { game in
                             //Text(game.name!)
                             

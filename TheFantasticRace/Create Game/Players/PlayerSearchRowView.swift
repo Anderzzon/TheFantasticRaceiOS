@@ -11,7 +11,7 @@ struct PlayerSearchRowView: View {
     var player: Player
     var body: some View {
         VStack {
-            Text(player.name)
+            Text(player.name).foregroundColor(.white)
         }
         .padding()
         .frame(minWidth: 0,

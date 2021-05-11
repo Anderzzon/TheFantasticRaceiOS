@@ -14,13 +14,14 @@ class LocationManager: NSObject, ObservableObject {
     //@Published var locationString = ""
     @Published var atStop = false {
         didSet {
-            print("atStop changed")
+            print("atStop changed", atStop)
             if atStop {
                 showSheet = true
             }
         }
     }
     @Published var showSheet = false
+    @Published var geofenceRegion: CLRegion?
     
     var stopOrder = ""
     
@@ -49,18 +50,25 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
-    func setUpMonitoring(for stops: [GameStop], with radius: Double) {
-        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            for stop in stops {
-                let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
-                
-                let region = CLCircularRegion(center: center, radius: radius, identifier: String(stop.order))
-                locationManager.startMonitoring(for: region)
-            }
-        }
-    }
+//    func setUpMonitoring(for stops: [GameStop], with radius: Double) {
+//        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+//            for stop in stops {
+//                let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
+//
+//                let region = CLCircularRegion(center: center, radius: radius, identifier: String(stop.order))
+//                locationManager.startMonitoring(for: region)
+//            }
+//        }
+//    }
     
     func createGeofence(for stop: GameStop, with radius: Double) {
+        let monitoredRegions = locationManager.monitoredRegions
+
+        for region in monitoredRegions{
+            locationManager.stopMonitoring(for: region)
+        }
+        
+        print("All regions before ", locationManager.monitoredRegions)
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
                 let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
                 
@@ -68,6 +76,14 @@ class LocationManager: NSObject, ObservableObject {
                 locationManager.startMonitoring(for: region)
             print("Geofence created:", stop.name)
         }
+        
+        print("All regions after", locationManager.monitoredRegions)
+    }
+    
+    func removeGeofence(for region: CLRegion) {
+        locationManager.stopMonitoring(for: region)
+        atStop = false
+        print("Stoped minitoring for", region.identifier)
     }
     
 }
@@ -85,6 +101,21 @@ extension LocationManager: CLLocationManagerDelegate {
         atStop = true
         stopOrder = region.identifier
         //locationManager.stopMonitoring(for: region)
+        geofenceRegion = region
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        if state == .inside {
+        print("Already inside geofence", region.identifier)
+        print("Hashvalue:", region.hashValue)
+        atStop = true
+        stopOrder = region.identifier
+        geofenceRegion = region
+        //locationManager.stopMonitoring(for: region)
+        } else {
+            print("not here")
+        }
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

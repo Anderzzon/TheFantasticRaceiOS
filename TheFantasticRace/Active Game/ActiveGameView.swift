@@ -24,6 +24,8 @@ struct ActiveGameView: View {
     
     init(viewModel: ActiveGameViewModel) {
         self.viewModel = viewModel
+        UISegmentedControl.appearance().selectedSegmentTintColor = .systemPurple
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.white], for: .selected)
         //self.locationManager = locationManager
     }
     
@@ -32,18 +34,20 @@ struct ActiveGameView: View {
             VStack {
                 
                 ZStack(alignment: .top) {
+                    ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
+                        .padding(.top, -10)
                     Picker("Create new Game", selection: $selectedTab) {
                         ForEach(SelectedGameTab.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    .background(Color(.systemGray6).opacity(0.5))
                     .padding()
-                    .background(Color(.systemGray6))
-                    
+                    //
+
                 }
-                ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
-                    .padding(.top, -10)
+                
                 Spacer()
             }
             .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
@@ -59,6 +63,8 @@ struct ActiveGameView: View {
         .sheet(isPresented: $viewModel.locationManager.showSheet) {
             StopDetailView(viewModel: viewModel)
             Print("Sheet")
+        }.onAppear {
+            
         }
 //        .alert(isPresented: $viewModel.locationManager.atStop) {
 //            Alert(title: Text("You are now at stop \(viewModel.locationManager.stopOrder)"))

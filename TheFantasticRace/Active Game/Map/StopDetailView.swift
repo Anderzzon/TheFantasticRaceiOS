@@ -46,6 +46,10 @@ struct StopDetailView: View {
                         let result = viewModel.answerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
                         if result {
                             viewModel.locationManager.atStop = false
+                            if let region = viewModel.locationManager.geofenceRegion {
+                                viewModel.locationManager.removeGeofence(for: region)
+                            }
+                            
                             presentationMode.wrappedValue.dismiss()
                         }
                     }) {

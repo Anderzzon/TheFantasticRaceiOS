@@ -32,11 +32,13 @@ struct SelectPlayers: View {
                             PlayerSearchRowView(player: player).onTapGesture {
                                 viewModel.inviteUserToGame(player: player)
                             }
+                            Divider().foregroundColor(.white)
                         }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                        .frame(maxWidth: .infinity, maxHeight: 300, alignment: .center)
                         .listRowInsets(EdgeInsets())
-                        .background(Color.white)
+                        //.background(Color.white)
                     }
+                    .background(Color.purple)
                 }
             }
             

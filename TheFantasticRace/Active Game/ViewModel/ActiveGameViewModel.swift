@@ -21,6 +21,11 @@ class ActiveGameViewModel: ObservableObject {
                 self.players.removeAll()
                 self.fetchAllUsers()
                 self.fetchUser()
+                self.startTimer()
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.startGame()
+                    self.updateMap()
+                }
             }
 
         }
@@ -30,6 +35,7 @@ class ActiveGameViewModel: ObservableObject {
     @Published var showSheet = false
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
+    static var timer: Timer?
     
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
@@ -43,6 +49,17 @@ class ActiveGameViewModel: ObservableObject {
         
     }
     
+    func startTimer() {
+        ActiveGameViewModel.timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
+            print("Timer fired!")
+            self.updatePlayerPosition()
+        }
+    }
+    
+    func stopTimer() {
+        ActiveGameViewModel.timer?.invalidate()
+    }
+    
     //MARK: Public functions:
     
     func answerQuestion(with answer: String?, for stop: GameStop) -> Bool {
@@ -53,9 +70,15 @@ class ActiveGameViewModel: ObservableObject {
             let result = checkAnswer(with: answer, for: stop)
             switch result {
             case true:
-                print("Anser is correct")
+                print("Answer is correct")
+                if let region = locationManager.geofenceRegion {
+                    locationManager.removeGeofence(for: region)
+                }
+                
                 updateToFirebase()
-                createGeofence()
+                //DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.createGeofence()
+                //}
                 return true
                 //Update and proced to next stop
             case false:
@@ -68,7 +91,7 @@ class ActiveGameViewModel: ObservableObject {
     //MARK: Private functions
     
     private func startGame() {
-        createGeofence()
+            self.createGeofence()
     }
     
     private func createGeofence() {
@@ -78,6 +101,7 @@ class ActiveGameViewModel: ObservableObject {
         if player <= game.stops!.count-1 {
             guard let stop = game.stops?[player] else { return }
             locationManager.createGeofence(for: stop, with: game.radius!)
+            updateMap()
         }
     }
     
@@ -86,38 +110,33 @@ class ActiveGameViewModel: ObservableObject {
         return answer == correctAnswer ? true : false
     }
     
-    private func updateToFirebase() {
-        currentPlayer!.finishedStops = currentPlayer!.finishedStops + 1
-        currentPlayer?.updatedTime = Date()
-        if let id = game!.id {
-            let docRef = ref.collection("races").document(id).collection("players").document(user)
-            do {
-                try docRef.setData(from: self.currentPlayer)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
     func updateMap() {
-        print("Update Overlay")
-        guard let game = game else { return }
-        if game.show_next_stop! {
+        //print("Update Overlay")
+        guard let game = game else {
+            print("update map guard game return")
+            return }
+        if currentPlayer?.finishedStops == 0 {
+            //print("Overlay for first stop")
+            if let radius = game.radius {
+                let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: radius)
+                //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
+                stopOverlays = overlay
+            }
+        } else if game.show_next_stop! && currentPlayer?.finishedStops != 0 {
             if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 {
                 //Start timer and show next stop after
-                print("Show next stop delay:", game.show_next_stop_delay)
-                print("Update Overlay with no delay")
+                //print("Show next stop delay:", game.show_next_stop_delay)
+                //print("Update Overlay with no delay")
                 if let radius = game.radius {
                     let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: radius)
-                    //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 50000)
+                    //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
                     stopOverlays = overlay
                 }
                 
-                print("Stops overlay:", stopOverlays)
+                //print("Stops overlay:", stopOverlays)
             } else {
                 //Show next stop direct
-                print("Update Overlay delay")
-                //stopOverlays = MKCircle()
+                //print("Update Overlay delay")
                 let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 10000)
                 stopOverlays = overlay
             }
@@ -162,9 +181,41 @@ class ActiveGameViewModel: ObservableObject {
                 return
             }
             self.currentPlayer = try? document.data(as: PlayingPlayer.self)
-            self.startGame()
-            self.updateMap()
+            //self.startGame()
         }
+    }
+    
+    private func updateToFirebase() {
+        currentPlayer!.finishedStops = currentPlayer!.finishedStops + 1
+        currentPlayer?.updatedTime = Date()
+        if let id = game!.id {
+            let docRef = ref.collection("races").document(id).collection("players").document(user)
+            do {
+                try docRef.setData(from: self.currentPlayer)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func updatePlayerPosition() {
+        guard let player = currentPlayer else {
+            print("No player guard return")
+            return
+        }
+        if let lat = locationManager.locationManager.location?.coordinate.latitude, let lng = locationManager.locationManager.location?.coordinate.longitude {
+            player.lat = lat
+            player.lng = lng
+            if let id = game!.id {
+                let docRef = ref.collection("races").document(id).collection("players").document(user)
+                do {
+                    try docRef.setData(from: player)
+                } catch {
+                    print("Error", error)
+                }
+            }
+        }
+        
     }
     
 }

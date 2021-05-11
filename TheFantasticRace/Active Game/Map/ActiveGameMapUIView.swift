@@ -29,8 +29,14 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         view.removeAnnotations(view.annotations)
         view.addAnnotations(viewModel.players)
         view.removeOverlay(viewModel.stopOverlays)
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-            view.addOverlay(viewModel.stopOverlays)
+        for overlay in view.overlays {
+            view.removeOverlay(overlay)
+        }
+        if view.overlays.count < 1 {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                view.addOverlay(viewModel.stopOverlays)
+            }
+            print("Overlay count", view.overlays.count)
         }
         
         view.showsUserLocation = true
@@ -86,32 +92,32 @@ struct ActiveGameMapUIView: UIViewRepresentable {
                 print("playerAnnotation guard")
                 return nil
             }
-
-//            guard let stopAnnotation = annotation as? GameStop else {
-//                print("stopAnnotation guard")
-//                return nil
-//            }
+            
+            //            guard let stopAnnotation = annotation as? GameStop else {
+            //                print("stopAnnotation guard")
+            //                return nil
+            //            }
             
             //if playerAnnotation == annotation as? PlayingPlayer {
-                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Player") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Player")
-                annotationView.canShowCallout = true
-                annotationView.glyphText = "🏃"
-                annotationView.titleVisibility = .visible
-
-                return annotationView
-//            } else {
-//                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Stop") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Stop")
-//                annotationView.canShowCallout = true
-//                annotationView.glyphText = "⌖"
-//                annotationView.titleVisibility = .visible
-//                return annotationView
-//            }
-
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Player") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Player")
+            annotationView.canShowCallout = true
+            annotationView.glyphText = "🏃"
+            annotationView.titleVisibility = .visible
+            
+            return annotationView
+            //            } else {
+            //                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Stop") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Stop")
+            //                annotationView.canShowCallout = true
+            //                annotationView.glyphText = "⌖"
+            //                annotationView.titleVisibility = .visible
+            //                return annotationView
+            //            }
+            
             
         }
         
     }
-
+    
 }
 
 //struct ActiveGameMapUIView_Previews: PreviewProvider {

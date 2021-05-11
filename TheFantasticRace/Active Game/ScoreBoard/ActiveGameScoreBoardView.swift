@@ -16,7 +16,7 @@ struct ActiveGameScoreBoardView: View {
                 ForEach(viewModel.players.sorted()) { player in
                     ScoreBoardListViewItem(player: player)
                 }
-            }.padding(.top, 12)
+            }.padding(.top, 70)
         }
     }
 }
