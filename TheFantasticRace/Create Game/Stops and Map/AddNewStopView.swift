@@ -61,14 +61,18 @@ struct AddNewStopView: View {
                             viewModel.newStop(stop: stop)
                             showNewStopSheet = false
                         }, label: {
-                    Text("Save").padding()
+                    Text("Save")
+                        .foregroundColor(Color("FRpurple"))
+                        .padding()
                 }),
                     trailing:
                         Button(action: {
                             print("Cancel")
                             showNewStopSheet = false
                         }, label: {
-                    Text("Cancel").padding()
+                    Text("Cancel")
+                        .foregroundColor(Color("FRpurple"))
+                        .padding()
                 }))
             }
 

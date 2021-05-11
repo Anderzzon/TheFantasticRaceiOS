@@ -60,14 +60,18 @@ struct CreateGame: View {
                         
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Text("Save").padding()
+                        Text("Save")
+                            .foregroundColor(Color("FRpurple"))
+                            .padding()
                     }),
                 trailing:
                     Button(action: {
                         print("Cancel")
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Text("Cancel").padding()
+                        Text("Cancel")
+                            .foregroundColor(Color("FRpurple"))
+                            .padding()
                     }))
         }.onAppear {
             print("ID", viewModel.game.id)

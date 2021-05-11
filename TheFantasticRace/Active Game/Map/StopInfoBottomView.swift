@@ -16,12 +16,18 @@ struct StopInfoBottomView: View {
         HStack {
             VStack{
                 //Text("Hint:")
-                Text("Hint: \((viewModel.game?.stops?[viewModel.currentPlayer?.finishedStops ?? 0].hint) ?? "")")
-                    //Text("Hint text")
-                    //.foregroundColor(Color.white)
-                    .font(.body)
-                    .lineLimit(2)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                if let lastStop = viewModel.game!.stops?.count {
+                    if viewModel.currentPlayer!.finishedStops <= lastStop-1 {
+                        if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
+                            Text("Hint: \((stop.hint) ?? "")")
+                                //Text("Hint text")
+                                //.foregroundColor(Color.white)
+                                .font(.body)
+                                .lineLimit(2)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                        }
+                    }
+                }
                 Text(playedTimeElapsed)
             }.onReceive(timer) { _ in
                 updateTime()
@@ -32,23 +38,23 @@ struct StopInfoBottomView: View {
     }
     
     func updateTime() {
-            let startDate = viewModel.game?.start_time
-            let currentDate = Date()
-            let diffComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: startDate!, to: currentDate)
-            let hours = diffComponents.hour ?? 00
-            let minutes = diffComponents.minute ?? 00
-            let seconds = diffComponents.second ?? 00
+        let startDate = viewModel.game?.start_time
+        let currentDate = Date()
+        let diffComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: startDate!, to: currentDate)
+        let hours = diffComponents.hour ?? 00
+        let minutes = diffComponents.minute ?? 00
+        let seconds = diffComponents.second ?? 00
         
         if seconds < 10 && minutes < 10 {
-            playedTimeElapsed = "\(hours):0\(minutes):0\(seconds)"
+            playedTimeElapsed = "0\(hours):0\(minutes):0\(seconds)"
         } else if minutes < 10 {
-            playedTimeElapsed = "\(hours):0\(minutes):\(seconds)"
+            playedTimeElapsed = "0\(hours):0\(minutes):\(seconds)"
         } else if seconds < 10 {
-            playedTimeElapsed = "\(hours):\(minutes):0\(seconds)"
+            playedTimeElapsed = "0\(hours):\(minutes):0\(seconds)"
         } else {
-            playedTimeElapsed = "\(hours):\(minutes):\(seconds)"
+            playedTimeElapsed = "0\(hours):\(minutes):\(seconds)"
         }
-
+        
     }
 }
 

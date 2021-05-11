@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "finish-line-flag.png",
+      "filename" : "finish-line-flag-10.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "finish-line-flag-3.png",
+      "filename" : "finish-line-flag-9.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -28,7 +28,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "finish-line-flag-1.png",
+      "filename" : "finish-line-flag-12.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -39,7 +39,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "finish-line-flag-4.png",
+      "filename" : "finish-line-flag-11.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -55,7 +55,7 @@
       "scale" : "2x"
     },
     {
-      "filename" : "finish-line-flag-2.png",
+      "filename" : "finish-line-flag-14.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -66,7 +66,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "finish-line-flag-5.png",
+      "filename" : "finish-line-flag-13.png",
       "idiom" : "universal",
       "scale" : "3x"
     },

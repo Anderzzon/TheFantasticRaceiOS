@@ -10,12 +10,12 @@ import SwiftUI
 struct FabView: View {
     var body: some View {
         
-        Image(systemName: "mappin.and.ellipse")
+        Image(systemName: "plus")
             .resizable()
             .foregroundColor(.white)
             .frame(width: 40, height: 40)
             .padding()
-            .background(Color.red).shadow(color: .gray, radius: 0.9, x: 1, y: 1 )
+            .background(Color("FRpurple")).shadow(color: Color("FRpurple"), radius: 0.9, x: 1, y: 1 )
             .clipShape(Circle()).shadow(color: .gray, radius: 0.9, x: 1, y: 1 )
     }
 }

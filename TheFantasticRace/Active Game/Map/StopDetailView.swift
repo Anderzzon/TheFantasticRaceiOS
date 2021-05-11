@@ -12,18 +12,29 @@ struct StopDetailView: View {
     @State private var answer = ""
     @Environment(\.presentationMode) var presentationMode
     
+    init(viewModel: ActiveGameViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("Hint: \(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].hint!)")
-                        //Text("Hint text")
-                        .foregroundColor(Color.white)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .frame(minWidth: 0, maxWidth: 500, minHeight: 0, maxHeight: 100)
+                    if let lastStop = viewModel.game!.stops?.count {
+                        if viewModel.currentPlayer!.finishedStops <= lastStop {
+                            if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
+                                Text("Hint: \(stop.hint!)")
+                                    //Text("Hint text")
+                                    .foregroundColor(Color.white)
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .frame(minWidth: 0, maxWidth: 500, minHeight: 0, maxHeight: 100)
+                            }
+                        }
+                    }
+
                 }.padding()
-                .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.green]), startPoint: .leading, endPoint: .trailing))
+                .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color("FRturquise")]), startPoint: .leading, endPoint: .trailing))
 
                 if viewModel.locationManager.atStop {
                 Group {
@@ -38,7 +49,7 @@ struct StopDetailView: View {
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.orange, lineWidth: 2)
+                                .stroke(Color("FRpurple"), lineWidth: 2)
                         )
                         .padding()
                     
@@ -67,7 +78,9 @@ struct StopDetailView: View {
                                         print("Close")
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
-                                        Text("Close").padding()
+                                        Text("Close")
+                                            .foregroundColor(Color("FRpurple"))
+                                            .padding()
                                     }))
         }
         //.navigationBarTitle(Text("Fråga 1"), displayMode: .inline)
@@ -80,7 +93,7 @@ struct GradientButtonStyle: ButtonStyle {
         configuration.label
             .foregroundColor(Color.white)
             .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+            .background(Color("FRturquise"))
             .cornerRadius(15.0)
             .scaleEffect(configuration.isPressed ? 1.3 : 1.0)
     }

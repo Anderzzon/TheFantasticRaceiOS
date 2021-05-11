@@ -63,7 +63,7 @@ struct SignUpView: View {
                         Text("Register")
                             .frame(width: 200)
                             .padding(.vertical, 15)
-                            .background(Color.green)
+                            .background(Color("FRpurple"))
                             .cornerRadius(8)
                             .foregroundColor(.white)
                             .opacity(user.isSignInComplete ? 1 : 0.75)
@@ -76,9 +76,15 @@ struct SignUpView: View {
                 Alert(title: Text("Error creating user"), message: Text(errorString), dismissButton: .default(Text("OK")))
             }
             .navigationBarTitle("Sign Up", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Dismiss") {
-                self.presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        print("Close")
+                                        presentationMode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Text("Close")
+                                            .foregroundColor(Color("FRpurple"))
+                                            .padding()
+                                    }))
         }
     }
 }

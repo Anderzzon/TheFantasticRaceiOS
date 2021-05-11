@@ -22,8 +22,8 @@ struct StopListView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25)
                         .background(Circle()
-                            .strokeBorder(Color.red, lineWidth: 1)
-                            .background(Circle().foregroundColor(Color.red))
+                            .strokeBorder(Color("FRturquise"), lineWidth: 1)
+                            .background(Circle().foregroundColor(Color("FRturquise")))
                             .frame(width: 40, height: 40))
                 } else if game.stops != nil && stop.order == game.stops!.count-1 {
                     Image("finished-flag")
@@ -31,15 +31,15 @@ struct StopListView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25)
                         .background(Circle()
-                            .strokeBorder(Color.red, lineWidth: 1)
-                            .background(Circle().foregroundColor(Color.red))
+                            .strokeBorder(Color("FRturquise"), lineWidth: 1)
+                            .background(Circle().foregroundColor(Color("FRturquise")))
                             .frame(width: 40, height: 40))
                 } else {
-                    Text("\(stop.order)")
+                    Text("\(stop.order)").foregroundColor(.white)
                     .font(.largeTitle)
                     .background(Circle()
-                        .strokeBorder(Color.red, lineWidth: 1)
-                        .background(Circle().foregroundColor(Color.red))
+                        .strokeBorder(Color("FRturquise"), lineWidth: 1)
+                        .background(Circle().foregroundColor(Color("FRturquise")))
                         .frame(width: 40, height: 40))
                 }
 

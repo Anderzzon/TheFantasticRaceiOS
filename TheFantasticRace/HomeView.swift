@@ -81,7 +81,8 @@ struct HomeView: View {
                                                     activeGame = game
                                                     showGameSheet = true
                                                     print("add game")}, label: {
-                                                        Image(systemName: "plus").padding()
+                                                        Image(systemName: "plus").foregroundColor(Color("FRpurple"))
+                                                            .padding()
                                                     }))
             .onAppear {
                 guard let uid = Auth.auth().currentUser?.uid else {

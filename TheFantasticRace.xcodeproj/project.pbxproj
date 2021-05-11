@@ -25,6 +25,8 @@
 		034CBDED264858EF00101D38 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDEC264858EF00101D38 /* StopDetailView.swift */; };
 		034CBDF626487FC300101D38 /* ScoreBoardListViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDF526487FC300101D38 /* ScoreBoardListViewItem.swift */; };
 		034CBDF92649229600101D38 /* StopInfoBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBDF82649229600101D38 /* StopInfoBottomView.swift */; };
+		034CBE35264A830100101D38 /* UnstartedGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBE34264A82FF00101D38 /* UnstartedGameView.swift */; };
+		034CBE39264A833300101D38 /* GameLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBE38264A833300101D38 /* GameLoadingView.swift */; };
 		0352010925CEC36D00965F06 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010825CEC36D00965F06 /* UserViewModel.swift */; };
 		0352010E25CEC40800965F06 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010B25CEC40800965F06 /* ForgotPasswordView.swift */; };
 		0352010F25CEC40800965F06 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0352010C25CEC40800965F06 /* SignUpView.swift */; };
@@ -81,6 +83,8 @@
 		034CBDEC264858EF00101D38 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		034CBDF526487FC300101D38 /* ScoreBoardListViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardListViewItem.swift; sourceTree = "<group>"; };
 		034CBDF82649229600101D38 /* StopInfoBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopInfoBottomView.swift; sourceTree = "<group>"; };
+		034CBE34264A82FF00101D38 /* UnstartedGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnstartedGameView.swift; sourceTree = "<group>"; };
+		034CBE38264A833300101D38 /* GameLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoadingView.swift; sourceTree = "<group>"; };
 		0352010825CEC36D00965F06 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0352010B25CEC40800965F06 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		0352010C25CEC40800965F06 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				034CBDC82646C99300101D38 /* ActiveGameView.swift */,
+				034CBE38264A833300101D38 /* GameLoadingView.swift */,
+				034CBE34264A82FF00101D38 /* UnstartedGameView.swift */,
 				034CBDD92646CFDC00101D38 /* ViewModel */,
 				034CBDCE2646CC1200101D38 /* Stops */,
 				034CBDCD2646CC0500101D38 /* ScoreBoard */,
@@ -464,6 +470,7 @@
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,
+				034CBE39264A833300101D38 /* GameLoadingView.swift in Sources */,
 				034CBDDB2646D08C00101D38 /* ActiveGameViewModel.swift in Sources */,
 				03536C77262C8E7300D63020 /* DetailSettingsDescriptionView.swift in Sources */,
 				034CBC80263D84D000101D38 /* StopListView.swift in Sources */,
@@ -471,6 +478,7 @@
 				037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */,
 				037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */,
 				034CBDD42646CC6100101D38 /* ActiveGameScoreBoardView.swift in Sources */,
+				034CBE35264A830100101D38 /* UnstartedGameView.swift in Sources */,
 				034CBDE62647E61A00101D38 /* LocationManager.swift in Sources */,
 				03536C75262C8E7300D63020 /* Stops.swift in Sources */,
 				0373B34025CECF350061C42E /* FBUser.swift in Sources */,
