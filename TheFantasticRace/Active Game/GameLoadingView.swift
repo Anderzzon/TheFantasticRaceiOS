@@ -10,7 +10,7 @@ import SwiftUI
 struct GameLoadingView: View {
     var body: some View {
         Spacer()
-        Text("Loading Game!")
+        ProgressView()
         Spacer()
     }
 }

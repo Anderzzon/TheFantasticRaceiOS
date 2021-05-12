@@ -21,7 +21,9 @@ struct ActiveGameMapView: View {
             StopInfoBottomView(viewModel: viewModel).onTapGesture {
                 showSheet = true
             }
-        }.sheet(isPresented: $showSheet) {
+        }
+        //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))
+        .sheet(isPresented: $showSheet) {
             StopDetailView(viewModel: viewModel)
         }
     }

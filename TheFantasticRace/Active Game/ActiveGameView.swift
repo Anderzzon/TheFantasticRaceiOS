@@ -31,11 +31,11 @@ struct ActiveGameView: View {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [
-                    .font : UIFont.systemFont(ofSize: 20),
-                    NSAttributedString.Key.foregroundColor : UIColor.black
-                ]
+            .font : UIFont.systemFont(ofSize: 20),
+            NSAttributedString.Key.foregroundColor : UIColor.black
+        ]
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
-                UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
     }
     
     var body: some View {
@@ -49,25 +49,27 @@ struct ActiveGameView: View {
                     Print("time:", Date())
                     UnstartedGameView()
                 } else {
-                
-                ZStack(alignment: .top) {
-                    ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
-                        .padding(.top, -10)
-                    Picker("Create new Game", selection: $selectedTab) {
-                        ForEach(SelectedGameTab.allCases, id: \.self) {
-                            Text($0.rawValue)
+                    
+                    ZStack(alignment: .top) {
+                        ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
+                            .padding(.top, -10)
+                        Picker("Create new Game", selection: $selectedTab) {
+                            ForEach(SelectedGameTab.allCases, id: \.self) {
+                                Text($0.rawValue)
+                            }
                         }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .background(Color(.systemGray6).opacity(0.5))
+                        .padding()
+                        //
+                        
                     }
-                    .pickerStyle(SegmentedPickerStyle())
-                    .background(Color(.systemGray6).opacity(0.5))
-                    .padding()
-                    //
-
-                }
                 }
                 
                 Spacer()
             }
+            //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))
+            .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color.white]), startPoint: .bottom, endPoint: .center).edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -91,17 +93,17 @@ struct ActiveGameView: View {
                             .padding()
                     })
             )
-                    }
+        }
         .sheet(isPresented: $viewModel.locationManager.showSheet) {
             StopDetailView(viewModel: viewModel)
             Print("Sheet")
         }.onAppear {
             
         }
-//        .alert(isPresented: $viewModel.locationManager.atStop) {
-//            Alert(title: Text("You are now at stop \(viewModel.locationManager.stopOrder)"))
-//            
-//        }
+        //        .alert(isPresented: $viewModel.locationManager.atStop) {
+        //            Alert(title: Text("You are now at stop \(viewModel.locationManager.stopOrder)"))
+        //
+        //        }
     }
     
     struct ChosenSettingsView: View {

@@ -19,22 +19,22 @@ struct StopInfoBottomView: View {
                 if let lastStop = viewModel.game!.stops?.count {
                     if viewModel.currentPlayer!.finishedStops <= lastStop-1 {
                         if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
-                            Text("Hint: \((stop.hint) ?? "")")
+                            Text("Hint: \((stop.hint) ?? "")").foregroundColor(.white)
                                 //Text("Hint text")
                                 //.foregroundColor(Color.white)
                                 .font(.body)
                                 .lineLimit(2)
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                         }
                     }
                 }
-                Text(playedTimeElapsed)
+                Text(playedTimeElapsed).foregroundColor(.white)
             }.onReceive(timer) { _ in
                 updateTime()
             }
         }
-        .background(Color.white)
-        .padding()
+        //.background(Color("FRpurple"))
+        //.padding()
     }
     
     func updateTime() {
@@ -57,8 +57,6 @@ struct StopInfoBottomView: View {
         
     }
 }
-
-
 
 struct StopInfoBottomView_Previews: PreviewProvider {
     static var previews: some View {
