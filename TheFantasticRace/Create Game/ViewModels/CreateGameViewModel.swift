@@ -189,7 +189,6 @@ class CreateGameViewModel: ObservableObject {
             }
             print("Inviting user")
             self.game.listOfPlayers?.append(invitedPlayer)
-            print("Invited players:", self.game.listOfPlayers)
         }
     }
     

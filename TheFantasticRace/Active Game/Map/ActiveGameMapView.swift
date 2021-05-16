@@ -18,7 +18,9 @@ struct ActiveGameMapView: View {
     var body: some View {
         VStack {
             ActiveGameMapUIView(centerCoordinate: $centerCoordinate, viewModel: viewModel).edgesIgnoringSafeArea(.all)
-            StopInfoBottomView(viewModel: viewModel).onTapGesture {
+            StopInfoBottomView(viewModel: viewModel)
+                .contentShape(Rectangle())
+                .onTapGesture {
                 showSheet = true
             }
         }

@@ -13,7 +13,7 @@ struct NavigationRow: View {
     var body: some View {
         VStack(alignment: .leading)  {
         VStack(alignment: .leading) {
-            Text(game.name ?? "No name")
+            Text(game.name)
                 .font(.headline)
             Text(game.description ?? "")
                 .font(.caption2)
