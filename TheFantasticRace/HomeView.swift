@@ -38,6 +38,7 @@ struct HomeView: View {
     
     @State private var activeGameSheet: ActiveGameSheet = .activeGame
     @State private var showGameSheet = false
+    
     @StateObject var playingGame = ActiveGameViewModel()
     
     var body: some View {
@@ -61,6 +62,7 @@ struct HomeView: View {
                                     showGameSheet = true
                                 } else {
                                     //locationManager.startLocationServices()
+                                    activeGame = nil
                                     activeGame = game
                                     playingGame.game = activeGame
                                     //Print("Game in viewModel:", playingGame.game)
