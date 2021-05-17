@@ -18,6 +18,7 @@ struct SignInWithEmailView: View {
     var body: some View {
         Print("Action in Sign in with email view", action)
         VStack {
+            Image("earth").resizable().frame(width: 200, height: 200, alignment: .center)
             TextField("Email Address",
                       text: self.$user.email)
                 .autocapitalization(.none)
@@ -79,7 +80,7 @@ struct SignInWithEmailView: View {
                                     })
                             }
         }
-        .padding(.top, 100)
+        .padding(.top, 40)
         .frame(width: 300)
         .textFieldStyle(RoundedBorderTextFieldStyle())
         

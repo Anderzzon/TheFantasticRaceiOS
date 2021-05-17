@@ -16,6 +16,7 @@ struct LoginView: View {
     
     var body: some View {
         Print("Action:", action)
+
         VStack {
             SignInWithEmailView(showSheet: $showSheet, action: $action)
             SignInWithAppleView().frame(width: 200, height: 50)

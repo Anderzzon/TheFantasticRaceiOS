@@ -14,7 +14,8 @@ struct ContentView: View {
             if userInfo.isUserAuthenticated == .undefined {
                 Text("Loading...")
             } else if userInfo.isUserAuthenticated == .signedOut {
-                LoginView()
+                LoginView().frame(width: 450, height: nil, alignment: .center)
+                    .background(Color(.systemGray3)).edgesIgnoringSafeArea(.all)
             } else {
                 HomeView()
             }
