@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03087F4526526EA300BDD55C /* NavigationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */; };
 		034CBC80263D84D000101D38 /* StopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC7F263D84D000101D38 /* StopListView.swift */; };
 		034CBC8426402F7500101D38 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8326402F7400101D38 /* FabView.swift */; };
 		034CBC872640339900101D38 /* AddNewStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC862640339900101D38 /* AddNewStopView.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRowViewModel.swift; sourceTree = "<group>"; };
 		034CBC7F263D84D000101D38 /* StopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopListView.swift; sourceTree = "<group>"; };
 		034CBC8326402F7400101D38 /* FabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
 		034CBC862640339900101D38 /* AddNewStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewStopView.swift; sourceTree = "<group>"; };
@@ -110,7 +112,7 @@
 		0373B36525CFEA240061C42E /* FBDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataModel.swift; sourceTree = "<group>"; };
 		0373B36925CFEC8F0061C42E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		0373B37025D035EB0061C42E /* NavigationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRow.swift; sourceTree = "<group>"; };
-		037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheFantasticRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Fantastic Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheFantasticRaceApp.swift; sourceTree = "<group>"; };
 		037B0A5125CE9EBF003CB5D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -312,7 +314,7 @@
 		037B0A4D25CE9EBF003CB5D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */,
+				037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -330,6 +332,7 @@
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
 				034CBC8326402F7400101D38 /* FabView.swift */,
 				0373B37025D035EB0061C42E /* NavigationRow.swift */,
+				03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */,
 				0373B34C25CEE0E90061C42E /* View.extensions.swift */,
 				037B0A7925CEBE23003CB5D2 /* HomeView.swift */,
 				037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */,
@@ -351,9 +354,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		037B0A4B25CE9EBF003CB5D2 /* TheFantasticRace */ = {
+		037B0A4B25CE9EBF003CB5D2 /* The Fantastic Race */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */;
+			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "The Fantastic Race" */;
 			buildPhases = (
 				037B0A4825CE9EBF003CB5D2 /* Sources */,
 				037B0A4925CE9EBF003CB5D2 /* Frameworks */,
@@ -363,7 +366,7 @@
 			);
 			dependencies = (
 			);
-			name = TheFantasticRace;
+			name = "The Fantastic Race";
 			packageProductDependencies = (
 				03536C82262C93EC00D63020 /* FirebaseAnalytics */,
 				03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */,
@@ -371,7 +374,7 @@
 				03536C88262C93EC00D63020 /* FirebaseFirestore */,
 			);
 			productName = TheFantasticRace;
-			productReference = 037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */;
+			productReference = 037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -404,7 +407,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				037B0A4B25CE9EBF003CB5D2 /* TheFantasticRace */,
+				037B0A4B25CE9EBF003CB5D2 /* The Fantastic Race */,
 			);
 		};
 /* End PBXProject section */
@@ -461,6 +464,7 @@
 				034CBDF626487FC300101D38 /* ScoreBoardListViewItem.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
+				03087F4526526EA300BDD55C /* NavigationRowViewModel.swift in Sources */,
 				0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */,
 				034CBE39264A833300101D38 /* GameLoadingView.swift in Sources */,
 				034CBDDB2646D08C00101D38 /* ActiveGameViewModel.swift in Sources */,
@@ -659,7 +663,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */ = {
+		037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "The Fantastic Race" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				037B0A5C25CE9EC1003CB5D2 /* Debug */,

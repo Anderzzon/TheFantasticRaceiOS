@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 import Combine
+import UserNotifications
 
 class LocationManager: NSObject, ObservableObject {
     var locationManager = CLLocationManager()
@@ -24,6 +25,8 @@ class LocationManager: NSObject, ObservableObject {
     @Published var geofenceRegion: CLRegion?
     
     var stopOrder = ""
+    var currentStop: GameStop?
+    var gameName = ""
     
     private var isAtStop: AnyPublisher<Bool, Never> {
         $atStop
@@ -40,6 +43,14 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.allowsBackgroundLocationUpdates = true
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("Notifications set")
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func startLocationServices() {
@@ -62,6 +73,8 @@ class LocationManager: NSObject, ObservableObject {
 //    }
     
     func createGeofence(for stop: GameStop, with radius: Double) {
+        currentStop = stop
+        
         let monitoredRegions = locationManager.monitoredRegions
 
         for region in monitoredRegions{
@@ -69,12 +82,14 @@ class LocationManager: NSObject, ObservableObject {
         }
         
         print("All regions before ", locationManager.monitoredRegions)
+        
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
                 let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
                 
                 let region = CLCircularRegion(center: center, radius: radius, identifier: String(stop.order))
                 locationManager.startMonitoring(for: region)
             print("Geofence created:", stop.name)
+            
         }
         
         print("All regions after", locationManager.monitoredRegions)
@@ -102,6 +117,25 @@ extension LocationManager: CLLocationManagerDelegate {
         stopOrder = region.identifier
         //locationManager.stopMonitoring(for: region)
         geofenceRegion = region
+        
+        let notificationContent = UNMutableNotificationContent()
+        notificationContent.title = "\(gameName)"
+        notificationContent.subtitle = "You have now entered stop #\(Int(region.identifier)!+1)"
+        notificationContent.body = "\(currentStop?.name ?? "")"
+        notificationContent.sound = UNNotificationSound.default
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        
+            let notificatrionIDtoRemove = Int(region.identifier)!-1
+        if notificatrionIDtoRemove > 0 {
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [String(notificatrionIDtoRemove)])
+            print("Notification removed")
+        
+        }
+        
+        let request = UNNotificationRequest(identifier: region.identifier, content: notificationContent, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {

@@ -30,7 +30,7 @@ struct HomeView: View {
     @State private var errorString = ""
     //@StateObject private var locationManager = LocationManager()
     @StateObject var games = FBDataModel()
-    var game = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
+    var newGame = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
     
     @ObservedObject var viewModel = CreateGameViewModel(selectedGame: Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil))
     
@@ -56,15 +56,18 @@ struct HomeView: View {
                             NavigationRow(game: game).onTapGesture {
                                 //self.viewModel.game = game
                                 if game.owner == userInfo.user.uid {
-                                    activeGame = nil
+                                    Print("Owner")
+                                    //activeGame = nil
                                     activeGame = game
+                                    print("Active Game", activeGame)
                                     activeGameSheet = .newGame
                                     showGameSheet = true
                                 } else {
+                                    Print("Not owner")
                                     //locationManager.startLocationServices()
-                                    activeGame = nil
-                                    activeGame = game
-                                    playingGame.game = activeGame
+                                    //activeGame = nil
+                                    //activeGame = game
+                                    playingGame.game = game
                                     //Print("Game in viewModel:", playingGame.game)
                                     //activeGame = game
                                     activeGameSheet = .activeGame
@@ -77,10 +80,11 @@ struct HomeView: View {
                     }
                 }
             }
+            .background(Color(.systemGray4).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle("All games")
             .navigationBarItems(trailing: Button(action: {
-                                                    viewModel.game = game
-                                                    activeGame = game
+                                                    viewModel.game = newGame
+                                                    activeGame = newGame
                                                     showGameSheet = true
                                                     print("add game")}, label: {
                                                         Image(systemName: "plus").foregroundColor(Color("FRpurple"))
@@ -105,7 +109,7 @@ struct HomeView: View {
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
                     //Print("Game in viewModel:", playingGame.game)
-                    let viewModel = ActiveGameViewModel()
+                    //let viewModel = ActiveGameViewModel()
                     ActiveGameView(viewModel: playingGame)
                 }
             }
