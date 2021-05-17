@@ -12,11 +12,18 @@ import FirebaseFirestoreSwift
 
 struct Game: Codable, Identifiable, Comparable {
     static func < (lhs: Game, rhs: Game) -> Bool {
-        lhs.name < rhs.name
+        if let lhs = lhs.start_time, let rhs = rhs.start_time {
+            return lhs < rhs
+        }
+        return false
     }
     
     static func == (lhs: Game, rhs: Game) -> Bool {
-        lhs.name < rhs.name
+        if let lhs = lhs.start_time, let rhs = rhs.start_time {
+           return lhs < rhs
+        }
+        //lhs.start_time < rhs.start_time
+        return false
     }
     
     var name: String
@@ -56,10 +63,27 @@ struct Player: Codable, Identifiable {
 
 class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
-        
-        (lhs.finishedStops, lhs.updatedTime!) > (rhs.finishedStops, rhs.updatedTime!)
+        print("<")
+        if lhs.finishedStops != rhs.finishedStops {
+            return lhs.finishedStops > rhs.finishedStops
+        } else if lhs.updatedTime! < rhs.updatedTime! {
+            return true
+        }
+        return false
 //        lhs.name < rhs.name
     }
+    
+//    static func == (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
+//        print("==")
+//        if lhs.finishedStops == rhs.finishedStops {
+//            if lhs.updatedTime! > rhs.updatedTime! {
+//                return true
+//            }
+//
+//        }
+//        return false
+////        lhs.name < rhs.name
+//    }
     
     var name: String
     var id: String

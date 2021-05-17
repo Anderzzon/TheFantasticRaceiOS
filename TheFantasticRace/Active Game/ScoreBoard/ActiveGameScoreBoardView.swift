@@ -14,7 +14,7 @@ struct ActiveGameScoreBoardView: View {
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.players.sorted()) { player in
-                    ScoreBoardListViewItem(player: player)
+                    ScoreBoardListViewItem(player: player, numberOfStops: viewModel.game?.stops?.count ?? 0)
                 }
             }.padding(.top, 70)
         }

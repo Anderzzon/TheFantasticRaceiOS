@@ -9,10 +9,15 @@ import SwiftUI
 
 struct ScoreBoardListViewItem: View {
     let player: PlayingPlayer
+    let numberOfStops: Int
     
     var body: some View {
         VStack {
-            Text(player.name)
+            HStack {
+                Text(player.name)
+                Spacer()
+                Text("\(player.finishedStops)/\(numberOfStops) stops")
+            }
         }
         .padding()
         .frame(minWidth: 0,
@@ -28,6 +33,6 @@ struct ScoreBoardListViewItem: View {
 
 struct ScoreBoardListViewItem_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreBoardListViewItem(player: PlayingPlayer(name: "Sven Bertil", id: UUID().uuidString, lat: nil, lng: nil, finishedStops: 0, updatedTime: nil))
+        ScoreBoardListViewItem(player: PlayingPlayer(name: "Sven Bertil", id: UUID().uuidString, lat: nil, lng: nil, finishedStops: 0, updatedTime: nil), numberOfStops: 10)
     }
 }

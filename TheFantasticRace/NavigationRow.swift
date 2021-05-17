@@ -25,8 +25,14 @@ struct NavigationRow: View {
     var body: some View {
         VStack(alignment: .leading)  {
         VStack(alignment: .leading) {
-            Text(game.name)
-                .font(.headline)
+            HStack {
+                Text(game.name)
+                    .font(.headline)
+                Spacer()
+                if game.owner == viewModel.user {
+                    Image(systemName: "square.and.pencil").foregroundColor(Color("FRpurple"))
+                }
+            }
             Text(game.description ?? "")
                 .padding(.top, 1)
                 .font(.caption2)
@@ -44,9 +50,18 @@ struct NavigationRow: View {
                 .frame(height: 10)
                 .padding(.trailing, -5)
 
-            Text("\(viewModel.numberOfPlayers) players")
+            if viewModel.numberOfPlayers == 0 {
+                Text("No players yet")
+                    .font(.caption2)
+            } else if viewModel.numberOfPlayers == 1 {
+                Text("\(viewModel.numberOfPlayers) player")
+                    .font(.caption2)
+            } else {
+                Text("\(viewModel.numberOfPlayers) players")
+                    .font(.caption2)
+            }
             //Text("\(game.listOfPlayers?.count ?? 0) players")
-                .font(.caption2)
+                
             Spacer()
             Image("copyright")
                 .resizable()
