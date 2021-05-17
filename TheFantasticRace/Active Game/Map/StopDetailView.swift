@@ -14,6 +14,17 @@ struct StopDetailView: View {
     
     init(viewModel: ActiveGameViewModel) {
         self.viewModel = viewModel
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [
+            .font : UIFont.systemFont(ofSize: 20),
+            NSAttributedString.Key.foregroundColor : UIColor.white
+        ]
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+
     }
     
     var body: some View {
@@ -29,12 +40,13 @@ struct StopDetailView: View {
                                     .font(.title2)
                                     .fontWeight(.bold)
                                     .frame(minWidth: 0, maxWidth: 500, minHeight: 0, maxHeight: 100)
+                                    .padding(.top)
                             }
                         }
                     }
 
                 }.padding()
-                .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color("FRturquise")]), startPoint: .leading, endPoint: .trailing))
+                .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color("FRturquise")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
 
                 if viewModel.locationManager.atStop {
                 Group {
@@ -72,6 +84,14 @@ struct StopDetailView: View {
                 Spacer()
                 
             }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name.capitalized)
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundColor(.white)
+                }
+            }
             .navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
@@ -79,7 +99,7 @@ struct StopDetailView: View {
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Close")
-                                            .foregroundColor(Color("FRpurple"))
+                                            .foregroundColor(.white)
                                             .padding()
                                     }))
         }

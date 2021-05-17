@@ -29,7 +29,8 @@ struct StopInfoBottomView: View {
                     }
                 }
                 Text(playedTimeElapsed).foregroundColor(.white)
-            }.onReceive(timer) { _ in
+            }
+            .onReceive(timer) { _ in
                 updateTime()
             }
         }

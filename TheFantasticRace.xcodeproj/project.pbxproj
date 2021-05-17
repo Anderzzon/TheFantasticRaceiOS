@@ -306,7 +306,6 @@
 			children = (
 				037B0A4E25CE9EBF003CB5D2 /* TheFantasticRace */,
 				037B0A4D25CE9EBF003CB5D2 /* Products */,
-				3C017E5AEF454E8F82C2B9D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -347,13 +346,6 @@
 				037B0A5625CE9EC1003CB5D2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		3C017E5AEF454E8F82C2B9D5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

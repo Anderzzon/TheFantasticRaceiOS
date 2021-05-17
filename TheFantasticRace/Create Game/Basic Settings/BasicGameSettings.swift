@@ -66,6 +66,9 @@ struct BasicGameSettings: View {
                         }
 
                     }
+                    Section(header: Text("Date and time")) {
+                        DatePicker("Start time", selection: $viewModel.game.start_time ?? Date(), in: Date()..., displayedComponents: [.date, .hourAndMinute]).accentColor(Color("FRpurple"))
+                    }
                 }.listStyle(GroupedListStyle())
             }
         //}

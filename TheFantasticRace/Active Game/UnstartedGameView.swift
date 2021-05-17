@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct UnstartedGameView: View {
+    var startTime: Date
     var body: some View {
-        Text("The game hasn't started yet")
+        VStack {
+            Text("The game hasn't started yet")
+            Text("It will start: \(startTime)")
+        }
     }
 }
 
 struct UnstartedGameView_Previews: PreviewProvider {
     static var previews: some View {
-        UnstartedGameView()
+        UnstartedGameView(startTime: Date())
     }
 }

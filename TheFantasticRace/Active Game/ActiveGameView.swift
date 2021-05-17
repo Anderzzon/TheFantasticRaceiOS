@@ -47,7 +47,7 @@ struct ActiveGameView: View {
                 } else if viewModel.game!.start_time! > Date() {
                     Print("fbtime:", viewModel.game!.start_time!)
                     Print("time:", Date())
-                    UnstartedGameView()
+                    UnstartedGameView(startTime: (viewModel.game?.start_time)!)
                 } else {
                     
                     ZStack(alignment: .top) {
@@ -69,7 +69,7 @@ struct ActiveGameView: View {
                 Spacer()
             }
             //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))
-            .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color.white]), startPoint: .bottom, endPoint: .center).edgesIgnoringSafeArea(.all))
+            .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color.white]), startPoint: .bottom, endPoint: .center).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
             .navigationBarItems(
                 leading:
