@@ -22,6 +22,8 @@ class ActiveGameViewModel: ObservableObject {
                 self.fetchAllUsers()
                 self.fetchUser()
                 self.startTimer()
+                self.locationManager.startLocationServices()
+                self.locationManager.gameName = self.game?.name ?? "Current Game"
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     if let game = self.game {
                         if let startTime = game.start_time {

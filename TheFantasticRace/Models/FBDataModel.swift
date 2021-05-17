@@ -62,7 +62,7 @@ class FBDataModel: ObservableObject {
             //            }
         }
     }
-    
+
     func searchUser(user: String) {
         let usersRef = ref.collection("users")
         let query = usersRef.whereField("name", isLessThanOrEqualTo: user)

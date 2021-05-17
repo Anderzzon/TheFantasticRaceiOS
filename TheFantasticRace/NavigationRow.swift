@@ -8,7 +8,19 @@
 import SwiftUI
 
 struct NavigationRow: View {
+    
+    static let gameDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM HH:mm"
+        return formatter
+    }()
+    
+    static var optionalDate: Date {
+        return Date()
+    }
+    
     var game: Game
+    @State private var viewModel = NavigationRowViewModel()
     
     var body: some View {
         VStack(alignment: .leading)  {
@@ -16,8 +28,12 @@ struct NavigationRow: View {
             Text(game.name)
                 .font(.headline)
             Text(game.description ?? "")
+                .padding(.top, 1)
                 .font(.caption2)
                 .lineLimit(3)
+        }.onAppear {
+            viewModel.getAcceptedUsers(game: game)
+            viewModel.getNameOfGameOwner(game: game)
         }
         
         Spacer()
@@ -28,7 +44,8 @@ struct NavigationRow: View {
                 .frame(height: 10)
                 .padding(.trailing, -5)
 
-            Text("\(game.listOfPlayers?.count ?? 0) players")
+            Text("\(viewModel.numberOfPlayers) players")
+            //Text("\(game.listOfPlayers?.count ?? 0) players")
                 .font(.caption2)
             Spacer()
             Image("copyright")
@@ -36,7 +53,7 @@ struct NavigationRow: View {
                 .scaledToFit()
                 .frame(height: 10)
                 .padding(.trailing, -5)
-            Text(game.owner ?? "")
+            Text(viewModel.gameOwner)
                 .font(.caption2)
             Spacer()
             Image("countdown")
@@ -44,7 +61,7 @@ struct NavigationRow: View {
                 .scaledToFit()
                 .frame(height: 10)
                 .padding(.trailing, -5)
-            Text("In 5 days")
+            Text("\(game.start_time ?? Self.optionalDate, formatter: Self.gameDateFormat)")
                 .font(.caption2)
         }
         }.padding()
@@ -53,7 +70,8 @@ struct NavigationRow: View {
                minHeight: 120,
                maxHeight: 120,
                alignment: .leading)
-        .background(Color.gray.opacity(0.1))
+        .background(Color("FRturquise").opacity(0.25))
+        //.background(Color.gray.opacity(0.1))
         .cornerRadius(10)
         .padding([.top, .leading, .trailing])
     }
