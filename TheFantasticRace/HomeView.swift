@@ -50,20 +50,16 @@ struct HomeView: View {
                     LazyVStack {
                         //Print("VStack Load")
                         ForEach(games.fetchedGames.sorted()) { game in
-                            //Text(game.name!)
-                            
-                            //Print(game)
+
                             NavigationRow(game: game).onTapGesture {
                                 //self.viewModel.game = game
                                 if game.owner == userInfo.user.uid {
-                                    Print("Owner")
                                     //activeGame = nil
                                     activeGame = game
                                     print("Active Game", activeGame)
                                     activeGameSheet = .newGame
                                     showGameSheet = true
                                 } else {
-                                    Print("Not owner")
                                     //locationManager.startLocationServices()
                                     //activeGame = nil
                                     //activeGame = game

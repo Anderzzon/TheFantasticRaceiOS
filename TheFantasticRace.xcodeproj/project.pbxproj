@@ -46,6 +46,7 @@
 		03536C85262C93EC00D63020 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */; };
 		03536C87262C93EC00D63020 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C86262C93EC00D63020 /* FirebaseAuth */; };
 		03536C89262C93EC00D63020 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03536C88262C93EC00D63020 /* FirebaseFirestore */; };
+		03611BC22652B1B600E24712 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03611BC12652B1B600E24712 /* Crypto.swift */; };
 		0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33925CECF320061C42E /* FBFireStoreError.swift */; };
 		0373B33E25CECF350061C42E /* FBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33A25CECF330061C42E /* FBKeys.swift */; };
 		0373B33F25CECF350061C42E /* FBFireStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B33B25CECF340061C42E /* FBFireStore.swift */; };
@@ -102,6 +103,7 @@
 		03536C72262C8E7300D63020 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		03536C73262C8E7300D63020 /* BasicGameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicGameSettings.swift; sourceTree = "<group>"; };
 		03536C7C262C8F1500D63020 /* CreateGameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGameViewModel.swift; sourceTree = "<group>"; };
+		03611BC12652B1B600E24712 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		0373B33925CECF320061C42E /* FBFireStoreError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBFireStoreError.swift; sourceTree = "<group>"; };
 		0373B33A25CECF330061C42E /* FBKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBKeys.swift; sourceTree = "<group>"; };
 		0373B33B25CECF340061C42E /* FBFireStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBFireStore.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				03536C6B262C8E7300D63020 /* Create Game */,
 				037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */,
 				034CBDE82647E8DA00101D38 /* TestLocationView.swift */,
+				03611BC12652B1B600E24712 /* Crypto.swift */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
 				034CBC8326402F7400101D38 /* FabView.swift */,
 				0373B37025D035EB0061C42E /* NavigationRow.swift */,
@@ -462,6 +465,7 @@
 				034CBD342642DEEC00101D38 /* PlayerSearchRowView.swift in Sources */,
 				034CBDC92646C99300101D38 /* ActiveGameView.swift in Sources */,
 				034CBDF626487FC300101D38 /* ScoreBoardListViewItem.swift in Sources */,
+				03611BC22652B1B600E24712 /* Crypto.swift in Sources */,
 				0373B34425CECF450061C42E /* FBAuthError.swift in Sources */,
 				034CBC8426402F7500101D38 /* FabView.swift in Sources */,
 				03087F4526526EA300BDD55C /* NavigationRowViewModel.swift in Sources */,

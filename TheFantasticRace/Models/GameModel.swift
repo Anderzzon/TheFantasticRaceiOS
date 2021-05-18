@@ -91,14 +91,18 @@ class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     var lng: Double?
     var finishedStops: Int
     var updatedTime: Date?
+    var latEncrypted: String?
+    var lngEncrypted: String?
     
-    init(name: String, id: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?) {
+    init(name: String, id: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?, latEncrypted: String?, lngEncrypted: String?) {
         self.name = name
         self.id = id
         self.lat = lat
         self.lng = lng
         self.finishedStops = finishedStops
         self.updatedTime = updatedTime
+        self.latEncrypted = latEncrypted
+        self.lngEncrypted = lngEncrypted
     }
     
 //    convenience init?(document: [String: Any]) {
@@ -172,8 +176,19 @@ extension GameStop: MKAnnotation {
 
 extension PlayingPlayer: MKAnnotation {
     var coordinate: CLLocationCoordinate2D {
-        CLLocation(latitude: lat!, longitude: lng!).coordinate
+        if let lat = convertCoordinates(from: latEncrypted), let lng = convertCoordinates(from: lngEncrypted) {
+            print("Extension Coordinates", lat, lng)
+            return CLLocation(latitude: lat, longitude: lng).coordinate
+        }
+            return CLLocation(latitude: 0.0, longitude: 0.0).coordinate
     }
     var title: String? { name }
     var subtitle: String? { String(finishedStops) }
+    
+    func convertCoordinates(from encrypted: String?) -> Double? {
+        if let encrypted = encrypted {
+            return (encrypted as NSString).doubleValue
+        }
+        return nil
+    }
 }

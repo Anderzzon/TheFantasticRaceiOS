@@ -23,34 +23,9 @@ class CreateGameViewModel: ObservableObject {
     @Published var players: [Player] = []
     @Published var query = ""
     @Published var validStops = true
-//    @Published var testStops = [
-//        GameStop(id: UUID().uuidString, title: "One stop", order: 0),
-//        GameStop(id: UUID().uuidString, title: "Two stop", order: 1),
-//        GameStop(id: UUID().uuidString, title: "Three stop", order: 2),
-//        GameStop(id: UUID().uuidString, title: "Four stop", order: 3),
-//        GameStop(id: UUID().uuidString, title: "Five stop", order: 4)
-//    ]
     
     @Published var game: Game
     let ref = Firestore.firestore()
-//    @Published var game = Game(name: "New game",
-//                               description: "Your new game",
-//                               finishedStops: nil,
-//                               gameFinished: false,
-//                               listOfPlayers: nil,
-//                               parent_race: nil,
-//                               radius: 20,
-//                               show_next_stop: false,
-//                               show_next_stop_delay: 0,
-//                               show_players_map: false,
-//                               start_time: nil,
-//                               finished_time: nil,
-//                               unlock_with_question: true,
-//                               id: UUID().uuidString,
-//                               //accepted: nil,
-//                               //invites: nil,
-//                               owner: nil,
-//                               stops: nil)
     
     init(selectedGame: Game) {
         self.game = selectedGame

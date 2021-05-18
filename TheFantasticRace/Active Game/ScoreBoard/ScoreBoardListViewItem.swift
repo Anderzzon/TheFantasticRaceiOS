@@ -33,6 +33,6 @@ struct ScoreBoardListViewItem: View {
 
 struct ScoreBoardListViewItem_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreBoardListViewItem(player: PlayingPlayer(name: "Sven Bertil", id: UUID().uuidString, lat: nil, lng: nil, finishedStops: 0, updatedTime: nil), numberOfStops: 10)
+        ScoreBoardListViewItem(player: PlayingPlayer(name: "Sven Bertil", id: UUID().uuidString, lat: nil, lng: nil, finishedStops: 0, updatedTime: nil, latEncrypted: nil, lngEncrypted: nil), numberOfStops: 10)
     }
 }
