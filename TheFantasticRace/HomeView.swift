@@ -82,7 +82,23 @@ struct HomeView: View {
             }
             .background(Color(.systemGray4).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle("All games")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(
+                leading: Button(action: {
+                    FBAuth.logout { result in
+                        switch result {
+                        case .success:
+                            print("Loged out", userInfo.isUserAuthenticated)
+                            userInfo.isUserAuthenticated = .signedOut
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            
+                        }
+                    }
+                }, label: {
+                                                            Image(systemName: "escape").foregroundColor(Color("FRpurple"))
+                                                                .padding()
+                                                        }),
+                trailing: Button(action: {
                                                     viewModel.game = newGame
                                                     activeGame = newGame
                                                     showGameSheet = true

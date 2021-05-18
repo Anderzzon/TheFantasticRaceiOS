@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 
 class NavigationRowViewModel {
     let ref = Firestore.firestore()
-    let user = Auth.auth().currentUser!.uid
+    let user = Auth.auth().currentUser?.uid
     @Published var numberOfPlayers = 0
     @Published var gameOwner = ""
     
