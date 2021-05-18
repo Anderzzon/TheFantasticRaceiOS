@@ -31,6 +31,7 @@ struct Game: Codable, Identifiable, Comparable {
     var finishedStops: Int?
     var gameFinished: Bool?
     var listOfPlayers: [Player]?
+    var listOfPlayersString: [String]?
     var parent_race: String?
     var radius: Double?
     var show_next_stop: Bool?

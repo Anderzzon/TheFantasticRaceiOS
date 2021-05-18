@@ -33,6 +33,7 @@ class CreateGameViewModel: ObservableObject {
     
     @Published var game: Game
     let ref = Firestore.firestore()
+    let user = Auth.auth().currentUser!.uid
 //    @Published var game = Game(name: "New game",
 //                               description: "Your new game",
 //                               finishedStops: nil,
@@ -186,9 +187,12 @@ class CreateGameViewModel: ObservableObject {
         } else {
             if self.game.listOfPlayers == nil {
                 self.game.listOfPlayers = []
+                self.game.listOfPlayersString = []
+                self.game.listOfPlayersString?.append(user) //The game owner needs to be in this array in order for the Firebase query to work
             }
             print("Inviting user")
             self.game.listOfPlayers?.append(invitedPlayer)
+            self.game.listOfPlayersString?.append(invitedPlayer.id)
         }
     }
     

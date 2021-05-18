@@ -58,7 +58,9 @@ struct HomeView: View {
                                 if game.owner == userInfo.user.uid {
                                     Print("Owner")
                                     //activeGame = nil
+                                    
                                     activeGame = game
+                                    viewModel.game = activeGame!
                                     print("Active Game", activeGame)
                                     activeGameSheet = .newGame
                                     showGameSheet = true
@@ -101,6 +103,7 @@ struct HomeView: View {
                 trailing: Button(action: {
                                                     viewModel.game = newGame
                                                     activeGame = newGame
+                                                    activeGameSheet = .newGame
                                                     showGameSheet = true
                                                     print("add game")}, label: {
                                                         Image(systemName: "plus").foregroundColor(Color("FRpurple"))
@@ -121,7 +124,7 @@ struct HomeView: View {
             }
             .fullScreenCover(isPresented: $showGameSheet) {
                 if activeGameSheet == .newGame {
-                    let viewModel = CreateGameViewModel(selectedGame: activeGame!)
+                    //let viewModel = CreateGameViewModel(selectedGame: activeGame!)
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
                     //Print("Game in viewModel:", playingGame.game)

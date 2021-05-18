@@ -181,6 +181,7 @@ class ActiveGameViewModel: ObservableObject {
     
     func fetchUser() {
         guard let id = self.game!.id else {
+            print("guard return no game id")
             return
         }
         
@@ -193,6 +194,7 @@ class ActiveGameViewModel: ObservableObject {
                 return
             }
             self.currentPlayer = try? document.data(as: PlayingPlayer.self)
+            print("Current player in Firebase:", self.currentPlayer)
             //self.startGame()
         }
     }

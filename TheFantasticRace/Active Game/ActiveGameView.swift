@@ -42,7 +42,7 @@ struct ActiveGameView: View {
         NavigationView {
             VStack {
                 if viewModel.game == nil || viewModel.currentPlayer == nil {
-                    Print("currentPlayer")
+                    Print("ViewModel.currentplayer:", viewModel.currentPlayer)
                     GameLoadingView()
                 } else if viewModel.game!.start_time! > Date() {
                     Print("fbtime:", viewModel.game!.start_time!)

@@ -31,6 +31,7 @@ struct SelectPlayers: View {
                         ForEach(viewModel.players) { player in
                             PlayerSearchRowView(player: player).onTapGesture {
                                 viewModel.inviteUserToGame(player: player)
+                                isSearching = false
                             }
                             Divider().foregroundColor(.white)
                         }

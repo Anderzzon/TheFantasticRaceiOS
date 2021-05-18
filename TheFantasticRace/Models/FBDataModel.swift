@@ -23,7 +23,8 @@ class FBDataModel: ObservableObject {
     func getAllGames() {
         
         //ref.collection("users").document(user).collection("races_invited").addSnapshotListener { (querySnapshot, error) in
-        ref.collection("races").addSnapshotListener { (querySnapshot, error) in
+        ref.collection("races").whereField("listOfPlayersString", arrayContains: user)
+            .addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents", error)
             }
