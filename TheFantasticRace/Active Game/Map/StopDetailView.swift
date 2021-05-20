@@ -32,7 +32,7 @@ struct StopDetailView: View {
             VStack {
                 HStack {
                     if let lastStop = viewModel.game!.stops?.count {
-                        if viewModel.currentPlayer!.finishedStops <= lastStop {
+                        if viewModel.currentPlayer!.finishedStops < lastStop {
                             if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
                                 Text("Hint: \(stop.hint!)")
                                     //Text("Hint text")
@@ -86,13 +86,19 @@ struct StopDetailView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name.capitalized)
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundColor(.white)
+                    if let lastStop = viewModel.game!.stops?.count {
+                        if viewModel.currentPlayer!.finishedStops < lastStop {
+                            if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
+                                Text("Hint: \(stop.name.capitalized)")
+                                    .font(.title)
+                                    .fontWeight(.black)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
                 }
             }
-            .navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
+            //.navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
                                         print("Close")

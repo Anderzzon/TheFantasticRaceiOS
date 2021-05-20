@@ -43,7 +43,7 @@ class ActiveGameViewModel: ObservableObject {
     @Published var showSheet = false
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
-    static var timer: Timer?
+    static var playerPositionTimer: Timer?
     
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
@@ -57,14 +57,14 @@ class ActiveGameViewModel: ObservableObject {
     }
     
     func startTimer() {
-        ActiveGameViewModel.timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
+        ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
             print("Timer fired!")
             self.updatePlayerPosition()
         }
     }
     
     func stopTimer() {
-        ActiveGameViewModel.timer?.invalidate()
+        ActiveGameViewModel.playerPositionTimer?.invalidate()
     }
     
     //MARK: Public functions:
@@ -81,10 +81,8 @@ class ActiveGameViewModel: ObservableObject {
                 if let region = locationManager.geofenceRegion {
                     locationManager.removeGeofence(for: region)
                 }
-                
                 updateToFirebase()
-                
-                self.createGeofence()
+                createGeofence()
                 
                 return true
             case false:
@@ -118,41 +116,39 @@ class ActiveGameViewModel: ObservableObject {
         return answer == correctAnswer ? true : false
     }
     
-    func updateMap() {
-        //print("Update Overlay")
+    private func updateMap() {
         guard let game = game else {
             print("update map guard game return")
             return }
-        if let finishedStops = currentPlayer?.finishedStops {
-            if finishedStops  <= game.stops!.count - 1 {
-                if currentPlayer?.finishedStops == 0 {
-                    //print("Overlay for first stop")
+        //The map will display the next stop, by checking number of finished stops of currentPlayer
+        if let finishedStops = currentPlayer?.finishedStops, let totalStopsOfGame = game.stops?.count {
+            
+            if finishedStops  <= totalStopsOfGame - 1 {
+                if finishedStops == 0 { //Always show first stop direct
                     if let radius = game.radius {
                         let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                        //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
                         stopOverlays = overlay
                     }
-                } else if game.show_next_stop! && currentPlayer?.finishedStops != 0 {
-                    if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 {
-                        //Start timer and show next stop after
-                        //print("Show next stop delay:", game.show_next_stop_delay)
-                        //print("Update Overlay with no delay")
+                } else if game.show_next_stop! && finishedStops != 0 {
+                    if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 { //Show next stop direct
                         if let radius = game.radius {
                             let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                            //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
                             stopOverlays = overlay
                         }
-                        
-                        //print("Stops overlay:", stopOverlays)
                     } else {
-                        //Show next stop direct
-                        //print("Update Overlay delay")
-                        let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 10000)
-                        stopOverlays = overlay
+                        //TODO: Create function for displaying stops with a delay
+                        if let radius = game.radius {
+                            let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
+                            stopOverlays = overlay
+                        }
                     }
                 }
             }
         }
+    }
+    
+    private func handleGameFinished() {
+        gameFinished = true
     }
     
     //MARK: Firebase functions:

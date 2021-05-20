@@ -9,33 +9,38 @@ import SwiftUI
 
 struct StopInfoBottomView: View {
     @ObservedObject var viewModel: ActiveGameViewModel
-    let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
+    let gamePlayedTime = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     @State private var playedTimeElapsed = ""
     
     var body: some View {
         HStack {
             VStack{
-                //Text("Hint:")
                 if let lastStop = viewModel.game!.stops?.count {
                     if viewModel.currentPlayer!.finishedStops <= lastStop-1 {
                         if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
                             Text("Hint: \((stop.hint) ?? "")").foregroundColor(.white)
-                                //Text("Hint text")
-                                //.foregroundColor(Color.white)
                                 .font(.body)
                                 .lineLimit(2)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                         }
+                    } else {
+                        Text("Game Finished").foregroundColor(.white)
+                            .font(.body)
+                            .lineLimit(2)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                            .onAppear {
+                                //Stop updating users position here?
+                                //viewModel.stopTimer()
+                                
+                            }
                     }
                 }
                 Text(playedTimeElapsed).foregroundColor(.white)
             }
-            .onReceive(timer) { _ in
+            .onReceive(gamePlayedTime) { _ in
                 updateTime()
             }
         }
-        //.background(Color("FRpurple"))
-        //.padding()
     }
     
     func updateTime() {
@@ -46,15 +51,18 @@ struct StopInfoBottomView: View {
         let minutes = diffComponents.minute ?? 00
         let seconds = diffComponents.second ?? 00
         
-        if seconds < 10 && minutes < 10 {
-            playedTimeElapsed = "0\(hours):0\(minutes):0\(seconds)"
-        } else if minutes < 10 {
-            playedTimeElapsed = "0\(hours):0\(minutes):\(seconds)"
-        } else if seconds < 10 {
-            playedTimeElapsed = "0\(hours):\(minutes):0\(seconds)"
-        } else {
-            playedTimeElapsed = "0\(hours):\(minutes):\(seconds)"
+        if viewModel.currentPlayer?.finishedStops != viewModel.game?.stops?.count {
+            if seconds < 10 && minutes < 10 {
+                playedTimeElapsed = "0\(hours):0\(minutes):0\(seconds)"
+            } else if minutes < 10 {
+                playedTimeElapsed = "0\(hours):0\(minutes):\(seconds)"
+            } else if seconds < 10 {
+                playedTimeElapsed = "0\(hours):\(minutes):0\(seconds)"
+            } else {
+                playedTimeElapsed = "0\(hours):\(minutes):\(seconds)"
+            }
         }
+
         
     }
 }
