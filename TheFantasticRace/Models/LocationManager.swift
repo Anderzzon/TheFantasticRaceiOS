@@ -15,21 +15,39 @@ class LocationManager: NSObject, ObservableObject {
     //@Published var locationString = ""
     @Published var atStop = false {
         didSet {
-            print("atStop changed", atStop)
+            //print("atStop changed", atStop)
             if atStop {
-                showSheet = true
+                if lastStop {
+                    gameFinished = true
+                    showSheet = false
+                } else {
+                    showSheet = true
+                }
+                
             }
         }
     }
     @Published var showSheet = false
+    @Published var gameFinished = false
     @Published var geofenceRegion: CLRegion?
     
     var stopOrder = ""
     var currentStop: GameStop?
+    var lastStop = false
     var gameName = ""
     
     private var isAtStop: AnyPublisher<Bool, Never> {
         $atStop
+          .debounce(for: 0.8, scheduler: RunLoop.main)
+          .removeDuplicates()
+          .map { input in
+            return input
+          }
+          .eraseToAnyPublisher()
+      }
+    
+    private var hasFinished: AnyPublisher<Bool, Never> {
+        $gameFinished
           .debounce(for: 0.8, scheduler: RunLoop.main)
           .removeDuplicates()
           .map { input in
@@ -72,8 +90,10 @@ class LocationManager: NSObject, ObservableObject {
 //        }
 //    }
     
-    func createGeofence(for stop: GameStop, with radius: Double) {
+    func createGeofence(for stop: GameStop, with radius: Double, isLastStop: Bool) {
         currentStop = stop
+        lastStop = isLastStop
+        print("LastStop:", lastStop)
         
         let monitoredRegions = locationManager.monitoredRegions
 
@@ -117,10 +137,16 @@ extension LocationManager: CLLocationManagerDelegate {
         stopOrder = region.identifier
         //locationManager.stopMonitoring(for: region)
         geofenceRegion = region
+        var notificationText = ""
+        if lastStop {
+            notificationText = "You have reached the final stop!"
+        } else {
+            notificationText = "You have now entered stop #\(Int(region.identifier)!+1)"
+        }
         
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "\(gameName)"
-        notificationContent.subtitle = "You have now entered stop #\(Int(region.identifier)!+1)"
+        notificationContent.subtitle = notificationText
         notificationContent.body = "\(currentStop?.name ?? "")"
         notificationContent.sound = UNNotificationSound.default
         

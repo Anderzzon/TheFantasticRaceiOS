@@ -46,9 +46,10 @@ struct StopDetailView: View {
                     }
 
                 }.padding()
-                .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color("FRturquise")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
+                .background(LinearGradient(gradient: Gradient(colors: [Color("FRturquise"), Color("FRpurple")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
 
                 if viewModel.locationManager.atStop {
+                    Print("GameFinished:", viewModel.locationManager.gameFinished)
                 Group {
                     Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
                         //Text("Vad blir 1 + 1?")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertX
 
 enum SelectedGameTab: String, CaseIterable {
     case map = "Map"
@@ -20,7 +21,6 @@ struct ActiveGameView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: ActiveGameViewModel
-    //@ObservedObject var locationManager: LocationManager
     
     init(viewModel: ActiveGameViewModel) {
         self.viewModel = viewModel
@@ -53,7 +53,7 @@ struct ActiveGameView: View {
                     ZStack(alignment: .top) {
                         ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
                             .padding(.top, -10)
-                        Picker("Create new Game", selection: $selectedTab) {
+                        Picker("Current game", selection: $selectedTab) {
                             ForEach(SelectedGameTab.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
@@ -68,7 +68,7 @@ struct ActiveGameView: View {
                 
                 Spacer()
             }
-            //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))
+
             .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color.white]), startPoint: .bottom, endPoint: .center).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
             .navigationBarItems(
@@ -97,13 +97,22 @@ struct ActiveGameView: View {
         .sheet(isPresented: $viewModel.locationManager.showSheet) {
             StopDetailView(viewModel: viewModel)
             Print("Sheet")
-        }.onAppear {
-            
         }
-        //        .alert(isPresented: $viewModel.locationManager.atStop) {
-        //            Alert(title: Text("You are now at stop \(viewModel.locationManager.stopOrder)"))
-        //
-        //        }
+//        .alert(isPresented: $viewModel.showFinishedAlert, content: {
+//            Alert(title: Text("You have finished the race!"))
+//        })
+        .alertX(isPresented: $viewModel.gameFinished, content: {
+                            
+                            AlertX(title: Text("AlertX Title"),
+                                   message: Text("An optional message indicating some action goes here..."),
+                                   primaryButton: .cancel(),
+                                   secondaryButton: .default(Text("Done"), action: {
+                                    // Some action
+                                   }),
+                                   theme: .graphite(withTransparency: true, roundedCorners: true),
+                                   animation: .classicEffect())
+                        })
+        
     }
     
     struct ChosenSettingsView: View {

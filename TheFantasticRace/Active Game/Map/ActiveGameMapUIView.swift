@@ -36,7 +36,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 view.addOverlay(viewModel.stopOverlays)
             }
-            print("Overlay count", view.overlays.count)
+            //print("Overlay count", view.overlays.count)
         }
         
         view.showsUserLocation = true

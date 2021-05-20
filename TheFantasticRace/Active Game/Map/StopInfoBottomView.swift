@@ -15,8 +15,8 @@ struct StopInfoBottomView: View {
     var body: some View {
         HStack {
             VStack{
-                if let lastStop = viewModel.game!.stops?.count {
-                    if viewModel.currentPlayer!.finishedStops <= lastStop-1 {
+                if let stopsCount = viewModel.game!.stops?.count {
+                    if viewModel.currentPlayer!.finishedStops <= stopsCount - 1 {
                         if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
                             Text("Hint: \((stop.hint) ?? "")").foregroundColor(.white)
                                 .font(.body)
@@ -35,8 +35,16 @@ struct StopInfoBottomView: View {
                             }
                     }
                 }
-                Text(playedTimeElapsed).foregroundColor(.white)
-            }
+                if viewModel.currentPlayer?.finishedStops != viewModel.game?.stops?.count {
+                    HStack{
+                        Image("countdown")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .colorScheme(.dark)
+                        Text(playedTimeElapsed).foregroundColor(.white)
+                    }
+                }
+            }.padding([.horizontal], 12)
             .onReceive(gamePlayedTime) { _ in
                 updateTime()
             }

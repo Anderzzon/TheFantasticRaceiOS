@@ -27,7 +27,7 @@ class ActiveGameViewModel: ObservableObject {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     if let game = self.game {
                         if let startTime = game.start_time {
-                            if startTime < Date() {
+                            if startTime <= Date() {
                                 self.startGame()
                             } else {
                                 //TODO: Start timer than runs until start of game
@@ -40,7 +40,7 @@ class ActiveGameViewModel: ObservableObject {
     }
     @Published var currentPlayer: PlayingPlayer?
     @Published var locationManager = LocationManager()
-    @Published var showSheet = false
+    //@Published var showSheet = false
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
     static var playerPositionTimer: Timer?
@@ -49,10 +49,20 @@ class ActiveGameViewModel: ObservableObject {
     let user = Auth.auth().currentUser!.uid
     
     var anyCancellable: AnyCancellable? = nil
+    var gameisSetToFinished = false
+    @Published var showFinishedAlert = false
     
     init() {
         anyCancellable = locationManager.objectWillChange.sink { [weak self] (_) in
             self?.objectWillChange.send()
+            
+            if self?.locationManager.gameFinished == true && self?.gameisSetToFinished == false {
+                print("anyCancellable gameFinished", self?.locationManager.gameFinished)
+                self?.gameisSetToFinished = true
+                self?.updateToFirebase()
+                self?.showFinishedAlert = true
+                self?.gameFinished = true
+            }
         }
     }
     
@@ -100,15 +110,30 @@ class ActiveGameViewModel: ObservableObject {
         self.updateMap()
     }
     
+    func handleGameFinished() {
+        //gameFinished = true
+        updateToFirebase()
+        gameFinished = false
+    }
+    
     private func createGeofence() {
         guard let player = currentPlayer?.finishedStops else { return }
         print("Finished stops:", player)
         guard let game = game else { return }
         if player <= game.stops!.count-1 {
             guard let stop = game.stops?[player] else { return }
-            locationManager.createGeofence(for: stop, with: game.radius!)
+            let lastStop = isLastStop(stop: stop, for: game)
+            locationManager.createGeofence(for: stop, with: game.radius!, isLastStop: lastStop)
             updateMap()
         }
+    }
+    private func isLastStop(stop: GameStop, for game: Game) -> Bool {
+        print("StopOrder:", stop.order)
+        print("LocationManager:", locationManager.gameFinished)
+        if stop.order + 1 == game.stops?.count {
+            return true
+        }
+        return false
     }
     
     private func checkAnswer(with answer: String, for stop: GameStop) -> Bool {
@@ -145,10 +170,6 @@ class ActiveGameViewModel: ObservableObject {
                 }
             }
         }
-    }
-    
-    private func handleGameFinished() {
-        gameFinished = true
     }
     
     //MARK: Firebase functions:

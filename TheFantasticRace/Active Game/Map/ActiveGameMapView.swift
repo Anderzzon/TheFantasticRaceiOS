@@ -10,7 +10,6 @@ import MapKit
 
 struct ActiveGameMapView: View {
     @ObservedObject var viewModel: ActiveGameViewModel
-    //@State private var locations = [MKPointAnnotation]()
     
     @State private var centerCoordinate = CLLocationCoordinate2D()
     @State private var showSheet = false
@@ -21,7 +20,9 @@ struct ActiveGameMapView: View {
             StopInfoBottomView(viewModel: viewModel)
                 .contentShape(Rectangle())
                 .onTapGesture {
-                showSheet = true
+                    if viewModel.currentPlayer?.finishedStops != viewModel.game?.stops?.count {
+                        showSheet = true
+                    }
             }
         }
         //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))

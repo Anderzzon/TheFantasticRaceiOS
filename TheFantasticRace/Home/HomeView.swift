@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import AlertX
 
 enum ActiveGameSheet {
     case newGame, activeGame
@@ -40,6 +41,7 @@ struct HomeView: View {
     @State private var showGameSheet = false
     
     @StateObject var playingGame = ActiveGameViewModel()
+    @State private var showAlertX = false
     
     var body: some View {
         NavigationView {
@@ -58,7 +60,7 @@ struct HomeView: View {
                                 if game.owner == userInfo.user.uid {
                                     Print("Owner")
                                     //activeGame = nil
-                                    
+                                    showAlertX = true
                                     activeGame = game
                                     viewModel.game = activeGame!
                                     print("Active Game", activeGame)
@@ -80,6 +82,17 @@ struct HomeView: View {
                             
                         }
                     }
+//                    .alertX(isPresented: $playingGame.gameisSetToFinished, content: {
+//                        
+//                        AlertX(title: Text("AlertX Title"),
+//                               message: Text("An optional message indicating some action goes here..."),
+//                               primaryButton: .cancel(),
+//                               secondaryButton: .default(Text("Done"), action: {
+//                                // Some action
+//                               }),
+//                               theme: .graphite(withTransparency: true, roundedCorners: true),
+//                               animation: .classicEffect())
+//                    })
                 }
             }
             .background(Color(.systemGray4).opacity(0.8).edgesIgnoringSafeArea(.all))
