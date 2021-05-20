@@ -53,7 +53,7 @@
 		0373B34425CECF450061C42E /* FBAuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34225CECF430061C42E /* FBAuthError.swift */; };
 		0373B34525CECF450061C42E /* FBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34325CECF450061C42E /* FBAuth.swift */; };
 		0373B34D25CEE0E90061C42E /* View.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B34C25CEE0E90061C42E /* View.extensions.swift */; };
-		0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B36525CFEA240061C42E /* FBDataModel.swift */; };
+		0373B36625CFEA240061C42E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B36525CFEA240061C42E /* HomeViewModel.swift */; };
 		0373B36A25CFEC8F0061C42E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B36925CFEC8F0061C42E /* GameModel.swift */; };
 		0373B37125D035EB0061C42E /* NavigationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0373B37025D035EB0061C42E /* NavigationRow.swift */; };
 		037B0A5025CE9EBF003CB5D2 /* TheFantasticRaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */; };
@@ -109,7 +109,7 @@
 		0373B34225CECF430061C42E /* FBAuthError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuthError.swift; sourceTree = "<group>"; };
 		0373B34325CECF450061C42E /* FBAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAuth.swift; sourceTree = "<group>"; };
 		0373B34C25CEE0E90061C42E /* View.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.extensions.swift; sourceTree = "<group>"; };
-		0373B36525CFEA240061C42E /* FBDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataModel.swift; sourceTree = "<group>"; };
+		0373B36525CFEA240061C42E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0373B36925CFEC8F0061C42E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		0373B37025D035EB0061C42E /* NavigationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRow.swift; sourceTree = "<group>"; };
 		037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Fantastic Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +138,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0321089826563CA200849275 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0321089926563CCF00849275 /* ViewModels */,
+				037B0A7925CEBE23003CB5D2 /* HomeView.swift */,
+				0373B37025D035EB0061C42E /* NavigationRow.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0321089926563CCF00849275 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */,
+				0373B36525CFEA240061C42E /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		034CBC7B263D816C00101D38 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,7 +315,6 @@
 		0373B36425CFE9FD0061C42E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0373B36525CFEA240061C42E /* FBDataModel.swift */,
 				0373B36925CFEC8F0061C42E /* GameModel.swift */,
 				034CBDE52647E61900101D38 /* LocationManager.swift */,
 			);
@@ -331,10 +349,8 @@
 				034CBDE82647E8DA00101D38 /* TestLocationView.swift */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
 				034CBC8326402F7400101D38 /* FabView.swift */,
-				0373B37025D035EB0061C42E /* NavigationRow.swift */,
-				03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */,
 				0373B34C25CEE0E90061C42E /* View.extensions.swift */,
-				037B0A7925CEBE23003CB5D2 /* HomeView.swift */,
+				0321089826563CA200849275 /* Home */,
 				037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */,
 				03536C3E262C8C6400D63020 /* GoogleService-Info.plist */,
 				037B0A5825CE9EC1003CB5D2 /* Info.plist */,
@@ -440,7 +456,7 @@
 				0373B33D25CECF350061C42E /* FBFireStoreError.swift in Sources */,
 				0352011325CEC6E700965F06 /* SignInWithAppleView.swift in Sources */,
 				034CBD382642EA7800101D38 /* PlayerInvitedRowView.swift in Sources */,
-				0373B36625CFEA240061C42E /* FBDataModel.swift in Sources */,
+				0373B36625CFEA240061C42E /* HomeViewModel.swift in Sources */,
 				034CBDED264858EF00101D38 /* StopDetailView.swift in Sources */,
 				034CBDE92647E8DA00101D38 /* TestLocationView.swift in Sources */,
 				03536C7A262C8E7300D63020 /* BasicGameSettings.swift in Sources */,

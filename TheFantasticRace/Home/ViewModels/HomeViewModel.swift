@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-class FBDataModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     @Published var noPosts = false
     @Published var fetchedGames: [Game] = []
     @Published var players: [Player] = []
@@ -64,20 +64,5 @@ class FBDataModel: ObservableObject {
         }
     }
 
-    func searchUser(user: String) {
-        let usersRef = ref.collection("users")
-        let query = usersRef.whereField("name", isLessThanOrEqualTo: user)
-        query.getDocuments { (query, error) in
-            if let error = error {
-                print("Error fetching users", error)
-            }
-            guard let documents = query?.documents else {
-                print("No users")
-                return
-            }
-            self.players = documents.compactMap { document -> Player? in
-                return try? document.data(as: Player.self)
-            }
-        }
-    }
+
 }
