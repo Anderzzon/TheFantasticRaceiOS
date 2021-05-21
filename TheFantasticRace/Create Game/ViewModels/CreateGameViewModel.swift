@@ -204,13 +204,12 @@ class CreateGameViewModel: ObservableObject {
                     if stop.order != stops.count-1 {
                         if stop.question == nil || stop.question!.count < 1 || stop.answer == nil || stop.answer!.count < 1 {
                             validStops = false
-                            print("Some question is not valid")
+                            print("Some questions is not valid")
                             return
                         } else {
                             validStops = true
                         }
                     }
-
                 }
             }
         }
