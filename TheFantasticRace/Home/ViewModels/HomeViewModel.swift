@@ -9,12 +9,13 @@ import Foundation
 import Firebase
 import FirebaseFirestoreSwift
 
-class FBDataModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     @Published var noPosts = false
     @Published var fetchedGames: [Game] = []
     @Published var players: [Player] = []
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
+    @Published var showAcceptAlert = false
     
     init() {
         getAllGames()
@@ -23,7 +24,8 @@ class FBDataModel: ObservableObject {
     func getAllGames() {
         
         //ref.collection("users").document(user).collection("races_invited").addSnapshotListener { (querySnapshot, error) in
-        ref.collection("races").addSnapshotListener { (querySnapshot, error) in
+        ref.collection("races").whereField("listOfPlayersString", arrayContains: user)
+            .addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print("Error getting documents", error)
             }
@@ -62,21 +64,48 @@ class FBDataModel: ObservableObject {
             //            }
         }
     }
+    
+    func checkIfUserHasAccepted(game: Game, completion: @escaping (Bool) -> ()) {
+        if let id = game.id {
+            ref.collection("users").document(user).collection("invites").document(id).getDocument(completion: { snapshot, error in
+                if let error = error {
+                    print("Error getting documents", error)
+                }
+                
+                guard let document = snapshot else {
+                    print("No documents")
+                    return
+                }
+                print("Document:", document.data())
+                do {
+                    let invitation = try document.data(as: Invitation.self)
+                    if invitation?.accepted == false {
+                        self.showAcceptAlert = true
+                    }
+                    completion(invitation!.accepted)
+                } catch {
+                    print("Error", error)
+                }
+                
+                //self.startGame()
 
-    func searchUser(user: String) {
-        let usersRef = ref.collection("users")
-        let query = usersRef.whereField("name", isLessThanOrEqualTo: user)
-        query.getDocuments { (query, error) in
-            if let error = error {
-                print("Error fetching users", error)
+                
+            })
+        }
+    }
+    
+    func updateInvitation(game: Game) {
+        let invitation = Invitation(accepted: true)
+        if let id = game.id {
+            let docRef = ref.collection("users").document(user).collection("invites").document(id)
+            do {
+                try docRef.setData(from: invitation)
             }
-            guard let documents = query?.documents else {
-                print("No users")
-                return
-            }
-            self.players = documents.compactMap { document -> Player? in
-                return try? document.data(as: Player.self)
+            catch {
+                print(error)
             }
         }
     }
+
+
 }

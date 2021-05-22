@@ -18,19 +18,26 @@ class ActiveGameViewModel: ObservableObject {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("Game dispatch", self.game)
+
                 self.players.removeAll()
-                self.fetchAllUsers()
                 self.fetchUser()
-                self.startTimer()
-                self.locationManager.startLocationServices()
-                self.locationManager.gameName = self.game?.name ?? "Current Game"
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    if let game = self.game {
-                        if let startTime = game.start_time {
-                            if startTime < Date() {
-                                self.startGame()
-                            } else {
-                                //TODO: Start timer than runs until start of game
+                
+                if let startTime = self.game?.start_time {
+                    if startTime < Date() {
+                        
+                        self.fetchAllUsers()
+                        self.startTimer()
+                        self.locationManager.startLocationServices()
+                        self.locationManager.gameName = self.game?.name ?? "Current Game"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            if let game = self.game {
+                                if let startTime = game.start_time {
+                                    if startTime <= Date() {
+                                        self.startGame()
+                                    } else {
+                                        //TODO: Start timer than runs until start of game
+                                    }
+                                }
                             }
                         }
                     }
@@ -40,35 +47,45 @@ class ActiveGameViewModel: ObservableObject {
     }
     @Published var currentPlayer: PlayingPlayer?
     @Published var locationManager = LocationManager()
-    @Published var showSheet = false
+    //@Published var showSheet = false
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
-    static var timer: Timer?
+    static var playerPositionTimer: Timer?
     
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
     let encryption = Crypto()
     
     var anyCancellable: AnyCancellable? = nil
+    var gameisSetToFinished = false
+    @Published var showFinishedAlert = false
     
     init() {
         anyCancellable = locationManager.objectWillChange.sink { [weak self] (_) in
             self?.objectWillChange.send()
+            
+            if self?.locationManager.gameFinished == true && self?.gameisSetToFinished == false {
+                print("anyCancellable gameFinished", self?.locationManager.gameFinished)
+                self?.gameisSetToFinished = true
+                self?.updateToFirebase()
+                self?.showFinishedAlert = true
+                self?.gameFinished = true
+            }
         }
     }
     
+    //MARK: Public functions:
+    
     func startTimer() {
-        ActiveGameViewModel.timer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
+        ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
             print("Timer fired!")
             self.updatePlayerPosition()
         }
     }
     
     func stopTimer() {
-        ActiveGameViewModel.timer?.invalidate()
+        ActiveGameViewModel.playerPositionTimer?.invalidate()
     }
-    
-    //MARK: Public functions:
     
     func answerQuestion(with answer: String?, for stop: GameStop) -> Bool {
         guard let procedWithQuestion = game?.unlock_with_question else { return false }
@@ -82,10 +99,8 @@ class ActiveGameViewModel: ObservableObject {
                 if let region = locationManager.geofenceRegion {
                     locationManager.removeGeofence(for: region)
                 }
-                
                 updateToFirebase()
-                
-                self.createGeofence()
+                createGeofence()
                 
                 return true
             case false:
@@ -103,15 +118,30 @@ class ActiveGameViewModel: ObservableObject {
         self.updateMap()
     }
     
+    func handleGameFinished() {
+        //gameFinished = true
+        updateToFirebase()
+        gameFinished = false
+    }
+    
     private func createGeofence() {
         guard let player = currentPlayer?.finishedStops else { return }
         print("Finished stops:", player)
         guard let game = game else { return }
         if player <= game.stops!.count-1 {
             guard let stop = game.stops?[player] else { return }
-            locationManager.createGeofence(for: stop, with: game.radius!)
+            let lastStop = isLastStop(stop: stop, for: game)
+            locationManager.createGeofence(for: stop, with: game.radius!, isLastStop: lastStop)
             updateMap()
         }
+    }
+    private func isLastStop(stop: GameStop, for game: Game) -> Bool {
+        print("StopOrder:", stop.order)
+        print("LocationManager:", locationManager.gameFinished)
+        if stop.order + 1 == game.stops?.count {
+            return true
+        }
+        return false
     }
     
     private func checkAnswer(with answer: String, for stop: GameStop) -> Bool {
@@ -119,37 +149,31 @@ class ActiveGameViewModel: ObservableObject {
         return answer == correctAnswer ? true : false
     }
     
-    func updateMap() {
-        //print("Update Overlay")
+    private func updateMap() {
         guard let game = game else {
             print("update map guard game return")
             return }
-        if let finishedStops = currentPlayer?.finishedStops {
-            if finishedStops  <= game.stops!.count - 1 {
-                if currentPlayer?.finishedStops == 0 {
-                    //print("Overlay for first stop")
+        //The map will display the next stop, by checking number of finished stops of currentPlayer
+        if let finishedStops = currentPlayer?.finishedStops, let totalStopsOfGame = game.stops?.count {
+            
+            if finishedStops  <= totalStopsOfGame - 1 {
+                if finishedStops == 0 { //Always show first stop direct
                     if let radius = game.radius {
                         let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                        //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
                         stopOverlays = overlay
                     }
-                } else if game.show_next_stop! && currentPlayer?.finishedStops != 0 {
-                    if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 {
-                        //Start timer and show next stop after
-                        //print("Show next stop delay:", game.show_next_stop_delay)
-                        //print("Update Overlay with no delay")
+                } else if game.show_next_stop! && finishedStops != 0 {
+                    if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 { //Show next stop direct
                         if let radius = game.radius {
                             let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                            //let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 1000)
                             stopOverlays = overlay
                         }
-                        
-                        //print("Stops overlay:", stopOverlays)
                     } else {
-                        //Show next stop direct
-                        //print("Update Overlay delay")
-                        let overlay = MKCircle(center: game.stops![currentPlayer!.finishedStops].coordinate, radius: 10000)
-                        stopOverlays = overlay
+                        //TODO: Create function for displaying stops with a delay
+                        if let radius = game.radius {
+                            let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
+                            stopOverlays = overlay
+                        }
                     }
                 }
             }
@@ -205,6 +229,7 @@ class ActiveGameViewModel: ObservableObject {
     
     func fetchUser() {
         guard let id = self.game!.id else {
+            print("guard return no game id")
             return
         }
         
@@ -217,6 +242,7 @@ class ActiveGameViewModel: ObservableObject {
                 return
             }
             self.currentPlayer = try? document.data(as: PlayingPlayer.self)
+            print("Current player in Firebase:", self.currentPlayer)
             //self.startGame()
         }
     }

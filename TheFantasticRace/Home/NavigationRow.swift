@@ -31,6 +31,8 @@ struct NavigationRow: View {
                 Spacer()
                 if game.owner == viewModel.user {
                     Image(systemName: "square.and.pencil").foregroundColor(Color("FRpurple"))
+                } else if (self.game.listOfPlayers?.first(where: { $0.id == self.viewModel.user })?.accepted) == false {
+                    Image(systemName: "exclamationmark.circle").foregroundColor(Color("FRpurple"))
                 }
             }
             Text(game.description ?? "")

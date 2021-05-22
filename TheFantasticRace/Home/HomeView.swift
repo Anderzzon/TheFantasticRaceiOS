@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import AlertX
 
 enum ActiveGameSheet {
     case newGame, activeGame
@@ -29,7 +30,7 @@ struct HomeView: View {
     @State private var showError = false
     @State private var errorString = ""
     //@StateObject private var locationManager = LocationManager()
-    @StateObject var games = FBDataModel()
+    @StateObject var games = HomeViewModel()
     var newGame = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
     
     @ObservedObject var viewModel = CreateGameViewModel(selectedGame: Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil))
@@ -40,6 +41,7 @@ struct HomeView: View {
     @State private var showGameSheet = false
     
     @StateObject var playingGame = ActiveGameViewModel()
+    @State private var showAlertX = false
     
     var body: some View {
         NavigationView {
@@ -56,6 +58,7 @@ struct HomeView: View {
                                 if game.owner == userInfo.user.uid {
                                     //activeGame = nil
                                     activeGame = game
+                                    viewModel.game = activeGame!
                                     print("Active Game", activeGame)
                                     activeGameSheet = .newGame
                                     showGameSheet = true
@@ -66,21 +69,59 @@ struct HomeView: View {
                                     playingGame.game = game
                                     //Print("Game in viewModel:", playingGame.game)
                                     //activeGame = game
-                                    activeGameSheet = .activeGame
-                                    showGameSheet = true
+                                    games.checkIfUserHasAccepted(game: game) { accepted in
+                                        switch accepted {
+                                        case true:
+                                            activeGameSheet = .activeGame
+                                            showGameSheet = true
+                                        
+                                        case false:
+                                            print("Not accepted")
+                                        
+                                        }
+                                    }
+
                                 }
                                 print(viewModel.game, "tapped")
                             }
                             
                         }
                     }
+                    .alert(isPresented:$games.showAcceptAlert) {
+                        Alert(
+                            title: Text("You are invited to game"),
+                            message: Text("Do you want to join the game?"),
+                            primaryButton: .destructive(Text("Yes")) {
+                                print("Accepting...")
+                                games.updateInvitation(game: playingGame.game!)
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
                 }
             }
             .background(Color(.systemGray4).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle("All games")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(
+                leading: Button(action: {
+                    FBAuth.logout { result in
+                        switch result {
+                        case .success:
+                            print("Loged out", userInfo.isUserAuthenticated)
+                            userInfo.isUserAuthenticated = .signedOut
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            
+                        }
+                    }
+                }, label: {
+                                                            Image(systemName: "escape").foregroundColor(Color("FRpurple"))
+                                                                .padding()
+                                                        }),
+                trailing: Button(action: {
                                                     viewModel.game = newGame
                                                     activeGame = newGame
+                                                    activeGameSheet = .newGame
                                                     showGameSheet = true
                                                     print("add game")}, label: {
                                                         Image(systemName: "plus").foregroundColor(Color("FRpurple"))
@@ -101,7 +142,7 @@ struct HomeView: View {
             }
             .fullScreenCover(isPresented: $showGameSheet) {
                 if activeGameSheet == .newGame {
-                    let viewModel = CreateGameViewModel(selectedGame: activeGame!)
+                    //let viewModel = CreateGameViewModel(selectedGame: activeGame!)
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
                     //Print("Game in viewModel:", playingGame.game)

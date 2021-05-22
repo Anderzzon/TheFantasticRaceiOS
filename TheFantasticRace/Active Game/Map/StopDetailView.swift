@@ -32,7 +32,7 @@ struct StopDetailView: View {
             VStack {
                 HStack {
                     if let lastStop = viewModel.game!.stops?.count {
-                        if viewModel.currentPlayer!.finishedStops <= lastStop {
+                        if viewModel.currentPlayer!.finishedStops < lastStop {
                             if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
                                 Text("Hint: \(stop.hint!)")
                                     //Text("Hint text")
@@ -46,9 +46,10 @@ struct StopDetailView: View {
                     }
 
                 }.padding()
-                .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color("FRturquise")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
+                .background(LinearGradient(gradient: Gradient(colors: [Color("FRturquise"), Color("FRpurple")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
 
                 if viewModel.locationManager.atStop {
+                    Print("GameFinished:", viewModel.locationManager.gameFinished)
                 Group {
                     Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
                         //Text("Vad blir 1 + 1?")
@@ -86,13 +87,19 @@ struct StopDetailView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name.capitalized)
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundColor(.white)
+                    if let lastStop = viewModel.game!.stops?.count {
+                        if viewModel.currentPlayer!.finishedStops < lastStop {
+                            if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
+                                Text("Hint: \(stop.name.capitalized)")
+                                    .font(.title)
+                                    .fontWeight(.black)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
                 }
             }
-            .navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
+            //.navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
                                         print("Close")

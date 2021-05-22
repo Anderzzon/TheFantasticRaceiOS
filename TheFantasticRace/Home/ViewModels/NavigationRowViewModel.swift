@@ -11,9 +11,10 @@ import FirebaseFirestoreSwift
 
 class NavigationRowViewModel {
     let ref = Firestore.firestore()
-    let user = Auth.auth().currentUser!.uid
+    let user = Auth.auth().currentUser?.uid
     @Published var numberOfPlayers = 0
     @Published var gameOwner = ""
+    @Published var acceptedInvitation = false
     
     func getAcceptedUsers(game: Game) {
         if let id = game.id {
@@ -27,6 +28,15 @@ class NavigationRowViewModel {
                 }
                 print("Number of players:", documents.count)
                 self.numberOfPlayers = documents.count
+                
+                let players = documents.compactMap { document -> Player? in
+                    try? document.data(as: Player.self)
+                }
+                if (players.first(where: { $0.id == self.user }) == nil) {
+                    print("Invitation accepted")
+                    self.acceptedInvitation = true
+                }
+                
             }
         }
     }

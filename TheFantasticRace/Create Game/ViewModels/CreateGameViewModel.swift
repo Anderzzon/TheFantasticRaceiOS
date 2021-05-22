@@ -26,6 +26,25 @@ class CreateGameViewModel: ObservableObject {
     
     @Published var game: Game
     let ref = Firestore.firestore()
+    let user = Auth.auth().currentUser!.uid
+//    @Published var game = Game(name: "New game",
+//                               description: "Your new game",
+//                               finishedStops: nil,
+//                               gameFinished: false,
+//                               listOfPlayers: nil,
+//                               parent_race: nil,
+//                               radius: 20,
+//                               show_next_stop: false,
+//                               show_next_stop_delay: 0,
+//                               show_players_map: false,
+//                               start_time: nil,
+//                               finished_time: nil,
+//                               unlock_with_question: true,
+//                               id: UUID().uuidString,
+//                               //accepted: nil,
+//                               //invites: nil,
+//                               owner: nil,
+//                               stops: nil)
     
     init(selectedGame: Game) {
         self.game = selectedGame
@@ -161,9 +180,12 @@ class CreateGameViewModel: ObservableObject {
         } else {
             if self.game.listOfPlayers == nil {
                 self.game.listOfPlayers = []
+                self.game.listOfPlayersString = []
+                self.game.listOfPlayersString?.append(user) //The game owner needs to be in this array in order for the Firebase query to work
             }
             print("Inviting user")
             self.game.listOfPlayers?.append(invitedPlayer)
+            self.game.listOfPlayersString?.append(invitedPlayer.id)
         }
     }
     
@@ -175,13 +197,12 @@ class CreateGameViewModel: ObservableObject {
                     if stop.order != stops.count-1 {
                         if stop.question == nil || stop.question!.count < 1 || stop.answer == nil || stop.answer!.count < 1 {
                             validStops = false
-                            print("Some question is not valid")
+                            print("Some questions is not valid")
                             return
                         } else {
                             validStops = true
                         }
                     }
-
                 }
             }
         }
