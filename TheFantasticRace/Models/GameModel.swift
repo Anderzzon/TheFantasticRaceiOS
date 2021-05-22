@@ -20,7 +20,7 @@ struct Game: Codable, Identifiable, Comparable {
     
     static func == (lhs: Game, rhs: Game) -> Bool {
         if let lhs = lhs.start_time, let rhs = rhs.start_time {
-           return lhs < rhs
+            return lhs < rhs
         }
         //lhs.start_time < rhs.start_time
         return false
@@ -69,61 +69,63 @@ struct Invitation: Codable {
 class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
         print("<")
-        if lhs.finishedStops != rhs.finishedStops {
-            return lhs.finishedStops > rhs.finishedStops
-        } else if lhs.updatedTime! < rhs.updatedTime! {
-            return true
+        if let lhsTime = lhs.updatedTime, let rhsTime = rhs.updatedTime {
+            if lhs.finishedStops != rhs.finishedStops {
+                return lhsTime > rhsTime
+            } else if lhs.updatedTime! < rhs.updatedTime! {
+                return true
+            }
         }
         return false
-//        lhs.name < rhs.name
+        //        lhs.name < rhs.name
     }
     
-//    static func == (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
-//        print("==")
-//        if lhs.finishedStops == rhs.finishedStops {
-//            if lhs.updatedTime! > rhs.updatedTime! {
-//                return true
-//            }
-//
-//        }
-//        return false
-////        lhs.name < rhs.name
-//    }
+    //    static func == (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
+    //        print("==")
+    //        if lhs.finishedStops == rhs.finishedStops {
+    //            if lhs.updatedTime! > rhs.updatedTime! {
+    //                return true
+    //            }
+    //
+    //        }
+    //        return false
+    ////        lhs.name < rhs.name
+    //    }
     
     var name: String
     var id: String
-    var lat: Double?
-    var lng: Double?
+    //var lat: Double?
+    //var lng: Double?
     var finishedStops: Int
     var updatedTime: Date?
     var latEncrypted: String?
     var lngEncrypted: String?
     
-    init(name: String, id: String, lat: Double?, lng: Double?, finishedStops: Int, updatedTime: Date?, latEncrypted: String?, lngEncrypted: String?) {
+    init(name: String, id: String, finishedStops: Int, updatedTime: Date?, latEncrypted: String?, lngEncrypted: String?) {
         self.name = name
         self.id = id
-        self.lat = lat
-        self.lng = lng
+        //self.lat = lat
+        //self.lng = lng
         self.finishedStops = finishedStops
         self.updatedTime = updatedTime
         self.latEncrypted = latEncrypted
         self.lngEncrypted = lngEncrypted
     }
     
-//    convenience init?(document: [String: Any]) {
-//        let name = document["name"] as? String ?? ""
-//        let lat = document["lat"] as? Double
-//        let lng = document["lng"] as? Double
-//        let finishedStops = document["finishedStops"] as? Int ?? 0
-//        let updatedTime = document ["updatedTime"] as? Date
-//        
-//        self.init(name: name,
-//                  lat: lat,
-//                  lng: lng,
-//                  finishedStops: finishedStops,
-//                  updatedTime: updatedTime
-//                  )
-//    }
+    //    convenience init?(document: [String: Any]) {
+    //        let name = document["name"] as? String ?? ""
+    //        let lat = document["lat"] as? Double
+    //        let lng = document["lng"] as? Double
+    //        let finishedStops = document["finishedStops"] as? Int ?? 0
+    //        let updatedTime = document ["updatedTime"] as? Date
+    //
+    //        self.init(name: name,
+    //                  lat: lat,
+    //                  lng: lng,
+    //                  finishedStops: finishedStops,
+    //                  updatedTime: updatedTime
+    //                  )
+    //    }
 }
 
 class GameStop: NSObject, Codable, Identifiable {
@@ -146,28 +148,28 @@ class GameStop: NSObject, Codable, Identifiable {
         self.answer = answer
         self.hint = hint
     }
-//    required init(from decoder: Decoder) throws {
-//        enum CodingKeys: CodingKey {
-//            case id
-//            case name
-//            case lat
-//            case lng
-//            case order
-//            case question
-//            case answer
-//            case hint
-//        }
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        id = try values.decode(String.self, forKey: .id)
-//        name = try values.decode(String.self, forKey: .name)
-//        lat = try values.decode(Double.self, forKey: .lat)
-//        lng = try values.decode(Double.self, forKey: .lng)
-//        order = try values.decode(Int.self, forKey: .order)
-//        question = try values.decode(String.self, forKey: .question)
-//        answer = try values.decode(String.self, forKey: .answer)
-//        hint = try values.decode(String.self, forKey: .hint)
-//
-//    }
+    //    required init(from decoder: Decoder) throws {
+    //        enum CodingKeys: CodingKey {
+    //            case id
+    //            case name
+    //            case lat
+    //            case lng
+    //            case order
+    //            case question
+    //            case answer
+    //            case hint
+    //        }
+    //        let values = try decoder.container(keyedBy: CodingKeys.self)
+    //        id = try values.decode(String.self, forKey: .id)
+    //        name = try values.decode(String.self, forKey: .name)
+    //        lat = try values.decode(Double.self, forKey: .lat)
+    //        lng = try values.decode(Double.self, forKey: .lng)
+    //        order = try values.decode(Int.self, forKey: .order)
+    //        question = try values.decode(String.self, forKey: .question)
+    //        answer = try values.decode(String.self, forKey: .answer)
+    //        hint = try values.decode(String.self, forKey: .hint)
+    //
+    //    }
     
 }
 
@@ -185,7 +187,7 @@ extension PlayingPlayer: MKAnnotation {
             print("Extension Coordinates", lat, lng)
             return CLLocation(latitude: lat, longitude: lng).coordinate
         }
-            return CLLocation(latitude: 0.0, longitude: 0.0).coordinate
+        return CLLocation(latitude: 0.0, longitude: 0.0).coordinate
     }
     var title: String? { name }
     var subtitle: String? { String(finishedStops) }

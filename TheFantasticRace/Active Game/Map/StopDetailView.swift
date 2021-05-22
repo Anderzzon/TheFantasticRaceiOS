@@ -20,11 +20,11 @@ struct StopDetailView: View {
             .font : UIFont.systemFont(ofSize: 20),
             NSAttributedString.Key.foregroundColor : UIColor.white
         ]
-
+        
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
-
+        
     }
     
     var body: some View {
@@ -44,42 +44,46 @@ struct StopDetailView: View {
                             }
                         }
                     }
-
+                    
                 }.padding()
                 .background(LinearGradient(gradient: Gradient(colors: [Color("FRturquise"), Color("FRpurple")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
-
+                
                 if viewModel.locationManager.atStop {
                     Print("GameFinished:", viewModel.locationManager.gameFinished)
-                Group {
-                    Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
-                        //Text("Vad blir 1 + 1?")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .padding(.top, 50)
-                    
-                    TextEditor(text: $answer)
-                        .frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color("FRpurple"), lineWidth: 2)
-                        )
-                        .padding()
-                    
-                    Button(action: {
-                        let result = viewModel.answerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
-                        if result {
-                            viewModel.locationManager.atStop = false
-                            if let region = viewModel.locationManager.geofenceRegion {
-                                viewModel.locationManager.removeGeofence(for: region)
-                            }
+                    if viewModel.game!.unlock_with_question == true {
+                        Group {
                             
-                            presentationMode.wrappedValue.dismiss()
+                            Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
+                                //Text("Vad blir 1 + 1?")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .padding(.top, 50)
+                            
+                            TextEditor(text: $answer)
+                                .frame(minWidth: 50, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
+                                .padding()
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color("FRpurple"), lineWidth: 2)
+                                )
+                                .padding()
+                            
+                            Button(action: {
+                                let result = viewModel.answerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
+                                if result {
+                                    viewModel.locationManager.atStop = false
+                                    if let region = viewModel.locationManager.geofenceRegion {
+                                        viewModel.locationManager.removeGeofence(for: region)
+                                    }
+                                    
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }) {
+                                Text("Answer")
+                            }.buttonStyle(GradientButtonStyle())
                         }
-                    }) {
-                        Text("Answer")
-                    }.buttonStyle(GradientButtonStyle())
-                }
+                    }
+                    
                 }
                 
                 Spacer()
@@ -90,7 +94,7 @@ struct StopDetailView: View {
                     if let lastStop = viewModel.game!.stops?.count {
                         if viewModel.currentPlayer!.finishedStops < lastStop {
                             if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
-                                Text("Hint: \(stop.name.capitalized)")
+                                Text(stop.name.capitalized)
                                     .font(.title)
                                     .fontWeight(.black)
                                     .foregroundColor(.white)
@@ -111,7 +115,7 @@ struct StopDetailView: View {
                                     }))
         }
         //.navigationBarTitle(Text("Fråga 1"), displayMode: .inline)
-        
+        xs
     }
 }
 

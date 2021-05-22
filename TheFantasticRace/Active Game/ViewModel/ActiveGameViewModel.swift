@@ -219,11 +219,11 @@ class ActiveGameViewModel: ObservableObject {
     private func decryptCoordinates(player: PlayingPlayer) {
         if let encryptedLat = player.latEncrypted {
             player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: "maga2020!"))
-            print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
+            //print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
         }
         if let encryptedLng = player.lngEncrypted {
             player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: "maga2020!"))
-            print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
+            //print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
         }
     }
     
@@ -266,8 +266,8 @@ class ActiveGameViewModel: ObservableObject {
             return
         }
         if let lat = locationManager.locationManager.location?.coordinate.latitude, let lng = locationManager.locationManager.location?.coordinate.longitude {
-            player.lat = lat
-            player.lng = lng
+            //player.lat = lat
+            //player.lng = lng
             do {
                 player.latEncrypted = try encryption.encryptData(input: String(lat), password: encryption.symetricKey!)
                 player.lngEncrypted = try encryption.encryptData(input: String(lng), password: encryption.symetricKey!)

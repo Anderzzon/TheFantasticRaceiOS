@@ -161,7 +161,10 @@ extension LocationManager: CLLocationManagerDelegate {
         
         let request = UNNotificationRequest(identifier: region.identifier, content: notificationContent, trigger: trigger)
         UNUserNotificationCenter.current().add(request)
-        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        atStop = false
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
