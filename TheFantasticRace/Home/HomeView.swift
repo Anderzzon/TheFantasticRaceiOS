@@ -60,7 +60,6 @@ struct HomeView: View {
                                 if game.owner == userInfo.user.uid {
                                     Print("Owner")
                                     //activeGame = nil
-                                    showAlertX = true
                                     activeGame = game
                                     viewModel.game = activeGame!
                                     print("Active Game", activeGame)
@@ -74,25 +73,35 @@ struct HomeView: View {
                                     playingGame.game = game
                                     //Print("Game in viewModel:", playingGame.game)
                                     //activeGame = game
-                                    activeGameSheet = .activeGame
-                                    showGameSheet = true
+                                    games.checkIfUserHasAccepted(game: game) { accepted in
+                                        switch accepted {
+                                        case true:
+                                            activeGameSheet = .activeGame
+                                            showGameSheet = true
+                                        
+                                        case false:
+                                            print("Not accepted")
+                                        
+                                        }
+                                    }
+
                                 }
                                 print(viewModel.game, "tapped")
                             }
                             
                         }
                     }
-//                    .alertX(isPresented: $playingGame.gameisSetToFinished, content: {
-//                        
-//                        AlertX(title: Text("AlertX Title"),
-//                               message: Text("An optional message indicating some action goes here..."),
-//                               primaryButton: .cancel(),
-//                               secondaryButton: .default(Text("Done"), action: {
-//                                // Some action
-//                               }),
-//                               theme: .graphite(withTransparency: true, roundedCorners: true),
-//                               animation: .classicEffect())
-//                    })
+                    .alert(isPresented:$games.showAcceptAlert) {
+                        Alert(
+                            title: Text("You are invited to game"),
+                            message: Text("Do you want to join the game?"),
+                            primaryButton: .destructive(Text("Yes")) {
+                                print("Accepting...")
+                                games.updateInvitation(game: playingGame.game!)
+                            },
+                            secondaryButton: .cancel()
+                        )
+                    }
                 }
             }
             .background(Color(.systemGray4).opacity(0.8).edgesIgnoringSafeArea(.all))

@@ -15,6 +15,7 @@ class HomeViewModel: ObservableObject {
     @Published var players: [Player] = []
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
+    @Published var showAcceptAlert = false
     
     init() {
         getAllGames()
@@ -61,6 +62,48 @@ class HomeViewModel: ObservableObject {
             //                print("Game", name)
             //                return Game(name: name, description: description, finishedStops: finishedStops, gameFinished: gameFinished, listOfPlayers: listOfPlayers, parent_race: parent_race, radius: radius, show_next_stop_delay: show_next_stop_delay, show_players_map: show_players_map, start_time: start_time, finished_time: finished_time, unlock_with_question: unlock_with_question, id: id, owner: owner, stops: stops)
             //            }
+        }
+    }
+    
+    func checkIfUserHasAccepted(game: Game, completion: @escaping (Bool) -> ()) {
+        if let id = game.id {
+            ref.collection("users").document(user).collection("invites").document(id).getDocument(completion: { snapshot, error in
+                if let error = error {
+                    print("Error getting documents", error)
+                }
+                
+                guard let document = snapshot else {
+                    print("No documents")
+                    return
+                }
+                print("Document:", document.data())
+                do {
+                    let invitation = try document.data(as: Invitation.self)
+                    if invitation?.accepted == false {
+                        self.showAcceptAlert = true
+                    }
+                    completion(invitation!.accepted)
+                } catch {
+                    print("Error", error)
+                }
+                
+                //self.startGame()
+
+                
+            })
+        }
+    }
+    
+    func updateInvitation(game: Game) {
+        let invitation = Invitation(accepted: true)
+        if let id = game.id {
+            let docRef = ref.collection("users").document(user).collection("invites").document(id)
+            do {
+                try docRef.setData(from: invitation)
+            }
+            catch {
+                print(error)
+            }
         }
     }
 

@@ -18,19 +18,26 @@ class ActiveGameViewModel: ObservableObject {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("Game dispatch", self.game)
+
                 self.players.removeAll()
-                self.fetchAllUsers()
                 self.fetchUser()
-                self.startTimer()
-                self.locationManager.startLocationServices()
-                self.locationManager.gameName = self.game?.name ?? "Current Game"
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    if let game = self.game {
-                        if let startTime = game.start_time {
-                            if startTime <= Date() {
-                                self.startGame()
-                            } else {
-                                //TODO: Start timer than runs until start of game
+                
+                if let startTime = self.game?.start_time {
+                    if startTime < Date() {
+                        
+                        self.fetchAllUsers()
+                        self.startTimer()
+                        self.locationManager.startLocationServices()
+                        self.locationManager.gameName = self.game?.name ?? "Current Game"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            if let game = self.game {
+                                if let startTime = game.start_time {
+                                    if startTime <= Date() {
+                                        self.startGame()
+                                    } else {
+                                        //TODO: Start timer than runs until start of game
+                                    }
+                                }
                             }
                         }
                     }
@@ -66,6 +73,8 @@ class ActiveGameViewModel: ObservableObject {
         }
     }
     
+    //MARK: Public functions:
+    
     func startTimer() {
         ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
             print("Timer fired!")
@@ -76,8 +85,6 @@ class ActiveGameViewModel: ObservableObject {
     func stopTimer() {
         ActiveGameViewModel.playerPositionTimer?.invalidate()
     }
-    
-    //MARK: Public functions:
     
     func answerQuestion(with answer: String?, for stop: GameStop) -> Bool {
         guard let procedWithQuestion = game?.unlock_with_question else { return false }

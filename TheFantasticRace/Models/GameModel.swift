@@ -62,6 +62,10 @@ struct Player: Codable, Identifiable {
     }
 }
 
+struct Invitation: Codable {
+    var accepted: Bool
+}
+
 class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
         print("<")

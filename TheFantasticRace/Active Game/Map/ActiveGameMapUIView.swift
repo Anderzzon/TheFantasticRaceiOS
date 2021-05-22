@@ -47,9 +47,9 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         Coordinator(self)
     }
     
-    func hidePlayersAnnotation(view: MKMapView) {
+    func hidePlayersAnnotation(view: MKMapView) { //Removes the players annotation from map to only show the standard user marker
         for annotation in view.annotations {
-            if let title = annotation.title, title == "Erik" {
+            if let title = annotation.title, title == viewModel.currentPlayer?.name {
                 view.removeAnnotation(annotation)
             }
         }
