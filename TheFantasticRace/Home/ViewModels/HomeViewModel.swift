@@ -31,7 +31,7 @@ class HomeViewModel: ObservableObject {
             }
             guard let documents = querySnapshot?.documents else {
                 self.noPosts = true
-                print("No documents")
+                print("No documents get all games")
                 return
             }
             self.fetchedGames = documents.compactMap { document -> Game? in
@@ -73,7 +73,7 @@ class HomeViewModel: ObservableObject {
                 }
                 
                 guard let document = snapshot else {
-                    print("No documents")
+                    print("No documents check for user accepted")
                     return
                 }
                 print("Document:", document.data())

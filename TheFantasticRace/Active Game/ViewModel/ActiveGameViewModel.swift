@@ -186,7 +186,7 @@ class ActiveGameViewModel: ObservableObject {
             }
             
             guard let documents = snapshot?.documents else {
-                print("No documents")
+                print("No documents fetchAllUsers")
                 return
             }
             
@@ -232,7 +232,7 @@ class ActiveGameViewModel: ObservableObject {
                 print("Error getting documents", error)
             }
             guard let document = snapshot else {
-                print("No documents")
+                print("No documents user")
                 return
             }
             self.currentPlayer = try? document.data(as: PlayingPlayer.self)

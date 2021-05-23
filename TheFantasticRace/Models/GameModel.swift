@@ -164,7 +164,6 @@ extension GameStop: MKAnnotation {
 extension PlayingPlayer: MKAnnotation {
     var coordinate: CLLocationCoordinate2D {
         if let lat = convertCoordinates(from: latEncrypted), let lng = convertCoordinates(from: lngEncrypted) {
-            print("Extension Coordinates", lat, lng)
             return CLLocation(latitude: lat, longitude: lng).coordinate
         }
         return CLLocation(latitude: 0.0, longitude: 0.0).coordinate
