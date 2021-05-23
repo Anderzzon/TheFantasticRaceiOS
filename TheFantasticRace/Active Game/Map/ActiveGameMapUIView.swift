@@ -33,7 +33,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
             view.removeOverlay(overlay)
         }
         if view.overlays.count < 1 {
-            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                 view.addOverlay(viewModel.stopOverlays)
             }
             //print("Overlay count", view.overlays.count)
@@ -70,7 +70,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             let renderer = MKCircleRenderer(overlay: overlay)
             renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-            renderer.strokeColor = UIColor.blue
+            renderer.strokeColor = UIColor(Color("FRpurple"))
             renderer.lineWidth = 2
             return renderer
         }
@@ -102,6 +102,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Player") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Player")
             annotationView.canShowCallout = true
             annotationView.glyphText = "🏃"
+            annotationView.markerTintColor = UIColor(Color("FRturquise"))
             annotationView.titleVisibility = .visible
             
             return annotationView

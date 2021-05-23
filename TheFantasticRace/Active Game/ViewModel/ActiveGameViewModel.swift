@@ -18,28 +18,22 @@ class ActiveGameViewModel: ObservableObject {
         didSet {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 print("Game dispatch", self.game)
-
+                
                 self.players.removeAll()
                 self.fetchUser()
                 
                 if let startTime = self.game?.start_time {
-                    if startTime < Date() {
+                    if startTime <= Date() {
                         
                         self.fetchAllUsers()
                         self.startTimer()
                         self.locationManager.startLocationServices()
                         self.locationManager.gameName = self.game?.name ?? "Current Game"
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            if let game = self.game {
-                                if let startTime = game.start_time {
-                                    if startTime <= Date() {
-                                        self.startGame()
-                                    } else {
-                                        //TODO: Start timer than runs until start of game
-                                    }
-                                }
-                            }
+                            self.startGame()
                         }
+                    } else {
+                        //TODO: Start timer than runs until start of game
                     }
                 }
             }
@@ -201,15 +195,15 @@ class ActiveGameViewModel: ObservableObject {
                 return try? document.data(as: PlayingPlayer.self)
             }
             for player in self.players {
-//                if let encryptedLat = player.latEncrypted {
-//                    player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: "maga2020!"))
-//                    print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
-//                }
-//                if let encryptedLng = player.lngEncrypted {
-//                    player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: "maga2020!"))
-//                    print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
-//                }
-//
+                //                if let encryptedLat = player.latEncrypted {
+                //                    player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: "maga2020!"))
+                //                    print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
+                //                }
+                //                if let encryptedLng = player.lngEncrypted {
+                //                    player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: "maga2020!"))
+                //                    print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
+                //                }
+                //
                 self.decryptCoordinates(player: player)
             }
             
@@ -218,11 +212,11 @@ class ActiveGameViewModel: ObservableObject {
     
     private func decryptCoordinates(player: PlayingPlayer) {
         if let encryptedLat = player.latEncrypted {
-            player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: "maga2020!"))
+            player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: Crypto.key))
             //print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
         }
         if let encryptedLng = player.lngEncrypted {
-            player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: "maga2020!"))
+            player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: Crypto.key))
             //print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
         }
     }
@@ -265,6 +259,7 @@ class ActiveGameViewModel: ObservableObject {
             print("No player guard return")
             return
         }
+        print("Updating player position")
         if let lat = locationManager.locationManager.location?.coordinate.latitude, let lng = locationManager.locationManager.location?.coordinate.longitude {
             //player.lat = lat
             //player.lng = lng

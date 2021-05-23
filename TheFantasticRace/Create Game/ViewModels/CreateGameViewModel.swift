@@ -189,12 +189,12 @@ class CreateGameViewModel: ObservableObject {
         }
     }
     
-    func checkStopValidation() {
-        //TODO: Make test
+    func checkStopValidation() { //See test
+        //TODO: Add more logic
         if let stops = game.stops {
             if self.game.unlock_with_question == true {
                 for stop in stops {
-                    if stop.order != stops.count-1 {
+                    if stop.order != stops.count-1 { //Checks every question exept the last one
                         if stop.question == nil || stop.question!.count < 1 || stop.answer == nil || stop.answer!.count < 1 {
                             validStops = false
                             print("Some questions is not valid")

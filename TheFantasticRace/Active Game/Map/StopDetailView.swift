@@ -115,7 +115,6 @@ struct StopDetailView: View {
                                     }))
         }
         //.navigationBarTitle(Text("Fråga 1"), displayMode: .inline)
-        xs
     }
 }
 

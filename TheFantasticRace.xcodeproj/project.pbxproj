@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		03087F4526526EA300BDD55C /* NavigationRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */; };
 		0321089C265665A500849275 /* AlertX in Frameworks */ = {isa = PBXBuildFile; productRef = 0321089B265665A500849275 /* AlertX */; };
+		032108F3265A5A1000849275 /* The_Fantastic_RaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032108F2265A5A1000849275 /* The_Fantastic_RaceTests.swift */; };
 		034CBC80263D84D000101D38 /* StopListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC7F263D84D000101D38 /* StopListView.swift */; };
 		034CBC8426402F7500101D38 /* FabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC8326402F7400101D38 /* FabView.swift */; };
 		034CBC872640339900101D38 /* AddNewStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034CBC862640339900101D38 /* AddNewStopView.swift */; };
@@ -67,8 +68,21 @@
 		037B0A7A25CEBE23003CB5D2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037B0A7925CEBE23003CB5D2 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		032108F5265A5A1000849275 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 037B0A4425CE9EBF003CB5D2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 037B0A4B25CE9EBF003CB5D2;
+			remoteInfo = "The Fantastic Race";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		03087F4426526EA300BDD55C /* NavigationRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRowViewModel.swift; sourceTree = "<group>"; };
+		032108F0265A5A1000849275 /* TheFantasticRaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheFantasticRaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		032108F2265A5A1000849275 /* The_Fantastic_RaceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_Fantastic_RaceTests.swift; sourceTree = "<group>"; };
+		032108F4265A5A1000849275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		034CBC7F263D84D000101D38 /* StopListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopListView.swift; sourceTree = "<group>"; };
 		034CBC8326402F7400101D38 /* FabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FabView.swift; sourceTree = "<group>"; };
 		034CBC862640339900101D38 /* AddNewStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewStopView.swift; sourceTree = "<group>"; };
@@ -115,7 +129,7 @@
 		0373B36525CFEA240061C42E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0373B36925CFEC8F0061C42E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		0373B37025D035EB0061C42E /* NavigationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRow.swift; sourceTree = "<group>"; };
-		037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Fantastic Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheFantasticRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		037B0A4F25CE9EBF003CB5D2 /* TheFantasticRaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheFantasticRaceApp.swift; sourceTree = "<group>"; };
 		037B0A5125CE9EBF003CB5D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		037B0A5325CE9EC1003CB5D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +141,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		032108ED265A5A1000849275 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		037B0A4925CE9EBF003CB5D2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +180,15 @@
 				0373B36525CFEA240061C42E /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		032108F1265A5A1000849275 /* The Fantastic RaceTests */ = {
+			isa = PBXGroup;
+			children = (
+				032108F2265A5A1000849275 /* The_Fantastic_RaceTests.swift */,
+				032108F4265A5A1000849275 /* Info.plist */,
+			);
+			path = "The Fantastic RaceTests";
 			sourceTree = "<group>";
 		};
 		034CBC7B263D816C00101D38 /* ViewModels */ = {
@@ -329,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				037B0A4E25CE9EBF003CB5D2 /* TheFantasticRace */,
+				032108F1265A5A1000849275 /* The Fantastic RaceTests */,
 				037B0A4D25CE9EBF003CB5D2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -336,7 +367,8 @@
 		037B0A4D25CE9EBF003CB5D2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */,
+				037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */,
+				032108F0265A5A1000849275 /* TheFantasticRaceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,9 +407,27 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		037B0A4B25CE9EBF003CB5D2 /* The Fantastic Race */ = {
+		032108EF265A5A1000849275 /* TheFantasticRaceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "The Fantastic Race" */;
+			buildConfigurationList = 032108F9265A5A1100849275 /* Build configuration list for PBXNativeTarget "TheFantasticRaceTests" */;
+			buildPhases = (
+				032108EC265A5A1000849275 /* Sources */,
+				032108ED265A5A1000849275 /* Frameworks */,
+				032108EE265A5A1000849275 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				032108F6265A5A1000849275 /* PBXTargetDependency */,
+			);
+			name = TheFantasticRaceTests;
+			productName = "The Fantastic RaceTests";
+			productReference = 032108F0265A5A1000849275 /* TheFantasticRaceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		037B0A4B25CE9EBF003CB5D2 /* TheFantasticRace */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */;
 			buildPhases = (
 				037B0A4825CE9EBF003CB5D2 /* Sources */,
 				037B0A4925CE9EBF003CB5D2 /* Frameworks */,
@@ -387,7 +437,7 @@
 			);
 			dependencies = (
 			);
-			name = "The Fantastic Race";
+			name = TheFantasticRace;
 			packageProductDependencies = (
 				03536C82262C93EC00D63020 /* FirebaseAnalytics */,
 				03536C84262C93EC00D63020 /* FirebaseFirestoreSwift-Beta */,
@@ -396,7 +446,7 @@
 				0321089B265665A500849275 /* AlertX */,
 			);
 			productName = TheFantasticRace;
-			productReference = 037B0A4C25CE9EBF003CB5D2 /* The Fantastic Race.app */;
+			productReference = 037B0A4C25CE9EBF003CB5D2 /* TheFantasticRace.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -405,9 +455,13 @@
 		037B0A4425CE9EBF003CB5D2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					032108EF265A5A1000849275 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 037B0A4B25CE9EBF003CB5D2;
+					};
 					037B0A4B25CE9EBF003CB5D2 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -430,12 +484,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				037B0A4B25CE9EBF003CB5D2 /* The Fantastic Race */,
+				037B0A4B25CE9EBF003CB5D2 /* TheFantasticRace */,
+				032108EF265A5A1000849275 /* TheFantasticRaceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		032108EE265A5A1000849275 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		037B0A4A25CE9EBF003CB5D2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,6 +511,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		032108EC265A5A1000849275 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				032108F3265A5A1000849275 /* The_Fantastic_RaceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		037B0A4825CE9EBF003CB5D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -508,7 +578,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		032108F6265A5A1000849275 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 037B0A4B25CE9EBF003CB5D2 /* TheFantasticRace */;
+			targetProxy = 032108F5265A5A1000849275 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		032108F7265A5A1100849275 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2T4JVD9P46;
+				INFOPLIST_FILE = "The Fantastic RaceTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.erik.The-Fantastic-RaceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TheFantasticRace.app/TheFantasticRace";
+			};
+			name = Debug;
+		};
+		032108F8265A5A1100849275 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2T4JVD9P46;
+				INFOPLIST_FILE = "The Fantastic RaceTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.erik.The-Fantastic-RaceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TheFantasticRace.app/TheFantasticRace";
+			};
+			name = Release;
+		};
 		037B0A5925CE9EC1003CB5D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -678,6 +798,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		032108F9265A5A1100849275 /* Build configuration list for PBXNativeTarget "TheFantasticRaceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				032108F7265A5A1100849275 /* Debug */,
+				032108F8265A5A1100849275 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		037B0A4725CE9EBF003CB5D2 /* Build configuration list for PBXProject "TheFantasticRace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -687,7 +816,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "The Fantastic Race" */ = {
+		037B0A5B25CE9EC1003CB5D2 /* Build configuration list for PBXNativeTarget "TheFantasticRace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				037B0A5C25CE9EC1003CB5D2 /* Debug */,

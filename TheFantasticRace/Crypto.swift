@@ -9,11 +9,11 @@ import Foundation
 import CryptoKit
 
 class Crypto {
-    let key = "maga2020!"
+    static let key = "maga2020!"
     var symetricKey: SymmetricKey?
     
     init() {
-        symetricKey = createKey(key: key)
+        symetricKey = createKey(key: Crypto.key)
     }
     
     func encryptData(input: String, password: SymmetricKey) throws -> String {

@@ -71,6 +71,7 @@ class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
         print("<")
         if let lhsTime = lhs.updatedTime, let rhsTime = rhs.updatedTime {
             if lhs.finishedStops != rhs.finishedStops {
+                print("!=")
                 return lhsTime > rhsTime
             } else if lhs.updatedTime! < rhs.updatedTime! {
                 return true
@@ -102,6 +103,7 @@ class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     var lngEncrypted: String?
     
     init(name: String, id: String, finishedStops: Int, updatedTime: Date?, latEncrypted: String?, lngEncrypted: String?) {
+        print("Init Playing player")
         self.name = name
         self.id = id
         //self.lat = lat
@@ -148,28 +150,6 @@ class GameStop: NSObject, Codable, Identifiable {
         self.answer = answer
         self.hint = hint
     }
-    //    required init(from decoder: Decoder) throws {
-    //        enum CodingKeys: CodingKey {
-    //            case id
-    //            case name
-    //            case lat
-    //            case lng
-    //            case order
-    //            case question
-    //            case answer
-    //            case hint
-    //        }
-    //        let values = try decoder.container(keyedBy: CodingKeys.self)
-    //        id = try values.decode(String.self, forKey: .id)
-    //        name = try values.decode(String.self, forKey: .name)
-    //        lat = try values.decode(Double.self, forKey: .lat)
-    //        lng = try values.decode(Double.self, forKey: .lng)
-    //        order = try values.decode(Int.self, forKey: .order)
-    //        question = try values.decode(String.self, forKey: .question)
-    //        answer = try values.decode(String.self, forKey: .answer)
-    //        hint = try values.decode(String.self, forKey: .hint)
-    //
-    //    }
     
 }
 

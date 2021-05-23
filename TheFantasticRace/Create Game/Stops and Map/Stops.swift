@@ -64,6 +64,7 @@ struct Stops: View {
         }
         .onAppear {
             viewModel.checkStopValidation()
+            print("Valid stops:", viewModel.validStops)
         }
         .sheet(isPresented: $showNewStopSheet) {
             AddNewStopView(viewModel: viewModel, stop: $newStop, showNewStopSheet: $showNewStopSheet)
