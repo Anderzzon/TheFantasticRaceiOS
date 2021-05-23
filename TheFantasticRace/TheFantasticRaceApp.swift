@@ -28,7 +28,6 @@ struct TheFantasticRaceApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(userInfo)
-            //TestLocationView()
         }
     }
 }

@@ -13,23 +13,11 @@ enum ActiveGameSheet {
     case newGame, activeGame
 }
 
-enum Tagss: String {
-    case test
-    
-    var fbString: String? {
-        switch self {
-        case .test:
-            return "test"
-        }
-    }
-}
-
 struct HomeView: View {
     @EnvironmentObject var userInfo: UserInfo
     
     @State private var showError = false
     @State private var errorString = ""
-    //@StateObject private var locationManager = LocationManager()
     @StateObject var games = HomeViewModel()
     var newGame = Game(name: "New Game", description: nil, finishedStops: nil, gameFinished: nil, listOfPlayers: nil, parent_race: nil, radius: 20, show_next_stop: true, show_next_stop_delay: 5, show_players_map: false, start_time: nil, finished_time: nil, unlock_with_question: true, id: nil, owner: nil, stops: nil)
     
@@ -50,41 +38,28 @@ struct HomeView: View {
                     Text("No games here 😢! Create your first or ask a friend for an invitation").padding()
                 } else {
                     LazyVStack {
-                        //Print("VStack Load")
                         ForEach(games.fetchedGames.sorted()) { game in
-
+                            
                             NavigationRow(game: game).onTapGesture {
-                                //self.viewModel.game = game
                                 if game.owner == userInfo.user.uid {
-                                    //activeGame = nil
                                     activeGame = game
                                     viewModel.game = activeGame!
-                                    print("Active Game", activeGame)
                                     activeGameSheet = .newGame
                                     showGameSheet = true
                                 } else {
-                                    //locationManager.startLocationServices()
-                                    //activeGame = nil
-                                    //activeGame = game
                                     playingGame.game = game
-                                    //Print("Game in viewModel:", playingGame.game)
-                                    //activeGame = game
                                     games.checkIfUserHasAccepted(game: game) { accepted in
                                         switch accepted {
                                         case true:
                                             activeGameSheet = .activeGame
                                             showGameSheet = true
-                                        
+                                            
                                         case false:
                                             print("Not accepted")
-                                        
                                         }
                                     }
-
                                 }
-                                print(viewModel.game, "tapped")
                             }
-                            
                         }
                     }
                     .alert(isPresented:$games.showAcceptAlert) {
@@ -92,7 +67,6 @@ struct HomeView: View {
                             title: Text("You are invited to game"),
                             message: Text("Do you want to join the game?"),
                             primaryButton: .destructive(Text("Yes")) {
-                                print("Accepting...")
                                 games.updateInvitation(game: playingGame.game!)
                             },
                             secondaryButton: .cancel()
@@ -107,7 +81,6 @@ struct HomeView: View {
                     FBAuth.logout { result in
                         switch result {
                         case .success:
-                            print("Loged out", userInfo.isUserAuthenticated)
                             userInfo.isUserAuthenticated = .signedOut
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -115,18 +88,18 @@ struct HomeView: View {
                         }
                     }
                 }, label: {
-                                                            Image(systemName: "escape").foregroundColor(Color("FRpurple"))
-                                                                .padding()
-                                                        }),
+                    Image(systemName: "escape").foregroundColor(Color("FRpurple"))
+                        .padding()
+                }),
                 trailing: Button(action: {
-                                                    viewModel.game = newGame
-                                                    activeGame = newGame
-                                                    activeGameSheet = .newGame
-                                                    showGameSheet = true
-                                                    print("add game")}, label: {
-                                                        Image(systemName: "plus").foregroundColor(Color("FRpurple"))
-                                                            .padding()
-                                                    }))
+                    viewModel.game = newGame
+                    activeGame = newGame
+                    activeGameSheet = .newGame
+                    showGameSheet = true
+                }, label: {
+                    Image(systemName: "plus").foregroundColor(Color("FRpurple"))
+                        .padding()
+                }))
             .onAppear {
                 guard let uid = Auth.auth().currentUser?.uid else {
                     return
@@ -142,11 +115,8 @@ struct HomeView: View {
             }
             .fullScreenCover(isPresented: $showGameSheet) {
                 if activeGameSheet == .newGame {
-                    //let viewModel = CreateGameViewModel(selectedGame: activeGame!)
                     CreateGame(viewModel: viewModel).environmentObject(userInfo)
                 } else {
-                    //Print("Game in viewModel:", playingGame.game)
-                    //let viewModel = ActiveGameViewModel()
                     ActiveGameView(viewModel: playingGame)
                 }
             }

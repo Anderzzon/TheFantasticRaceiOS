@@ -16,7 +16,6 @@ struct SignInWithEmailView: View {
     @State private var showAlert = false
     @State private var authError: EmailAuthError?
     var body: some View {
-        Print("Action in Sign in with email view", action)
         VStack {
             Image("earth").resizable().frame(width: 200, height: 200, alignment: .center)
             TextField("Email Address",
@@ -33,7 +32,7 @@ struct SignInWithEmailView: View {
                 }) {
                     Text("Forgot Password")
                         .foregroundColor(Color.gray)
-
+                    
                 }
             }.padding(.bottom)
             VStack(spacing: 10) {
@@ -58,7 +57,6 @@ struct SignInWithEmailView: View {
                 }.disabled(!user.isLogInComplete)
                 Button(action: {
                     action = .signUp
-                    //Print("Action in sign up button", action)
                     self.showSheet = true
                 }) {
                     Text("Sign Up")
@@ -70,15 +68,15 @@ struct SignInWithEmailView: View {
                 }
             }
             .alert(isPresented: $showAlert) {
-                                Alert(title: Text("Login error"), message: Text(self.authError?.localizedDescription ?? "Unknown error"), dismissButton: .default(Text("OK")) {
-                                    if self.authError == .incorrectPassword {
-                                        self.user.password = ""
-                                    } else {
-                                        self.user.password = ""
-                                        self.user.email = ""
-                                    }
-                                    })
-                            }
+                Alert(title: Text("Login error"), message: Text(self.authError?.localizedDescription ?? "Unknown error"), dismissButton: .default(Text("OK")) {
+                    if self.authError == .incorrectPassword {
+                        self.user.password = ""
+                    } else {
+                        self.user.password = ""
+                        self.user.email = ""
+                    }
+                })
+            }
         }
         .padding(.top, 40)
         .frame(width: 300)

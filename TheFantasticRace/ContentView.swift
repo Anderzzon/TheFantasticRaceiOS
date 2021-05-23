@@ -12,7 +12,9 @@ struct ContentView: View {
     var body: some View {
         Group {
             if userInfo.isUserAuthenticated == .undefined {
-                Text("Loading...")
+                Spacer()
+                ProgressView()
+                Spacer()
             } else if userInfo.isUserAuthenticated == .signedOut {
                 LoginView().frame(width: 450, height: nil, alignment: .center)
                     .background(Color(.systemGray3)).edgesIgnoringSafeArea(.all)

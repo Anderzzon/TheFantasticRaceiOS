@@ -24,7 +24,6 @@ struct StopDetailView: View {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
-        
     }
     
     var body: some View {
@@ -35,7 +34,6 @@ struct StopDetailView: View {
                         if viewModel.currentPlayer!.finishedStops < lastStop {
                             if let stop = viewModel.game!.stops![viewModel.currentPlayer!.finishedStops] {
                                 Text("Hint: \(stop.hint!)")
-                                    //Text("Hint text")
                                     .foregroundColor(Color.white)
                                     .font(.title2)
                                     .fontWeight(.bold)
@@ -49,7 +47,6 @@ struct StopDetailView: View {
                 .background(LinearGradient(gradient: Gradient(colors: [Color("FRturquise"), Color("FRpurple")]), startPoint: .leading, endPoint: .trailing)).edgesIgnoringSafeArea(.all)
                 
                 if viewModel.locationManager.atStop {
-                    Print("GameFinished:", viewModel.locationManager.gameFinished)
                     if viewModel.game!.unlock_with_question == true {
                         Group {
                             
@@ -75,7 +72,6 @@ struct StopDetailView: View {
                                     if let region = viewModel.locationManager.geofenceRegion {
                                         viewModel.locationManager.removeGeofence(for: region)
                                     }
-                                    
                                     presentationMode.wrappedValue.dismiss()
                                 }
                             }) {
@@ -103,10 +99,8 @@ struct StopDetailView: View {
                     }
                 }
             }
-            //.navigationBarTitle(Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].name), displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        print("Close")
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Close")
@@ -114,7 +108,6 @@ struct StopDetailView: View {
                                             .padding()
                                     }))
         }
-        //.navigationBarTitle(Text("Fråga 1"), displayMode: .inline)
     }
 }
 

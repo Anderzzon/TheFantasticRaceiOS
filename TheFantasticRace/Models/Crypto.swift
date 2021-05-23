@@ -9,7 +9,7 @@ import Foundation
 import CryptoKit
 
 class Crypto {
-    static let key = "maga2020!"
+    static let key = "8e21d9b5-5024-4b10-980c-8ab89e6b13b3"
     var symetricKey: SymmetricKey?
     
     init() {

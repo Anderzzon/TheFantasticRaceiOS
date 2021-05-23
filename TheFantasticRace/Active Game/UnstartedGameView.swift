@@ -12,7 +12,7 @@ struct UnstartedGameView: View {
     var body: some View {
         VStack {
             Text("The game hasn't started yet")
-            Text("It will start: \(startTime)")
+            Text("It will start: \(startTime)").padding()
         }
     }
 }

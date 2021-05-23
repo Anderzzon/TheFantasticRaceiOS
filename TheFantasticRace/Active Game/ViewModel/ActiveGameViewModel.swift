@@ -41,7 +41,6 @@ class ActiveGameViewModel: ObservableObject {
     }
     @Published var currentPlayer: PlayingPlayer?
     @Published var locationManager = LocationManager()
-    //@Published var showSheet = false
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
     static var playerPositionTimer: Timer?
@@ -59,7 +58,6 @@ class ActiveGameViewModel: ObservableObject {
             self?.objectWillChange.send()
             
             if self?.locationManager.gameFinished == true && self?.gameisSetToFinished == false {
-                print("anyCancellable gameFinished", self?.locationManager.gameFinished)
                 self?.gameisSetToFinished = true
                 self?.updateToFirebase()
                 self?.showFinishedAlert = true
@@ -72,7 +70,6 @@ class ActiveGameViewModel: ObservableObject {
     
     func startTimer() {
         ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
-            print("Timer fired!")
             self.updatePlayerPosition()
         }
     }
@@ -89,7 +86,6 @@ class ActiveGameViewModel: ObservableObject {
             let result = checkAnswer(with: answer, for: stop)
             switch result {
             case true:
-                print("Answer is correct")
                 if let region = locationManager.geofenceRegion {
                     locationManager.removeGeofence(for: region)
                 }
@@ -104,23 +100,20 @@ class ActiveGameViewModel: ObservableObject {
         return false
     }
     
-    //MARK: Private functions
-    
-    private func startGame() {
-        print("Starting game")
-        self.createGeofence()
-        self.updateMap()
-    }
-    
     func handleGameFinished() {
-        //gameFinished = true
         updateToFirebase()
         gameFinished = false
     }
     
+    //MARK: Private functions
+    
+    private func startGame() {
+        self.createGeofence()
+        self.updateMap()
+    }
+    
     private func createGeofence() {
         guard let player = currentPlayer?.finishedStops else { return }
-        print("Finished stops:", player)
         guard let game = game else { return }
         if player <= game.stops!.count-1 {
             guard let stop = game.stops?[player] else { return }
@@ -129,9 +122,8 @@ class ActiveGameViewModel: ObservableObject {
             updateMap()
         }
     }
+    
     private func isLastStop(stop: GameStop, for game: Game) -> Bool {
-        print("StopOrder:", stop.order)
-        print("LocationManager:", locationManager.gameFinished)
         if stop.order + 1 == game.stops?.count {
             return true
         }
@@ -144,9 +136,8 @@ class ActiveGameViewModel: ObservableObject {
     }
     
     private func updateMap() {
-        guard let game = game else {
-            print("update map guard game return")
-            return }
+        guard let game = game else { return }
+        
         //The map will display the next stop, by checking number of finished stops of currentPlayer
         if let finishedStops = currentPlayer?.finishedStops, let totalStopsOfGame = game.stops?.count {
             
@@ -191,19 +182,9 @@ class ActiveGameViewModel: ObservableObject {
             }
             
             self.players = documents.compactMap{ document -> PlayingPlayer? in
-                print("Document:", document.data())
                 return try? document.data(as: PlayingPlayer.self)
             }
             for player in self.players {
-                //                if let encryptedLat = player.latEncrypted {
-                //                    player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: "maga2020!"))
-                //                    print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
-                //                }
-                //                if let encryptedLng = player.lngEncrypted {
-                //                    player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: "maga2020!"))
-                //                    print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
-                //                }
-                //
                 self.decryptCoordinates(player: player)
             }
             
@@ -213,19 +194,14 @@ class ActiveGameViewModel: ObservableObject {
     private func decryptCoordinates(player: PlayingPlayer) {
         if let encryptedLat = player.latEncrypted {
             player.latEncrypted = self.encryption.decryptData(input: encryptedLat, password: self.encryption.createKey(key: Crypto.key))
-            //print("Lat encrypted:", Double(player.latEncrypted!), "lat normal:", player.lat)
         }
         if let encryptedLng = player.lngEncrypted {
             player.lngEncrypted = self.encryption.decryptData(input: encryptedLng, password: self.encryption.createKey(key: Crypto.key))
-            //print("Lng encrypted:", Double(player.lngEncrypted!), "lng normal:", player.lng)
         }
     }
     
     func fetchUser() {
-        guard let id = self.game!.id else {
-            print("guard return no game id")
-            return
-        }
+        guard let id = self.game!.id else { return }
         
         ref.collection("races").document(id).collection("players").document(user).addSnapshotListener { (snapshot, error) in
             if let error = error {
@@ -236,8 +212,6 @@ class ActiveGameViewModel: ObservableObject {
                 return
             }
             self.currentPlayer = try? document.data(as: PlayingPlayer.self)
-            print("Current player in Firebase:", self.currentPlayer)
-            //self.startGame()
         }
     }
     
@@ -255,14 +229,9 @@ class ActiveGameViewModel: ObservableObject {
     }
     
     private func updatePlayerPosition() {
-        guard let player = currentPlayer else {
-            print("No player guard return")
-            return
-        }
-        print("Updating player position")
+        guard let player = currentPlayer else { return }
+        
         if let lat = locationManager.locationManager.location?.coordinate.latitude, let lng = locationManager.locationManager.location?.coordinate.longitude {
-            //player.lat = lat
-            //player.lng = lng
             do {
                 player.latEncrypted = try encryption.encryptData(input: String(lat), password: encryption.symetricKey!)
                 player.lngEncrypted = try encryption.encryptData(input: String(lng), password: encryption.symetricKey!)

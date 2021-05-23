@@ -78,7 +78,6 @@ struct SignUpView: View {
             .navigationBarTitle("Sign Up", displayMode: .inline)
             .navigationBarItems(trailing:
                                     Button(action: {
-                                        print("Close")
                                         presentationMode.wrappedValue.dismiss()
                                     }, label: {
                                         Text("Close")

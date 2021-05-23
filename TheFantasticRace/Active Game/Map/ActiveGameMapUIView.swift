@@ -12,9 +12,6 @@ struct ActiveGameMapUIView: UIViewRepresentable {
     @Binding var centerCoordinate: CLLocationCoordinate2D
     @ObservedObject var viewModel: ActiveGameViewModel
     
-    //var annotations: [MKPointAnnotation]
-    //var players: [PlayingPlayer]
-    
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.isRotateEnabled = false
@@ -32,11 +29,11 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         for overlay in view.overlays {
             view.removeOverlay(overlay)
         }
+        //Fix to handle creating a new overlay with the same ID as the previous:
         if view.overlays.count < 1 {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                 view.addOverlay(viewModel.stopOverlays)
             }
-            //print("Overlay count", view.overlays.count)
         }
         
         view.showsUserLocation = true
@@ -64,7 +61,6 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         
         func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
             parent.centerCoordinate = mapView.centerCoordinate
-            //print(mapView.centerCoordinate)
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -89,16 +85,9 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
             guard let playerAnnotation = annotation as? PlayingPlayer else {
-                print("playerAnnotation guard")
                 return nil
             }
             
-            //            guard let stopAnnotation = annotation as? GameStop else {
-            //                print("stopAnnotation guard")
-            //                return nil
-            //            }
-            
-            //if playerAnnotation == annotation as? PlayingPlayer {
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Player") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Player")
             annotationView.canShowCallout = true
             annotationView.glyphText = "🏃"
@@ -106,15 +95,6 @@ struct ActiveGameMapUIView: UIViewRepresentable {
             annotationView.titleVisibility = .visible
             
             return annotationView
-            //            } else {
-            //                var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Stop") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Stop")
-            //                annotationView.canShowCallout = true
-            //                annotationView.glyphText = "⌖"
-            //                annotationView.titleVisibility = .visible
-            //                return annotationView
-            //            }
-            
-            
         }
         
     }

@@ -26,14 +26,12 @@ class NavigationRowViewModel {
                 guard let documents = querySnapshot?.documents else {
                     return
                 }
-                print("Number of players:", documents.count)
                 self.numberOfPlayers = documents.count
                 
                 let players = documents.compactMap { document -> Player? in
                     try? document.data(as: Player.self)
                 }
                 if (players.first(where: { $0.id == self.user }) == nil) {
-                    print("Invitation accepted")
                     self.acceptedInvitation = true
                 }
                 
@@ -42,7 +40,6 @@ class NavigationRowViewModel {
     }
     
     func getNameOfGameOwner(game: Game) {
-        print("Game in get Name of owner", game)
         if let id = game.owner {
             ref.collection("users").document(id).getDocument { document, error in
                 if let error = error {
@@ -60,7 +57,6 @@ class NavigationRowViewModel {
                         self.gameOwner = user.name
                     }
                 }
-                //self.gameOwner = user?.name ?? ""
             }
         } else {
             print("No id")

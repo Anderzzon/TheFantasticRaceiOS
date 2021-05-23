@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
-import AlertX
 
 enum SelectedGameTab: String, CaseIterable {
     case map = "Map"
-    case stops = "Stops"
+    //case stops = "Stops"
     case score = "Leaderboard"
 }
 
@@ -42,11 +41,8 @@ struct ActiveGameView: View {
         NavigationView {
             VStack {
                 if viewModel.game == nil || viewModel.currentPlayer == nil {
-                    Print("ViewModel.currentplayer:", viewModel.currentPlayer)
                     GameLoadingView()
                 } else if viewModel.game!.start_time! > Date() {
-                    Print("fbtime:", viewModel.game!.start_time!)
-                    Print("time:", Date())
                     UnstartedGameView(startTime: (viewModel.game?.start_time)!)
                 } else {
                     
@@ -61,20 +57,16 @@ struct ActiveGameView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .background(Color(.systemGray6).opacity(0.5))
                         .padding()
-                        //
-                        
                     }
                 }
-                
                 Spacer()
             }
-
+            
             .background(LinearGradient(gradient: Gradient(colors: [Color("FRpurple"), Color.white]), startPoint: .bottom, endPoint: .center).opacity(0.8).edgesIgnoringSafeArea(.all))
             .navigationBarTitle(Text(viewModel.game?.name ?? "Active Game"), displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {
-                        print("Go back from game")
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "chevron.backward")
@@ -84,8 +76,8 @@ struct ActiveGameView: View {
                 ,
                 trailing:
                     Button(action: {
-                        print("Exit")
                         viewModel.locationManager.locationManager.stopUpdatingLocation()
+                        viewModel.stopTimer()
                         presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Text("Exit")
@@ -96,23 +88,10 @@ struct ActiveGameView: View {
         }
         .sheet(isPresented: $viewModel.locationManager.showSheet) {
             StopDetailView(viewModel: viewModel)
-            Print("Sheet")
         }
-//        .alert(isPresented: $viewModel.showFinishedAlert, content: {
-//            Alert(title: Text("You have finished the race!"))
-//        })
-        .alertX(isPresented: $viewModel.gameFinished, content: {
-                            
-                            AlertX(title: Text("AlertX Title"),
-                                   message: Text("An optional message indicating some action goes here..."),
-                                   primaryButton: .cancel(),
-                                   secondaryButton: .default(Text("Done"), action: {
-                                    // Some action
-                                   }),
-                                   theme: .graphite(withTransparency: true, roundedCorners: true),
-                                   animation: .classicEffect())
-                        })
-        
+        .alert(isPresented: $viewModel.showFinishedAlert, content: {
+            Alert(title: Text("You have finished the race!"))
+        })
     }
     
     struct ChosenSettingsView: View {
@@ -121,7 +100,7 @@ struct ActiveGameView: View {
         var body: some View {
             switch selectedView {
             case .map: ActiveGameMapView(viewModel: viewModel)
-            case .stops: ActiveGameStopsView(viewModel: viewModel)
+            //case .stops: ActiveGameStopsView(viewModel: viewModel)
             case .score: ActiveGameScoreBoardView(viewModel: viewModel)
             }
         }

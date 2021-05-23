@@ -31,20 +31,25 @@ struct ForgotPasswordView: View {
                     Text("Reset")
                         .frame(width: 200)
                         .padding(.vertical, 15)
-                        .background(Color.green)
+                        .background(Color("FRpurple"))
                         .cornerRadius(8)
                         .foregroundColor(.white)
                         .opacity(user.isEmailValid(_email: user.email) ? 1 : 0.75)
                 }
                 .disabled(!user.isEmailValid(_email: user.email))
                 Spacer()
-            }.padding(.top)
+            }.padding(.top, 50)
             .frame(width: 300)
             .textFieldStyle(RoundedBorderTextFieldStyle())
             .navigationBarTitle("Request a password reset", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Dismiss") {
-                self.presentationMode.wrappedValue.dismiss()
-            })
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }, label: {
+                                        Text("Close")
+                                            .foregroundColor(Color("FRpurple"))
+                                            .padding()
+                                    }))
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Password Reset"),
                       message: Text(errString ?? "Password successfully reset"),

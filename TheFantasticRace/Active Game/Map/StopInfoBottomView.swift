@@ -29,9 +29,6 @@ struct StopInfoBottomView: View {
                             .lineLimit(2)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40, maxHeight: 40)
                             .onAppear {
-                                //Stop updating users position here?
-                                //viewModel.stopTimer()
-                                
                             }
                     }
                 }
@@ -70,7 +67,7 @@ struct StopInfoBottomView: View {
                 playedTimeElapsed = "0\(hours):\(minutes):\(seconds)"
             }
         }
-
+        
         
     }
 }

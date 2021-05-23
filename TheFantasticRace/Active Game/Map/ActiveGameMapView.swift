@@ -25,7 +25,6 @@ struct ActiveGameMapView: View {
                     }
             }
         }
-        //.background(Color("FRpurple").edgesIgnoringSafeArea(.all))
         .sheet(isPresented: $showSheet) {
             StopDetailView(viewModel: viewModel)
         }

@@ -40,7 +40,7 @@ struct CreateGame: View {
                     .background(Color(.systemGray6))
                     
                 }
-                ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel)
+                ChosenSettingsView(selectedView: selectedTab, viewModel: viewModel).edgesIgnoringSafeArea(.all)
                     .padding(.top, -10)
                 Spacer()
             }
