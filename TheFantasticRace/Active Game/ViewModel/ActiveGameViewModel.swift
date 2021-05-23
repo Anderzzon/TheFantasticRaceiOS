@@ -16,25 +16,21 @@ class ActiveGameViewModel: ObservableObject {
     @Published var game: Game?
     {
         didSet {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("Game dispatch", self.game)
-                
-                self.players.removeAll()
-                self.fetchUser()
-                
-                if let startTime = self.game?.start_time {
-                    if startTime <= Date() {
-                        
-                        self.fetchAllUsers()
-                        self.startTimer()
-                        self.locationManager.startLocationServices()
-                        self.locationManager.gameName = self.game?.name ?? "Current Game"
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            self.startGame()
-                        }
-                    } else {
-                        //TODO: Start timer than runs until start of game
+            self.players.removeAll()
+            self.fetchUser()
+            
+            if let startTime = self.game?.start_time {
+                if startTime <= Date() {
+                    
+                    self.fetchAllUsers()
+                    self.startTimer()
+                    self.locationManager.startLocationServices()
+                    self.locationManager.gameName = self.game?.name ?? "Current Game"
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.startGame()
                     }
+                } else {
+                    //TODO: Start timer than runs until start of game
                 }
             }
         }
