@@ -22,7 +22,6 @@ struct Game: Codable, Identifiable, Comparable {
         if let lhs = lhs.start_time, let rhs = rhs.start_time {
             return lhs < rhs
         }
-        //lhs.start_time < rhs.start_time
         return false
     }
     
@@ -41,10 +40,8 @@ struct Game: Codable, Identifiable, Comparable {
     var finished_time: Date?
     var unlock_with_question: Bool?
     
-    @DocumentID var id: String? = UUID().uuidString //Parent race only
-    //var accepted: [String]? //Parent race only
-    //var invites: [String]? //Parent race only
-    var owner: String? //Parent race only
+    @DocumentID var id: String? = UUID().uuidString
+    var owner: String?
     var stops: [GameStop]?
     
 }
@@ -68,35 +65,18 @@ struct Invitation: Codable {
 
 class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
     static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
-        print("<")
         if let lhsTime = lhs.updatedTime, let rhsTime = rhs.updatedTime {
             if lhs.finishedStops != rhs.finishedStops {
-                print("!=")
                 return lhsTime > rhsTime
             } else if lhs.updatedTime! < rhs.updatedTime! {
                 return true
             }
         }
         return false
-        //        lhs.name < rhs.name
     }
-    
-    //    static func == (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
-    //        print("==")
-    //        if lhs.finishedStops == rhs.finishedStops {
-    //            if lhs.updatedTime! > rhs.updatedTime! {
-    //                return true
-    //            }
-    //
-    //        }
-    //        return false
-    ////        lhs.name < rhs.name
-    //    }
     
     var name: String
     var id: String
-    //var lat: Double?
-    //var lng: Double?
     var finishedStops: Int
     var updatedTime: Date?
     var latEncrypted: String?
@@ -106,28 +86,12 @@ class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
         print("Init Playing player")
         self.name = name
         self.id = id
-        //self.lat = lat
-        //self.lng = lng
         self.finishedStops = finishedStops
         self.updatedTime = updatedTime
         self.latEncrypted = latEncrypted
         self.lngEncrypted = lngEncrypted
     }
     
-    //    convenience init?(document: [String: Any]) {
-    //        let name = document["name"] as? String ?? ""
-    //        let lat = document["lat"] as? Double
-    //        let lng = document["lng"] as? Double
-    //        let finishedStops = document["finishedStops"] as? Int ?? 0
-    //        let updatedTime = document ["updatedTime"] as? Date
-    //
-    //        self.init(name: name,
-    //                  lat: lat,
-    //                  lng: lng,
-    //                  finishedStops: finishedStops,
-    //                  updatedTime: updatedTime
-    //                  )
-    //    }
 }
 
 class GameStop: NSObject, Codable, Identifiable {
