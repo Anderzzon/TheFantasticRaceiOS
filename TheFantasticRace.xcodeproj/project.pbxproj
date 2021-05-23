@@ -309,7 +309,7 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
-		0373B34825CED6490061C42E /* AuthViews */ = {
+		0373B34825CED6490061C42E /* Auth Views */ = {
 			isa = PBXGroup;
 			children = (
 				037B0A7625CEBDB4003CB5D2 /* LoginView.swift */,
@@ -318,7 +318,7 @@
 				0352010D25CEC40800965F06 /* SignInWithEmailView.swift */,
 				0352010C25CEC40800965F06 /* SignUpView.swift */,
 			);
-			path = AuthViews;
+			path = "Auth Views";
 			sourceTree = "<group>";
 		};
 		0373B34925CED6530061C42E /* FireStore */ = {
@@ -377,7 +377,7 @@
 				0373B36425CFE9FD0061C42E /* Models */,
 				0373B34725CED63F0061C42E /* Firebase */,
 				034CBDC72646C8D600101D38 /* Active Game */,
-				0373B34825CED6490061C42E /* AuthViews */,
+				0373B34825CED6490061C42E /* Auth Views */,
 				03536C6B262C8E7300D63020 /* Create Game */,
 				0321089826563CA200849275 /* Home */,
 				037B0A5125CE9EBF003CB5D2 /* ContentView.swift */,
