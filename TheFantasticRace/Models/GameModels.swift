@@ -64,12 +64,14 @@ struct Invitation: Codable {
 }
 
 class PlayingPlayer: NSObject, Codable, Identifiable, Comparable {
+    //TODO: Make test
     static func < (lhs: PlayingPlayer, rhs: PlayingPlayer) -> Bool {
         if let lhsTime = lhs.updatedTime, let rhsTime = rhs.updatedTime {
-            if lhs.finishedStops != rhs.finishedStops {
-                return lhsTime > rhsTime
+            if lhs.finishedStops == rhs.finishedStops {
+                print(lhsTime > rhsTime)
+                return lhsTime < rhsTime
             } else if lhs.updatedTime! < rhs.updatedTime! {
-                return true
+                return lhs.finishedStops > rhs.finishedStops
             }
         }
         return false
