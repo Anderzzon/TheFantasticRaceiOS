@@ -52,10 +52,12 @@ class HomeViewModel: ObservableObject {
                 }
                 do {
                     let invitation = try document.data(as: Invitation.self)
-                    if invitation?.accepted == false {
+                    if let invitation = invitation {
+                    if invitation.accepted == false {
                         self.showAcceptAlert = true
                     }
-                    completion(invitation!.accepted)
+                    completion(invitation.accepted)
+                    }
                 } catch {
                     print("Error", error)
                 }

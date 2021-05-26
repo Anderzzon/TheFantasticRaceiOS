@@ -75,7 +75,8 @@ struct BasicGameSettings: View {
     .sheet(isPresented: $showSheet) {
         if activeSheet == .title {
             DetailSettingsTitleView(viewModel: viewModel, showSheet: $showSheet)
-        } else {
+        }
+        if activeSheet == .description {
             DetailSettingsDescriptionView(viewModel: viewModel, showSheet: $showSheet)
         }
             

@@ -33,6 +33,7 @@ struct ActiveGameMapUIView: UIViewRepresentable {
         if view.overlays.count < 1 {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                 view.addOverlay(viewModel.stopOverlays)
+                print("Adding Overlay")
             }
         }
         

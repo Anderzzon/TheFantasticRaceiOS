@@ -36,23 +36,23 @@ class LocationManager: NSObject, ObservableObject {
     
     private var isAtStop: AnyPublisher<Bool, Never> {
         $atStop
-          .debounce(for: 0.8, scheduler: RunLoop.main)
-          .removeDuplicates()
-          .map { input in
-            return input
-          }
-          .eraseToAnyPublisher()
-      }
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { input in
+                return input
+            }
+            .eraseToAnyPublisher()
+    }
     
     private var hasFinished: AnyPublisher<Bool, Never> {
         $gameFinished
-          .debounce(for: 0.8, scheduler: RunLoop.main)
-          .removeDuplicates()
-          .map { input in
-            return input
-          }
-          .eraseToAnyPublisher()
-      }
+            .debounce(for: 0.8, scheduler: RunLoop.main)
+            .removeDuplicates()
+            .map { input in
+                return input
+            }
+            .eraseToAnyPublisher()
+    }
     
     override init() {
         super.init()
@@ -81,18 +81,18 @@ class LocationManager: NSObject, ObservableObject {
         lastStop = isLastStop
         
         let monitoredRegions = locationManager.monitoredRegions
-
+        
         for region in monitoredRegions{
             locationManager.stopMonitoring(for: region)
         }
         
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-                let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
-                
-                let region = CLCircularRegion(center: center, radius: radius, identifier: String(stop.order))
-                locationManager.startMonitoring(for: region)
+            let center = CLLocationCoordinate2D(latitude: stop.lat!, longitude: stop.lng!)
+            
+            let region = CLCircularRegion(center: center, radius: radius, identifier: String(stop.order))
+            locationManager.startMonitoring(for: region)
         }
-
+        
     }
     
     func removeGeofence(for region: CLRegion) {
@@ -129,10 +129,10 @@ extension LocationManager: CLLocationManagerDelegate {
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         
-            let notificatrionIDtoRemove = Int(region.identifier)!-1
+        let notificatrionIDtoRemove = Int(region.identifier)!-1
         if notificatrionIDtoRemove > 0 {
             UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [String(notificatrionIDtoRemove)])
-        
+            
         }
         
         let request = UNNotificationRequest(identifier: region.identifier, content: notificationContent, trigger: trigger)
@@ -145,9 +145,12 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         if state == .inside {
-        atStop = true
-        stopOrder = region.identifier
-        geofenceRegion = region
+            if state == .inside {
+                self.atStop = true
+                self.stopOrder = region.identifier
+                self.geofenceRegion = region
+            }
+            
         } else {
             print("not here")
         }

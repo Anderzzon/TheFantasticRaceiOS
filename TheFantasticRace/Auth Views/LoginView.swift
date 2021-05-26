@@ -12,7 +12,7 @@ struct LoginView: View {
         case none, signUp, resetPW
     }
     @State private var showSheet = false
-    @State private var action = Action.resetPW
+    @State private var action = Action.signUp
     
     var body: some View {
         VStack {

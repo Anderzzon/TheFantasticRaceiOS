@@ -29,6 +29,8 @@ struct Map: View {
                     .frame(width: 32, height: 32)
                 }
                 FabView().onTapGesture {
+                    let newStop = GameStop(id: UUID().uuidString, title: "New Stop", order: viewModel.game.stops?.count ?? 0, lat: centerCoordinate.latitude, lng: centerCoordinate.longitude, question: nil, answer: nil, hint: nil)
+                    editingItem = newStop
                     let newLocation = MKPointAnnotation()
                     newLocation.coordinate = centerCoordinate
                     locations.append(newLocation)

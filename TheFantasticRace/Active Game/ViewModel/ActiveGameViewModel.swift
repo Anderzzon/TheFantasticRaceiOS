@@ -67,6 +67,7 @@ class ActiveGameViewModel: ObservableObject {
     func startTimer() {
         ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
             self.updatePlayerPosition()
+            print("Users current location:", self.locationManager.locationManager.location)
         }
     }
     
@@ -105,7 +106,7 @@ class ActiveGameViewModel: ObservableObject {
     
     private func startGame() {
         self.createGeofence()
-        self.updateMap()
+        //self.updateMap()
     }
     
     private func createGeofence() {
@@ -237,6 +238,7 @@ class ActiveGameViewModel: ObservableObject {
             if let id = game!.id {
                 let docRef = ref.collection("races").document(id).collection("players").document(user)
                 do {
+                    print("Location updated to Firebase")
                     try docRef.setData(from: player)
                 } catch {
                     print("Error", error)

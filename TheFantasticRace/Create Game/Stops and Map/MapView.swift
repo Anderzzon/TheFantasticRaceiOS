@@ -51,7 +51,29 @@ struct MapView: UIViewRepresentable {
             }
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Stop") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: "Stop")
             annotationView.canShowCallout = true
-            annotationView.glyphText = "1️⃣"
+            switch stopAnnotation.order {
+            case 0:
+                annotationView.glyphText = "▶️1️⃣"
+            case 1:
+                annotationView.glyphText = "2️⃣"
+            case 2:
+                annotationView.glyphText = "3️⃣"
+            case 3:
+                annotationView.glyphText = "4️⃣"
+            case 4:
+                annotationView.glyphText = "5️⃣"
+            case 5:
+                annotationView.glyphText = "6️⃣"
+            case 6:
+                annotationView.glyphText = "7️⃣"
+            case 7:
+                annotationView.glyphText = "8️⃣"
+            case 8:
+                annotationView.glyphText = "9️⃣"
+            default:
+                annotationView.glyphText = "🆕"
+            }
+            
             annotationView.titleVisibility = .visible
             return annotationView
 //                let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
