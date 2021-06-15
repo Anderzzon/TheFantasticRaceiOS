@@ -41,12 +41,23 @@ struct HomeView: View {
                         ForEach(games.fetchedGames.sorted()) { game in
                             
                             NavigationRow(game: game).onTapGesture {
+                                let date = Date()
                                 if game.owner == userInfo.user.uid {
-                                    activeGame = game
-                                    viewModel.game = activeGame!
-                                    activeGameSheet = .newGame
-                                    showGameSheet = true
+                                    print("Own game")
+                                    if game.start_time! < date {
+                                        print("Watch game")
+                                        playingGame.game = game
+                                        activeGameSheet = .activeGame
+                                        showGameSheet = true
+                                    } else {
+                                        print("Edit game")
+                                        activeGame = game
+                                        viewModel.game = activeGame!
+                                        activeGameSheet = .newGame
+                                        showGameSheet = true
+                                    }
                                 } else {
+                                    print("Invited game")
                                     playingGame.game = game
                                     games.checkIfUserHasAccepted(game: game) { accepted in
                                         switch accepted {

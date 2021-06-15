@@ -27,7 +27,9 @@ class ActiveGameViewModel: ObservableObject {
                     self.locationManager.startLocationServices()
                     self.locationManager.gameName = self.game?.name ?? "Current Game"
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.startGame()
+                        if self.user != self.game?.owner {
+                            self.startGame()
+                        }
                     }
                 } else {
                     //TODO: Start timer than runs until start of game
@@ -67,7 +69,7 @@ class ActiveGameViewModel: ObservableObject {
     func startTimer() {
         ActiveGameViewModel.playerPositionTimer = Timer.scheduledTimer(withTimeInterval: 60.0, repeats: true) { timer in
             self.updatePlayerPosition()
-            print("Users current location:", self.locationManager.locationManager.location)
+            //print("Users current location:", self.locationManager.locationManager.location)
         }
     }
     
