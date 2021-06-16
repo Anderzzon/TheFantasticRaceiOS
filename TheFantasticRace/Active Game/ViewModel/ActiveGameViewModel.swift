@@ -42,6 +42,7 @@ class ActiveGameViewModel: ObservableObject {
     @Published var stopOverlays = MKCircle()
     @Published var gameFinished = false
     static var playerPositionTimer: Timer?
+    static var showNextStopWithDelayTimer: Timer?
     
     let ref = Firestore.firestore()
     let user = Auth.auth().currentUser!.uid
@@ -140,26 +141,53 @@ class ActiveGameViewModel: ObservableObject {
         //The map will display the next stop, by checking number of finished stops of currentPlayer
         if let finishedStops = currentPlayer?.finishedStops, let totalStopsOfGame = game.stops?.count {
             
-            if finishedStops  <= totalStopsOfGame - 1 {
+            if finishedStops <= totalStopsOfGame - 1 {
                 if finishedStops == 0 { //Always show first stop direct
-                    if let radius = game.radius {
-                        let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                        stopOverlays = overlay
-                    }
+//                    if let radius = game.radius {
+//                        let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
+//                        stopOverlays = overlay
+//                    }
+                    addOverlay()
                 } else if game.show_next_stop! && finishedStops != 0 {
                     if game.show_next_stop_delay == nil || game.show_next_stop_delay == 0.0 { //Show next stop direct
-                        if let radius = game.radius {
-                            let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                            stopOverlays = overlay
-                        }
+//                        if let radius = game.radius {
+//                            let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
+//                            stopOverlays = overlay
+//                        }
+                        addOverlay()
                     } else {
                         //TODO: Create function for displaying stops with a delay
-                        if let radius = game.radius {
-                            let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
-                            stopOverlays = overlay
-                        }
+                        showNextStopWithDelay()
                     }
                 }
+            }
+        }
+    }
+    
+    private func showNextStopWithDelay() {
+        guard let updatedTime = currentPlayer?.updatedTime else { return }
+        guard let delayTime = game?.show_next_stop_delay else { return }
+        let timeToShowNextStop = updatedTime.addingTimeInterval(10) //For testing
+        //let timeToShowNextStop = updatedTime.addingTimeInterval(delayTime * 60)
+        if Date() < timeToShowNextStop {
+            stopOverlays = MKCircle()
+            ActiveGameViewModel.showNextStopWithDelayTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+                if Date() > timeToShowNextStop {
+                    self.addOverlay()
+                    ActiveGameViewModel.showNextStopWithDelayTimer?.invalidate()
+                }
+            }
+        } else {
+            addOverlay()
+        }
+    }
+    
+    private func addOverlay() {
+        guard let game = game else { return }
+        if let finishedStops = currentPlayer?.finishedStops {
+            if let radius = game.radius {
+                let overlay = MKCircle(center: game.stops![finishedStops].coordinate, radius: radius)
+                stopOverlays = overlay
             }
         }
     }
