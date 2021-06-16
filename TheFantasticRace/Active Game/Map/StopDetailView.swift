@@ -52,9 +52,9 @@ struct StopDetailView: View {
                             
                             Text(viewModel.game!.stops![viewModel.currentPlayer!.finishedStops].question!)
                                 //Text("Vad blir 1 + 1?")
-                                .font(.title)
+                                .font(.body)
                                 .fontWeight(.bold)
-                                .padding(.top, 50)
+                                //.padding(.top, 50)
                                 .padding([.leading, .trailing])
                             
                             TextEditor(text: $answer)
@@ -67,6 +67,8 @@ struct StopDetailView: View {
                                 .padding()
                             
                             Button(action: {
+                                hideKeyboard()
+                                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                                 let result = viewModel.answerQuestion(with: answer, for: viewModel.game!.stops![viewModel.currentPlayer!.finishedStops])
                                 if result {
 //                                    DispatchQueue.main.async {
@@ -76,6 +78,8 @@ struct StopDetailView: View {
                                     if let region = viewModel.locationManager.geofenceRegion {
                                         viewModel.locationManager.removeGeofence(for: region)
                                     }
+                                    presentationMode.wrappedValue.dismiss()
+                                }
 //                                    DispatchQueue.main.asyncAfter(deadline: .now()+1) {
 //                                        presentationMode.wrappedValue.dismiss()
 //                                    }
