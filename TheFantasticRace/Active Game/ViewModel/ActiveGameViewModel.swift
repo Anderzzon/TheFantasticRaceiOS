@@ -167,8 +167,8 @@ class ActiveGameViewModel: ObservableObject {
     private func showNextStopWithDelay() {
         guard let updatedTime = currentPlayer?.updatedTime else { return }
         guard let delayTime = game?.show_next_stop_delay else { return }
-        let timeToShowNextStop = updatedTime.addingTimeInterval(10) //For testing
-        //let timeToShowNextStop = updatedTime.addingTimeInterval(delayTime * 60)
+        //let timeToShowNextStop = updatedTime.addingTimeInterval(10) //For testing
+        let timeToShowNextStop = updatedTime.addingTimeInterval(delayTime * 60)
         if Date() < timeToShowNextStop {
             stopOverlays = MKCircle()
             ActiveGameViewModel.showNextStopWithDelayTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
